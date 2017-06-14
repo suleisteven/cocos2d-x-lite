@@ -1,4 +1,4 @@
-﻿#ifndef DRAGONBONES_TRANSFORM_OBJECT_H
+#ifndef DRAGONBONES_TRANSFORM_OBJECT_H
 #define DRAGONBONES_TRANSFORM_OBJECT_H
 
 #include "../core/BaseObject.h"

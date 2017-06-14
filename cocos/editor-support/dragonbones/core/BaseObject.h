@@ -1,4 +1,4 @@
-﻿#ifndef DRAGONBONES_BASE_OBJECT_H
+#ifndef DRAGONBONES_BASE_OBJECT_H
 #define DRAGONBONES_BASE_OBJECT_H
 
 #include "DragonBones.h"
