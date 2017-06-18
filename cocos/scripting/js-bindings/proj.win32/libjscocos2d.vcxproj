@@ -49,6 +49,11 @@
     <ClCompile Include="..\manual\ScriptingCore.cpp" />
     <ClCompile Include="..\manual\spine\jsb_cocos2dx_spine_manual.cpp" />
     <ClCompile Include="..\manual\ui\jsb_cocos2dx_ui_manual.cpp" />
+    <ClCompile Include="..\manual\uu\model\BaseModel.cpp" />
+    <ClCompile Include="..\manual\uu\model\GameModel.cpp" />
+    <ClCompile Include="..\manual\uu\service\RuleManager.cpp" />
+    <ClCompile Include="..\manual\uu\util\CommonUtils.cpp" />
+    <ClCompile Include="..\manual\uu\util\StringUtils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\auto\jsb_cocos2dx_auto.hpp" />
@@ -96,6 +101,11 @@
     <ClInclude Include="..\manual\spidermonkey_specifics.h" />
     <ClInclude Include="..\manual\spine\jsb_cocos2dx_spine_manual.h" />
     <ClInclude Include="..\manual\ui\jsb_cocos2dx_ui_manual.h" />
+    <ClInclude Include="..\manual\uu\model\BaseModel.h" />
+    <ClInclude Include="..\manual\uu\model\GameModel.h" />
+    <ClInclude Include="..\manual\uu\service\RuleManager.h" />
+    <ClInclude Include="..\manual\uu\util\CommonUtils.h" />
+    <ClInclude Include="..\manual\uu\util\StringUtils.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\2d\libcocos2d.vcxproj">

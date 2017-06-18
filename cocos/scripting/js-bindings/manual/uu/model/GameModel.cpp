@@ -8,3 +8,458 @@
 	purpose:	
 *********************************************************************/
 #include "GameModel.h"
+
+
+/////////////////////////扑克模型数据//////////////////////////////////////
+PokerModel::PokerModel(PokerValueType pokerValueType, PokerMarkType pokerMarkType, int32_t originalValue, int32_t sortValue)
+{
+	this->_pokerValueType = pokerValueType;
+	this->_pokerMarkType = pokerMarkType;
+	this->_originalValue = originalValue;
+	this->_sortValue = sortValue;
+
+	clearChanged();
+}
+
+PokerModel::~PokerModel()
+{
+
+}
+
+shared_ptr<PokerModel> PokerModel::clone()
+{
+	shared_ptr<PokerModel> ret(new(std::nothrow) PokerModel(this->_pokerValueType, this->_pokerMarkType, this->_originalValue, this->_sortValue));
+	if (ret)
+	{
+		ret->_changedPokerValueType = this->_changedPokerValueType;
+		ret->_changedPokerMarkType = this->_changedPokerMarkType;
+		ret->_changedValue = this->_changedValue;
+		ret->_changedSortValue = this->_changedSortValue;
+		ret->_isChanged = this->_isChanged;
+	}
+	return ret;
+}
+
+void PokerModel::sortPokerModel(vector<shared_ptr<PokerModel>>& pokerModelVector, const SortType& sortType, const bool& sortSubstitute/* = true*/)
+{
+	std::sort(pokerModelVector.begin(), pokerModelVector.end(), [=](shared_ptr<PokerModel> pokerModel1, shared_ptr<PokerModel> pokerModel2)
+	{
+		bool result = false;
+
+		int32_t sortValue1 = 0;
+		int32_t sortValue2 = 0;
+		if (sortSubstitute && pokerModel1->isChanged())
+		{
+			sortValue1 = pokerModel1->getChangedSortValue();
+		}
+		else
+		{
+			sortValue1 = pokerModel1->getSortValue();
+		}
+
+		if (sortSubstitute && pokerModel2->isChanged())
+		{
+			sortValue2 = pokerModel2->getChangedSortValue();
+		}
+		else
+		{
+			sortValue2 = pokerModel2->getSortValue();
+		}
+
+		if (sortType == SORT_TYPE_ASC)
+		{
+
+			result = sortValue1 < sortValue2;
+		}
+		else if (sortType == SORT_TYPE_DESC)
+		{
+			result = sortValue2 < sortValue1;
+		}
+		return result;
+	});
+}
+
+void PokerModel::sortPokerModelWithGroup(vector<vector<shared_ptr<PokerModel>>>& pokerModelGroupVector, const SortType& sortType, const bool& sortSubstitute/* = true*/)
+{
+	std::sort(pokerModelGroupVector.begin(), pokerModelGroupVector.end(), [=](vector<shared_ptr<PokerModel>> pokerModelVector1, vector<shared_ptr<PokerModel>> pokerModelVector2)
+	{
+		bool result = false;
+
+		int32_t sortValue1 = 0;
+		int32_t sortValue2 = 0;
+
+		if (sortSubstitute && pokerModelVector1.front()->isChanged())
+		{
+			sortValue1 = pokerModelVector1.front()->getChangedSortValue();
+		}
+		else
+		{
+			sortValue1 = pokerModelVector1.front()->getSortValue();
+		}
+
+		if (sortSubstitute && pokerModelVector2.front()->isChanged())
+		{
+			sortValue2 = pokerModelVector2.front()->getChangedSortValue();
+		}
+		else
+		{
+			sortValue2 = pokerModelVector2.front()->getSortValue();
+		}
+
+		if (sortType == SORT_TYPE_ASC)
+		{
+
+			result = sortValue1 < sortValue2;
+		}
+		else if (sortType == SORT_TYPE_DESC)
+		{
+			result = sortValue2 < sortValue1;
+		}
+		return result;
+	});
+}
+
+shared_ptr<PokerModel> PokerModel::findPoker(vector<shared_ptr<PokerModel>>& pokerModelVector, const PokerValueType &pokerValueType, const PokerMarkType &pokerMarkType, const bool& isCheckSubstituteChangeValue/*=false*/)
+{
+	shared_ptr<PokerModel> targetPoker = nullptr;
+	std::vector<shared_ptr<PokerModel>>::iterator it = std::find_if(pokerModelVector.begin(), pokerModelVector.end(), PokerFindByValueAndType(pokerValueType, pokerMarkType, isCheckSubstituteChangeValue));
+	if (it != pokerModelVector.end()) // 找到对象
+	{
+		targetPoker = (*it);
+	}
+	return targetPoker;
+}
+
+shared_ptr<PokerModel> PokerModel::findPoker(vector<shared_ptr<PokerModel>>& pokerModelVector, const PokerValueType &pokerValueType, const bool& isCheckSubstituteChangeValue/*=false*/)
+{
+	shared_ptr<PokerModel> targetPoker = nullptr;
+	std::vector<shared_ptr<PokerModel>>::iterator it = std::find_if(pokerModelVector.begin(), pokerModelVector.end(), PokerFindByValue(pokerValueType, isCheckSubstituteChangeValue));
+	if (it != pokerModelVector.end()) // 找到对象
+	{
+		targetPoker = (*it);
+	}
+	return targetPoker;
+
+}
+
+int32_t PokerModel::findCountByPokerValue(vector<shared_ptr<PokerModel>>& pokerModelVector, const PokerValueType& pokerValueType)
+{
+	int32_t reuslt = 0;
+	for (shared_ptr<PokerModel> poker : pokerModelVector)
+	{
+		if (poker->getPokerValueType() == pokerValueType)
+		{
+			++reuslt;
+		}
+	}
+	return reuslt;
+}
+
+PokerValueType PokerModel::getPokerValueType()
+{
+	return this->_pokerValueType;
+}
+
+PokerMarkType PokerModel::getPokerMarkType()
+{
+	return this->_pokerMarkType;
+}
+
+int32_t PokerModel::getOriginalValue()
+{
+	return this->_originalValue;
+}
+
+int32_t PokerModel::getSortValue()
+{
+	return this->_sortValue;
+}
+
+void PokerModel::setChange(const PokerValueType& changeToPokerValueType, const PokerMarkType& changeToPokerMarkType, const int32_t& changeToValue, const int32_t& changeToSortValue)
+{
+	if (this->_pokerValueType == PokerValueType::VALUE_TYPE_SUBSTITUTE)
+	{
+		if (changeToPokerValueType == PokerValueType::VALUE_TYPE_NONE || changeToPokerValueType == PokerValueType::VALUE_TYPE_SUBSTITUTE) // 想变的牌是替用或者空，则不算变牌
+		{
+			clearChanged();
+		}
+		else
+		{
+			this->_isChanged = true;
+			this->_changedPokerValueType = changeToPokerValueType;
+			this->_changedPokerMarkType = changeToPokerMarkType;
+			this->_changedValue = changeToValue;
+			this->_changedSortValue = changeToSortValue;
+		}
+	}
+}
+
+void PokerModel::clearChanged()
+{
+	this->_isChanged = false;
+	this->_changedPokerValueType = PokerValueType::VALUE_TYPE_NONE;
+	this->_changedPokerMarkType = PokerMarkType::MARK_TYPE_NONE;
+	this->_changedValue = 0;
+	this->_changedSortValue = 0;
+}
+
+PokerValueType PokerModel::getChangedPokerValueType()
+{
+	return this->_changedPokerValueType;
+}
+
+PokerMarkType PokerModel::getChangedPokerMarkType()
+{
+	return this->_changedPokerMarkType;
+}
+
+int32_t PokerModel::getChangedValue()
+{
+	return this->_changedValue;
+}
+
+int32_t PokerModel::getChangedSortValue()
+{
+	return this->_changedSortValue;
+}
+
+bool PokerModel::isChanged()
+{
+	return this->_isChanged;
+}
+
+
+
+
+////////////////////////扑克构造器模型数据//////////////////////////////////
+PokerBuildModel::PokerBuildModel(PokerValueType pokerValueType, PokerMarkType pokerMarkType, int32_t originalValue, int32_t sortValue)
+{
+	this->_pokerValueType = pokerValueType;
+	this->_pokerMarkType = pokerMarkType;
+	this->_originalValue = originalValue;
+	this->_sortValue = sortValue;
+}
+
+PokerValueType PokerBuildModel::getPokerValueType() const
+{
+	return this->_pokerValueType;
+}
+
+PokerMarkType PokerBuildModel::getPokerMarkType() const
+{
+	return this->_pokerMarkType;
+}
+
+int32_t PokerBuildModel::getOriginalValue() const
+{
+	return this->_originalValue;
+}
+int32_t PokerBuildModel::getSortValue() const
+{
+	return this->_sortValue;
+}
+
+
+////////////////////////牌型数据模型//////////////////////////////////////////////////
+PokerCombinationModel::PokerCombinationModel(const PokerCombinationType& pokerCombinationType, const vector<shared_ptr<PokerModel>>& pokerModelVector, const int32_t& value) :_pokerCombinationType(pokerCombinationType), _pokerModelVector(pokerModelVector), _value(value)
+{
+}
+
+
+PokerCombinationModel::~PokerCombinationModel()
+{
+}
+
+shared_ptr<PokerCombinationModel> PokerCombinationModel::create(const PokerCombinationType& pokerCombinationType, const vector<shared_ptr<PokerModel>>& pokerModelVector, const int32_t& value)
+{
+	shared_ptr<PokerCombinationModel> pRet(new(std::nothrow) PokerCombinationModel(pokerCombinationType, pokerModelVector, value));
+	return pRet;
+}
+
+
+PokerCombinationType& PokerCombinationModel::getPokerCombinationType()
+{
+	return this->_pokerCombinationType;
+}
+
+uint32_t PokerCombinationModel::getPokerCount()
+{
+	return this->_pokerModelVector.size();
+}
+
+signed int PokerCombinationModel::getValue()
+{
+	return this->_value;
+}
+
+vector<shared_ptr<PokerModel>>& PokerCombinationModel::getPokerModelVector()
+{
+	return this->_pokerModelVector;
+}
+
+shared_ptr<PokerCombinationModel> PokerCombinationModel::clone(shared_ptr<PokerCombinationModel> pokerCombinationModel)
+{
+	return PokerCombinationModel::create(pokerCombinationModel->getPokerCombinationType(), pokerCombinationModel->getPokerModelVector(), pokerCombinationModel->getValue());
+}
+
+shared_ptr<PokerCombinationModel> PokerCombinationModel::findPokerCombination(vector<shared_ptr<PokerCombinationModel>>& pokerCombinationModelVector, const PokerCombinationType &pokerCombinationType)
+{
+	shared_ptr<PokerCombinationModel> target = nullptr;
+	std::vector<shared_ptr<PokerCombinationModel>>::iterator it = std::find_if(pokerCombinationModelVector.begin(), pokerCombinationModelVector.end(), PokerCombinationFindByType(pokerCombinationType));
+
+	if (it != pokerCombinationModelVector.end())// 找到对象
+	{
+		target = *it;
+	}
+	return target;
+}
+
+vector<shared_ptr<PokerCombinationModel>> PokerCombinationModel::findPokerCombinationAll(vector<shared_ptr<PokerCombinationModel>>& pokerCombinationModelVector, const PokerCombinationType &pokerCombinationType)
+{
+	vector<shared_ptr<PokerCombinationModel>> result;
+
+	std::vector<shared_ptr<PokerCombinationModel>>::iterator it = pokerCombinationModelVector.begin();
+	std::vector<shared_ptr<PokerCombinationModel>>::iterator it_end = pokerCombinationModelVector.end();
+	while (true) {
+
+		it = std::find_if(it, pokerCombinationModelVector.end(), PokerCombinationFindByType(pokerCombinationType));
+
+		if (it != it_end)// 找到对象
+		{
+			result.push_back(*it);
+		}
+		else
+		{
+			break;
+		}
+		++it;
+	}
+
+	return result;
+}
+
+
+///////////////////////////扑克模型生产工厂/////////////////////////////////////////////
+shared_ptr<PokerModel> PokerModelFactory::createPokerModel(const PokerBuildModel& pokerBuildModel)
+{
+	shared_ptr<PokerModel> pRet(new(std::nothrow) PokerModel(pokerBuildModel.getPokerValueType(), pokerBuildModel.getPokerMarkType(), pokerBuildModel.getOriginalValue(), pokerBuildModel.getSortValue()));
+	return pRet;
+}
+
+shared_ptr<PokerModel> PokerModelFactory::createPokerModel(const RuleType& gameRuleType, const PokerValueType& pokerValueType, const PokerMarkType& pokerMarkType)
+{
+	PokerBuildModel* pokerBuildModel = getPokerBuildModel(gameRuleType, pokerValueType, pokerMarkType);
+	return createPokerModel(*pokerBuildModel);
+}
+
+
+vector<shared_ptr<PokerModel>> PokerModelFactory::createPokerModelPack(const RuleType& gameRuleType)
+{
+	vector<shared_ptr<PokerModel>> resutlVector;
+	switch (gameRuleType) {
+	case RULE_TYPE_SIMPLE:
+	{
+		for (PokerBuildModel pokerBuildModel : POKER_SIMPLE)
+		{
+			shared_ptr<PokerModel> pokerModel = createPokerModel(pokerBuildModel);
+			resutlVector.push_back(pokerModel);
+		}
+	}
+		break;
+	case RULE_TYPE_MUCH_THREE:
+	{
+		throw std::logic_error("not support createPokerModelPack RULE_TYPE_MUCH_THREE");
+	}
+		break;
+	case RULE_TYPE_AMAZING:
+	{
+		throw std::logic_error("not support createPokerModelPack RULE_TYPE_AMAZING");
+	}
+		break;
+	default:
+		break;
+	}
+
+	return resutlVector;
+}
+
+bool PokerModelFactory::getPokerValueAndSortValue(const RuleType& gameRuleType, const PokerValueType& pokerValueType, const PokerMarkType& pokerMarkType, int32_t& outPokerValue, int32_t& outSortValue)
+{
+
+	bool result = false;
+	switch (gameRuleType) {
+	case RULE_TYPE_SIMPLE:
+	{
+		int32_t len = CommonUtils::getArrayLen(POKER_SIMPLE);
+		const PokerBuildModel* targetPokerBuild = std::find_if(POKER_SIMPLE, POKER_SIMPLE + len, PokerBuildModelFindByValueAndType(pokerValueType, pokerMarkType));
+
+
+		if (targetPokerBuild != POKER_SIMPLE + len)// 找到对象
+		{
+			outPokerValue = (*targetPokerBuild).getOriginalValue(); // 返回相应的值
+			outSortValue = (*targetPokerBuild).getSortValue();
+			result = true;
+		}
+		else
+		{
+			outPokerValue = 0;
+			outSortValue = 0;
+			result = false;
+		}
+	}
+		break;
+	case RULE_TYPE_MUCH_THREE:
+	{
+		throw std::logic_error("not support getPokerValueAndSortValue RULE_TYPE_MUCH_THREE");
+	}
+		break;
+	case RULE_TYPE_AMAZING:
+	{
+		throw std::logic_error("not support getPokerValueAndSortValue RULE_TYPE_AMAZING");
+	}
+		break;
+	default:
+		break;
+	}
+	return result;
+}
+
+PokerBuildModel* PokerModelFactory::getPokerBuildModel(const RuleType& gameRuleType, const PokerValueType& pokerValueType, const PokerMarkType& pokerMarkType)
+{
+	PokerBuildModel* result = nullptr;
+	switch (gameRuleType) {
+	case RULE_TYPE_SIMPLE:
+	{
+		int32_t len = CommonUtils::getArrayLen(POKER_SIMPLE);
+
+		PokerMarkType pokerMarkTypeFind = pokerMarkType;
+
+		// 大鬼、小鬼、替用的花色只能是NONE
+		if (pokerValueType == PokerValueType::VALUE_TYPE_KING_BIG || pokerValueType == PokerValueType::VALUE_TYPE_KING_SMALL || pokerValueType == PokerValueType::VALUE_TYPE_SUBSTITUTE)
+		{
+			pokerMarkTypeFind = PokerMarkType::MARK_TYPE_NONE;
+		}
+		const PokerBuildModel* targetPokerBuild = std::find_if(POKER_SIMPLE, POKER_SIMPLE + len, PokerBuildModelFindByValueAndType(pokerValueType, pokerMarkTypeFind));
+
+
+		if (targetPokerBuild != POKER_SIMPLE + len)// 找到对象
+		{
+			result = const_cast<PokerBuildModel*>(targetPokerBuild);
+		}
+	}
+		break;
+	case RULE_TYPE_MUCH_THREE:
+	{
+		throw std::logic_error("not support getPokerValueAndSortValue RULE_TYPE_MUCH_THREE");
+	}
+		break;
+	case RULE_TYPE_AMAZING:
+	{
+		throw std::logic_error("not support getPokerValueAndSortValue RULE_TYPE_AMAZING");
+	}
+		break;
+	default:
+		break;
+	}
+	return result;
+}

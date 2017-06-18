@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="manual">
@@ -35,6 +35,18 @@
     </Filter>
     <Filter Include="manual\dragonbones">
       <UniqueIdentifier>{36372247-74fd-4169-8120-06c8c0596530}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="manual\uu">
+      <UniqueIdentifier>{5624439f-c79c-4f02-98fa-5606b0ffae05}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="manual\uu\model">
+      <UniqueIdentifier>{521f4120-9103-420d-aef9-a1bb8d3031df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="manual\uu\service">
+      <UniqueIdentifier>{87439bb0-a227-4e47-b373-1e2e61f5662c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="manual\uu\util">
+      <UniqueIdentifier>{9fc441ba-cbba-409d-9033-115ef82385b5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -151,6 +163,21 @@
     </ClCompile>
     <ClCompile Include="..\auto\jsb_cocos2dx_network_auto.cpp">
       <Filter>auto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\manual\uu\model\GameModel.cpp">
+      <Filter>manual\uu\model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\manual\uu\service\RuleManager.cpp">
+      <Filter>manual\uu\service</Filter>
+    </ClCompile>
+    <ClCompile Include="..\manual\uu\model\BaseModel.cpp">
+      <Filter>manual\uu\model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\manual\uu\util\StringUtils.cpp">
+      <Filter>manual\uu\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\manual\uu\util\CommonUtils.cpp">
+      <Filter>manual\uu\util</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -288,6 +315,21 @@
     </ClInclude>
     <ClInclude Include="..\auto\jsb_cocos2dx_network_auto.hpp">
       <Filter>auto</Filter>
+    </ClInclude>
+    <ClInclude Include="..\manual\uu\model\GameModel.h">
+      <Filter>manual\uu\model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\manual\uu\service\RuleManager.h">
+      <Filter>manual\uu\service</Filter>
+    </ClInclude>
+    <ClInclude Include="..\manual\uu\model\BaseModel.h">
+      <Filter>manual\uu\model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\manual\uu\util\StringUtils.h">
+      <Filter>manual\uu\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\manual\uu\util\CommonUtils.h">
+      <Filter>manual\uu\util</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
