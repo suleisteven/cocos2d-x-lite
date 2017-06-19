@@ -68,8 +68,12 @@ public:
 	/**
 	 * 获取牌个数信息
 	 */
-	shared_ptr<PokerCountInfo> RuleManagerAbstract::getPokerCountInfo(vector<shared_ptr<PokerModel>> pokerVector);
+	shared_ptr<PokerCountInfo> getPokerCountInfo(vector<shared_ptr<PokerModel>> pokerVector);
 
+	/**
+	 * 获取牌点数总和
+	 */
+	int32_t getPokerValueTotal(const vector<shared_ptr<PokerModel>>& pokerVector);
 	/**
 	 * 比较两个牌型的大小
 	 * @return >0:model1大于model2，=0：model1等于model2，<0:model1小于model2
@@ -108,6 +112,12 @@ public:
 	*/
 	virtual vector<shared_ptr<vector<shared_ptr<PokerCombinationModel>>>> getPokerCombination(vector<shared_ptr<PokerModel>> pokerVector) = 0;
 
+	/**
+	 * 根据牌型获取牌型对应的分数
+	 * @param pokerCountInfo 扑克统计信息，不为NULL时将使用统计信息中的数据
+	 */
+	virtual int32_t getPokerValueByCombination(const PokerCombinationType& type, const vector<shared_ptr<PokerModel>>& pokerVector, shared_ptr<PokerCountInfo> pokerCountInfo) = 0;
+
 };
 
 /************************************************************************/
@@ -121,12 +131,21 @@ public:
 	static const int32_t POKER_COUNT_ROW_3 = 5;// 尾道牌数
 
 	static const int32_t POKER_COUNT_SINGLE_PLAYER = 13; // 玩家手牌总数
+
+	static const int32_t CHAIN_FIND_TYPE_TONGHUA_ALL = 0; // 查找连子，所有类型
+	static const int32_t CHAIN_FIND_TYPE_TONGHUA_ONLY = 1; // 查找连子，仅同花顺
+	static const int32_t CHAIN_FIND_TYPE_TONGHUA_OTHER = 2; // 查找连子，非同花顺
+
+	static const int32_t CHAIN_FIND_TYPE_COUNT_TYPE_ALL = 0; // 查找连子个数类型，所有
+	static const int32_t CHAIN_FIND_TYPE_COUNT_TYPE_3 = 1; // 查找连子个数类型，仅三张
+	static const int32_t CHAIN_FIND_TYPE_COUNT_TYPE_5 = 2; // 查找连子个数类型，仅五张
 public:
 
 	virtual RuleType getRuleType();
 
 	virtual vector<shared_ptr<vector<shared_ptr<PokerCombinationModel>>>> getPokerCombination(vector<shared_ptr<PokerModel>> pokerVector);
 
+	virtual int32_t getPokerValueByCombination(const PokerCombinationType& type, const vector<shared_ptr<PokerModel>>& pokerVector, shared_ptr<PokerCountInfo> pokerCountInfo);
 protected:
 
 	/**
@@ -135,14 +154,22 @@ protected:
 	virtual shared_ptr<PokerCombinationModel> findSpecialPokerCombination(vector<shared_ptr<PokerModel>>& pokerVector, shared_ptr<PokerCountInfo> pokerCountInfo);
 
 	/**
-	 * 找出所有链子
-	 */
-	virtual vector<shared_ptr<PokerCombinationModel>> findChainPokerCombination(vector<shared_ptr<PokerModel>>& pokerVector, shared_ptr<PokerCountInfo> pokerCountInfo);
+	* 找出所有普通推荐牌型
+	*/
+	virtual vector<shared_ptr<PokerCombinationModel>> findSimplePokerCombination(vector<shared_ptr<PokerModel>>& pokerVector, shared_ptr<PokerCountInfo> pokerCountInfo);
 
 	/**
-	 * 找出所有普通推荐牌型
+	 * 找出指定连子
+	 * @param tonghuaType 同花类型
+	 * @param countType  个数类型
 	 */
-	virtual vector<shared_ptr<PokerCombinationModel>> findSimplePokerCombination(vector<shared_ptr<PokerModel>>& pokerVector, shared_ptr<PokerCountInfo> pokerCountInfo);
+	virtual vector<shared_ptr<PokerCombinationModel>> findChainPokerCombination(vector<shared_ptr<PokerModel>>& pokerVector, shared_ptr<PokerCountInfo> pokerCountInfo, const int32_t& tonghuaType, const int32_t& countType);
+
+
+
+
+
+	
 private:
 
 };

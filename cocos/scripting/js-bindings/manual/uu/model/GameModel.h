@@ -570,7 +570,6 @@ protected:
 
 	static shared_ptr<PokerCombinationModel> create(const PokerCombinationType& pokerCombinationType, const vector<shared_ptr<PokerModel>>& pokerModelVector, const int32_t& value);
 
-
 private:
 	PokerCombinationType _pokerCombinationType;
 	signed int _value;
