@@ -40,7 +40,7 @@ shared_ptr<PokerModel> PokerModel::clone()
 	return ret;
 }
 
-void PokerModel::sortPokerModel(vector<shared_ptr<PokerModel>>& pokerModelVector, const SortType& sortType, const bool& sortSubstitute/* = true*/)
+void PokerModel::sortPokerModel(vector<shared_ptr<PokerModel>>& pokerModelVector, const SortType& sortType, const SortPokerType& sortPokerType/* = SortPokerType::SORT_POKER_TYPE_VALUE_FIRST*/, const bool& sortSubstitute/* = true*/)
 {
 	std::sort(pokerModelVector.begin(), pokerModelVector.end(), [=](shared_ptr<PokerModel> pokerModel1, shared_ptr<PokerModel> pokerModel2)
 	{
@@ -48,33 +48,133 @@ void PokerModel::sortPokerModel(vector<shared_ptr<PokerModel>>& pokerModelVector
 
 		int32_t sortValue1 = 0;
 		int32_t sortValue2 = 0;
-		if (sortSubstitute && pokerModel1->isChanged())
+
+
+		if (sortPokerType == SortPokerType::SORT_POKER_TYPE_VALUE_FIRST)
 		{
-			sortValue1 = pokerModel1->getChangedSortValue();
+			if (sortSubstitute && pokerModel1->isChanged())
+			{
+				sortValue1 = pokerModel1->getChangedSortValue();
+			}
+			else
+			{
+				sortValue1 = pokerModel1->getSortValue();
+			}
+
+			if (sortSubstitute && pokerModel2->isChanged())
+			{
+				sortValue2 = pokerModel2->getChangedSortValue();
+			}
+			else
+			{
+				sortValue2 = pokerModel2->getSortValue();
+			}
+
+			if (sortValue1 != sortValue2)
+			{
+				if (sortType == SORT_TYPE_ASC)
+				{
+
+					result = sortValue1 < sortValue2;
+				}
+				else if (sortType == SORT_TYPE_DESC)
+				{
+					result = sortValue2 < sortValue1;
+				}
+			}
+			else
+			{
+				if (sortSubstitute && pokerModel1->isChanged())
+				{
+					sortValue1 = pokerModel1->getChangedPokerMarkType();
+				}
+				else
+				{
+					sortValue1 = pokerModel1->getPokerMarkType();
+				}
+
+				if (sortSubstitute && pokerModel2->isChanged())
+				{
+					sortValue2 = pokerModel2->getChangedPokerMarkType();
+				}
+				else
+				{
+					sortValue2 = pokerModel2->getPokerMarkType();
+				}
+
+				if (sortType == SORT_TYPE_ASC)
+				{
+					result = sortValue1 < sortValue2;
+				}
+				else if (sortType == SORT_TYPE_DESC)
+				{
+					result = sortValue2 < sortValue1;
+				}
+			}
 		}
-		else
+		else if (sortPokerType == SortPokerType::SORT_POKER_TYPE_MARK_FIRST)
 		{
-			sortValue1 = pokerModel1->getSortValue();
+			if (sortSubstitute && pokerModel1->isChanged())
+			{
+				sortValue1 = pokerModel1->getChangedPokerMarkType();
+			}
+			else
+			{
+				sortValue1 = pokerModel1->getPokerMarkType();
+			}
+
+			if (sortSubstitute && pokerModel2->isChanged())
+			{
+				sortValue2 = pokerModel2->getChangedPokerMarkType();
+			}
+			else
+			{
+				sortValue2 = pokerModel2->getPokerMarkType();
+			}
+
+			if (sortValue1 != sortValue2)
+			{
+				if (sortType == SORT_TYPE_ASC)
+				{
+					result = sortValue1 < sortValue2;
+				}
+				else if (sortType == SORT_TYPE_DESC)
+				{
+					result = sortValue2 < sortValue1;
+				}
+			}
+			else
+			{
+				if (sortSubstitute && pokerModel1->isChanged())
+				{
+					sortValue1 = pokerModel1->getChangedSortValue();
+				}
+				else
+				{
+					sortValue1 = pokerModel1->getSortValue();
+				}
+
+				if (sortSubstitute && pokerModel2->isChanged())
+				{
+					sortValue2 = pokerModel2->getChangedSortValue();
+				}
+				else
+				{
+					sortValue2 = pokerModel2->getSortValue();
+				}
+
+				if (sortType == SORT_TYPE_ASC)
+				{
+					result = sortValue1 < sortValue2;
+				}
+				else if (sortType == SORT_TYPE_DESC)
+				{
+					result = sortValue2 < sortValue1;
+				}
+			}
 		}
 
-		if (sortSubstitute && pokerModel2->isChanged())
-		{
-			sortValue2 = pokerModel2->getChangedSortValue();
-		}
-		else
-		{
-			sortValue2 = pokerModel2->getSortValue();
-		}
-
-		if (sortType == SORT_TYPE_ASC)
-		{
-
-			result = sortValue1 < sortValue2;
-		}
-		else if (sortType == SORT_TYPE_DESC)
-		{
-			result = sortValue2 < sortValue1;
-		}
+		
 		return result;
 	});
 }
@@ -119,10 +219,10 @@ void PokerModel::sortPokerModelWithGroup(vector<vector<shared_ptr<PokerModel>>>&
 	});
 }
 
-shared_ptr<PokerModel> PokerModel::findPoker(vector<shared_ptr<PokerModel>>& pokerModelVector, const PokerValueType &pokerValueType, const PokerMarkType &pokerMarkType, const bool& isCheckSubstituteChangeValue/*=false*/)
+shared_ptr<PokerModel> PokerModel::findPoker(const vector<shared_ptr<PokerModel>>& pokerModelVector, const PokerValueType &pokerValueType, const PokerMarkType &pokerMarkType, const bool& isCheckSubstituteChangeValue/*=false*/)
 {
 	shared_ptr<PokerModel> targetPoker = nullptr;
-	std::vector<shared_ptr<PokerModel>>::iterator it = std::find_if(pokerModelVector.begin(), pokerModelVector.end(), PokerFindByValueAndType(pokerValueType, pokerMarkType, isCheckSubstituteChangeValue));
+	std::vector<shared_ptr<PokerModel>>::const_iterator it = std::find_if(pokerModelVector.cbegin(), pokerModelVector.cend(), PokerFindByValueAndType(pokerValueType, pokerMarkType, isCheckSubstituteChangeValue));
 	if (it != pokerModelVector.end()) // 找到对象
 	{
 		targetPoker = (*it);
@@ -130,10 +230,10 @@ shared_ptr<PokerModel> PokerModel::findPoker(vector<shared_ptr<PokerModel>>& pok
 	return targetPoker;
 }
 
-shared_ptr<PokerModel> PokerModel::findPoker(vector<shared_ptr<PokerModel>>& pokerModelVector, const PokerValueType &pokerValueType, const bool& isCheckSubstituteChangeValue/*=false*/)
+shared_ptr<PokerModel> PokerModel::findPoker(const vector<shared_ptr<PokerModel>>& pokerModelVector, const PokerValueType &pokerValueType, const bool& isCheckSubstituteChangeValue/*=false*/)
 {
 	shared_ptr<PokerModel> targetPoker = nullptr;
-	std::vector<shared_ptr<PokerModel>>::iterator it = std::find_if(pokerModelVector.begin(), pokerModelVector.end(), PokerFindByValue(pokerValueType, isCheckSubstituteChangeValue));
+	std::vector<shared_ptr<PokerModel>>::const_iterator it = std::find_if(pokerModelVector.cbegin(), pokerModelVector.cend(), PokerFindByValue(pokerValueType, isCheckSubstituteChangeValue));
 	if (it != pokerModelVector.end()) // 找到对象
 	{
 		targetPoker = (*it);
@@ -142,7 +242,7 @@ shared_ptr<PokerModel> PokerModel::findPoker(vector<shared_ptr<PokerModel>>& pok
 
 }
 
-int32_t PokerModel::findCountByPokerValue(vector<shared_ptr<PokerModel>>& pokerModelVector, const PokerValueType& pokerValueType)
+int32_t PokerModel::findCountByPokerValue(const vector<shared_ptr<PokerModel>>& pokerModelVector, const PokerValueType& pokerValueType)
 {
 	int32_t reuslt = 0;
 	for (shared_ptr<PokerModel> poker : pokerModelVector)
@@ -153,6 +253,39 @@ int32_t PokerModel::findCountByPokerValue(vector<shared_ptr<PokerModel>>& pokerM
 		}
 	}
 	return reuslt;
+}
+
+
+void PokerModel::removeSpecifyPokerVector(vector<shared_ptr<PokerModel>>& pokerVector, const vector<shared_ptr<PokerModel>>& beRemovePokerVector)
+{
+	for (auto itor = pokerVector.begin(); itor != pokerVector.end();)
+	{
+		if (PokerModel::findPoker(beRemovePokerVector, (*itor).get()->getPokerValueType(), (*itor).get()->getPokerMarkType()))
+		{
+			itor = pokerVector.erase(itor);
+		}
+		else
+		{
+			++itor;
+		}
+	}
+}
+
+void PokerModel::mergeSpecifyPokerVector(vector<shared_ptr<PokerModel>>& pokerVector, const vector<shared_ptr<PokerModel>>& beMergePokerVector)
+{
+	for (auto itor = beMergePokerVector.begin(); itor != beMergePokerVector.end();)
+	{
+		if (!PokerModel::findPoker(pokerVector, (*itor).get()->getPokerValueType(), (*itor).get()->getPokerMarkType()))
+		{
+			pokerVector.push_back(*itor);
+		}
+		++itor;
+	}
+}
+
+void PokerModel::concatSpecifyPokerVector(vector<shared_ptr<PokerModel>>& pokerVector, const vector<shared_ptr<PokerModel>>& beConcatPokerVector)
+{
+	pokerVector.insert(pokerVector.end(), beConcatPokerVector.begin(), beConcatPokerVector.end());
 }
 
 PokerValueType PokerModel::getPokerValueType()

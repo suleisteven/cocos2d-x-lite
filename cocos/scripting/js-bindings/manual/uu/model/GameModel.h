@@ -38,6 +38,21 @@ enum SortType : uint32_t
 };
 
 /************************************************************************/
+/* 排序扑克类型                                                                     */
+/************************************************************************/
+enum SortPokerType : uint32_t
+{
+	/**
+	 * 扑克值类型优先
+	 */
+	SORT_POKER_TYPE_VALUE_FIRST = 1,
+	/**
+	 * 扑克花色类型优先
+	 */
+	SORT_POKER_TYPE_MARK_FIRST = 2,
+};
+
+/************************************************************************/
 /* 游戏规则类型                                                                     */
 /************************************************************************/
 enum RuleType : int32_t
@@ -153,9 +168,10 @@ public:
 	* 排序扑克
 	* @param pokerModelVector 待排序扑克集合
 	* @param sortType 排序类型
+	* @param sortPokerType 扑克排序优先级类型
 	* @param sortSubstitute 是否排序替用牌
 	*/
-	static void sortPokerModel(vector<shared_ptr<PokerModel>>& pokerModelVector, const SortType& sortType, const bool& sortSubstitute = true);
+	static void sortPokerModel(vector<shared_ptr<PokerModel>>& pokerModelVector, const SortType& sortType, const SortPokerType& sortPokerType = SortPokerType::SORT_POKER_TYPE_VALUE_FIRST, const bool& sortSubstitute = true);
 
 	/**
 	* 排序分组扑克（按相同的牌进行分组）,所有组里一定有元素
@@ -170,7 +186,7 @@ public:
 	* @param isCheckSubstitute 是否检查替用的变化值，false-不检查（此时会忽略替用牌变化的牌型），true-检查（此时会优先比较牌型，如果对比不上，再对比替用变化的值，例如：替用已变成黑桃4，此时查找黑桃4，能够返回该替用牌）
 	* @return null-没有找到，否则返回扑克对象指针
 	*/
-	static shared_ptr<PokerModel> findPoker(vector<shared_ptr<PokerModel>>& pokerModelVector, const PokerValueType &pokerValueType, const PokerMarkType &pokerMarkType, const bool& isCheckSubstituteChangeValue = false);
+	static shared_ptr<PokerModel> findPoker(const vector<shared_ptr<PokerModel>>& pokerModelVector, const PokerValueType &pokerValueType, const PokerMarkType &pokerMarkType, const bool& isCheckSubstituteChangeValue = false);
 
 	/**
 	* 查找扑克，忽略扑克花色类型
@@ -179,12 +195,33 @@ public:
 	* @param isCheckSubstitute 是否检查替用的变化值，false-不检查（此时会忽略替用牌变化的牌型），true-检查（此时会优先比较牌型，如果对比不上，再对比替用变化的值，例如：替用已变成黑桃4，此时查找黑桃4，能够返回该替用牌）
 	* @return null-没有找到，否则返回找到的第一个扑克对象指针
 	*/
-	static shared_ptr<PokerModel> findPoker(vector<shared_ptr<PokerModel>>& pokerModelVector, const PokerValueType &pokerValueType, const bool& isCheckSubstituteChangeValue = false);
+	static shared_ptr<PokerModel> findPoker(const vector<shared_ptr<PokerModel>>& pokerModelVector, const PokerValueType &pokerValueType, const bool& isCheckSubstituteChangeValue = false);
 
 	/**
 	* 查找某种牌的总数
 	*/
-	static int32_t findCountByPokerValue(vector<shared_ptr<PokerModel>>& pokerModelVector, const PokerValueType& pokerValueType);
+	static int32_t findCountByPokerValue(const vector<shared_ptr<PokerModel>>& pokerModelVector, const PokerValueType& pokerValueType);
+
+	/**
+	* 从牌集合中排除指定牌集合
+	* @param pokerVector
+	* @param beRemovePokerVector 将要被移除的牌型集合
+	*/
+	static void removeSpecifyPokerVector(vector<shared_ptr<PokerModel>>& pokerVector, const vector<shared_ptr<PokerModel>>& beRemovePokerVector);
+
+	/**
+	* 合并指定牌集合到牌集合中，会检测重复
+	* @param pokerVector
+	* @param beMergePokerVector 将要被合并的牌型集合
+	*/
+	static void mergeSpecifyPokerVector(vector<shared_ptr<PokerModel>>& pokerVector, const vector<shared_ptr<PokerModel>>& beMergePokerVector);
+
+	/**
+	 * 连接两个牌型,不会检测重复
+	 * @param pokerVector
+	 * @param beConcatPokerVector 将要被合并的牌型集合
+	 */
+	static void concatSpecifyPokerVector(vector<shared_ptr<PokerModel>>& pokerVector, const vector<shared_ptr<PokerModel>>& beConcatPokerVector);
 
 	/**
 	* 获取扑克类型
@@ -423,7 +460,7 @@ enum PokerCombinationType : uint32_t
 	/**
 	* 两对（两个对子+单张，如77+99+3）
 	*/
-	POKER_COMBINATION_TYPE_LINAG_DUI,
+	POKER_COMBINATION_TYPE_LIANG_DUI,
 	/**
 	* 三条（3张相同点数牌+2张单张，如333+79）
 	*/
@@ -643,71 +680,71 @@ static const PokerBuildModel POKER_SIMPLE[] =
 {
 
 	// 2
-	PokerBuildModel(VALUE_TYPE_2, MARK_TYPE_BLACK_PEACH, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_2, 24),
-	PokerBuildModel(VALUE_TYPE_2, MARK_TYPE_RED_PEACH, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_2, 23),
-	PokerBuildModel(VALUE_TYPE_2, MARK_TYPE_PLUM_BLOSSOM, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_2, 22),
-	PokerBuildModel(VALUE_TYPE_2, MARK_TYPE_RED_SQUARE, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_2, 21),
+	PokerBuildModel(VALUE_TYPE_2, MARK_TYPE_BLACK_PEACH, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_2, 20),
+	PokerBuildModel(VALUE_TYPE_2, MARK_TYPE_RED_PEACH, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_2, 20),
+	PokerBuildModel(VALUE_TYPE_2, MARK_TYPE_PLUM_BLOSSOM, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_2, 20),
+	PokerBuildModel(VALUE_TYPE_2, MARK_TYPE_RED_SQUARE, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_2, 20),
 
 	//// 3
-	PokerBuildModel(VALUE_TYPE_3, MARK_TYPE_BLACK_PEACH, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_3, 34),
-	PokerBuildModel(VALUE_TYPE_3, MARK_TYPE_RED_PEACH, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_3, 33),
-	PokerBuildModel(VALUE_TYPE_3, MARK_TYPE_PLUM_BLOSSOM, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_3, 32),
-	PokerBuildModel(VALUE_TYPE_3, MARK_TYPE_RED_SQUARE, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_3, 31),
+	PokerBuildModel(VALUE_TYPE_3, MARK_TYPE_BLACK_PEACH, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_3, 30),
+	PokerBuildModel(VALUE_TYPE_3, MARK_TYPE_RED_PEACH, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_3, 30),
+	PokerBuildModel(VALUE_TYPE_3, MARK_TYPE_PLUM_BLOSSOM, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_3, 30),
+	PokerBuildModel(VALUE_TYPE_3, MARK_TYPE_RED_SQUARE, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_3, 30),
 	// 4
-	PokerBuildModel(VALUE_TYPE_4, MARK_TYPE_BLACK_PEACH, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_4, 44),
-	PokerBuildModel(VALUE_TYPE_4, MARK_TYPE_RED_PEACH, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_4, 43),
-	PokerBuildModel(VALUE_TYPE_4, MARK_TYPE_PLUM_BLOSSOM, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_4, 42),
-	PokerBuildModel(VALUE_TYPE_4, MARK_TYPE_RED_SQUARE, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_4, 41),
+	PokerBuildModel(VALUE_TYPE_4, MARK_TYPE_BLACK_PEACH, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_4, 40),
+	PokerBuildModel(VALUE_TYPE_4, MARK_TYPE_RED_PEACH, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_4, 40),
+	PokerBuildModel(VALUE_TYPE_4, MARK_TYPE_PLUM_BLOSSOM, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_4, 40),
+	PokerBuildModel(VALUE_TYPE_4, MARK_TYPE_RED_SQUARE, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_4, 40),
 	// 5
-	PokerBuildModel(VALUE_TYPE_5, MARK_TYPE_BLACK_PEACH, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_5, 54),
-	PokerBuildModel(VALUE_TYPE_5, MARK_TYPE_RED_PEACH, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_5, 53),
-	PokerBuildModel(VALUE_TYPE_5, MARK_TYPE_PLUM_BLOSSOM, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_5, 52),
-	PokerBuildModel(VALUE_TYPE_5, MARK_TYPE_RED_SQUARE, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_5, 51),
+	PokerBuildModel(VALUE_TYPE_5, MARK_TYPE_BLACK_PEACH, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_5, 50),
+	PokerBuildModel(VALUE_TYPE_5, MARK_TYPE_RED_PEACH, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_5, 50),
+	PokerBuildModel(VALUE_TYPE_5, MARK_TYPE_PLUM_BLOSSOM, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_5, 50),
+	PokerBuildModel(VALUE_TYPE_5, MARK_TYPE_RED_SQUARE, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_5, 50),
 	// 6
-	PokerBuildModel(VALUE_TYPE_6, MARK_TYPE_BLACK_PEACH, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_6, 64),
-	PokerBuildModel(VALUE_TYPE_6, MARK_TYPE_RED_PEACH, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_6, 63),
-	PokerBuildModel(VALUE_TYPE_6, MARK_TYPE_PLUM_BLOSSOM, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_6, 62),
-	PokerBuildModel(VALUE_TYPE_6, MARK_TYPE_RED_SQUARE, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_6, 61),
+	PokerBuildModel(VALUE_TYPE_6, MARK_TYPE_BLACK_PEACH, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_6, 60),
+	PokerBuildModel(VALUE_TYPE_6, MARK_TYPE_RED_PEACH, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_6, 60),
+	PokerBuildModel(VALUE_TYPE_6, MARK_TYPE_PLUM_BLOSSOM, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_6, 60),
+	PokerBuildModel(VALUE_TYPE_6, MARK_TYPE_RED_SQUARE, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_6, 60),
 	// 7
-	PokerBuildModel(VALUE_TYPE_7, MARK_TYPE_BLACK_PEACH, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_7, 74),
-	PokerBuildModel(VALUE_TYPE_7, MARK_TYPE_RED_PEACH, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_7, 73),
-	PokerBuildModel(VALUE_TYPE_7, MARK_TYPE_PLUM_BLOSSOM, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_7, 72),
-	PokerBuildModel(VALUE_TYPE_7, MARK_TYPE_RED_SQUARE, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_7, 71),
+	PokerBuildModel(VALUE_TYPE_7, MARK_TYPE_BLACK_PEACH, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_7, 70),
+	PokerBuildModel(VALUE_TYPE_7, MARK_TYPE_RED_PEACH, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_7, 70),
+	PokerBuildModel(VALUE_TYPE_7, MARK_TYPE_PLUM_BLOSSOM, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_7, 70),
+	PokerBuildModel(VALUE_TYPE_7, MARK_TYPE_RED_SQUARE, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_7, 70),
 	// 8
-	PokerBuildModel(VALUE_TYPE_8, MARK_TYPE_BLACK_PEACH, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_8, 84),
-	PokerBuildModel(VALUE_TYPE_8, MARK_TYPE_RED_PEACH, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_8, 83),
-	PokerBuildModel(VALUE_TYPE_8, MARK_TYPE_PLUM_BLOSSOM, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_8, 82),
-	PokerBuildModel(VALUE_TYPE_8, MARK_TYPE_RED_SQUARE, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_8, 81),
+	PokerBuildModel(VALUE_TYPE_8, MARK_TYPE_BLACK_PEACH, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_8, 80),
+	PokerBuildModel(VALUE_TYPE_8, MARK_TYPE_RED_PEACH, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_8, 80),
+	PokerBuildModel(VALUE_TYPE_8, MARK_TYPE_PLUM_BLOSSOM, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_8, 80),
+	PokerBuildModel(VALUE_TYPE_8, MARK_TYPE_RED_SQUARE, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_8, 80),
 	// 9
-	PokerBuildModel(VALUE_TYPE_9, MARK_TYPE_BLACK_PEACH, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_9, 94),
-	PokerBuildModel(VALUE_TYPE_9, MARK_TYPE_RED_PEACH, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_9, 93),
-	PokerBuildModel(VALUE_TYPE_9, MARK_TYPE_PLUM_BLOSSOM, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_9, 92),
-	PokerBuildModel(VALUE_TYPE_9, MARK_TYPE_RED_SQUARE, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_9, 91),
+	PokerBuildModel(VALUE_TYPE_9, MARK_TYPE_BLACK_PEACH, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_9, 90),
+	PokerBuildModel(VALUE_TYPE_9, MARK_TYPE_RED_PEACH, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_9, 90),
+	PokerBuildModel(VALUE_TYPE_9, MARK_TYPE_PLUM_BLOSSOM, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_9, 90),
+	PokerBuildModel(VALUE_TYPE_9, MARK_TYPE_RED_SQUARE, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_9, 90),
 	// 10
-	PokerBuildModel(VALUE_TYPE_10, MARK_TYPE_BLACK_PEACH, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_10, 104),
-	PokerBuildModel(VALUE_TYPE_10, MARK_TYPE_RED_PEACH, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_10, 103),
-	PokerBuildModel(VALUE_TYPE_10, MARK_TYPE_PLUM_BLOSSOM, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_10, 102),
-	PokerBuildModel(VALUE_TYPE_10, MARK_TYPE_RED_SQUARE, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_10, 101),
+	PokerBuildModel(VALUE_TYPE_10, MARK_TYPE_BLACK_PEACH, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_10, 100),
+	PokerBuildModel(VALUE_TYPE_10, MARK_TYPE_RED_PEACH, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_10, 100),
+	PokerBuildModel(VALUE_TYPE_10, MARK_TYPE_PLUM_BLOSSOM, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_10, 100),
+	PokerBuildModel(VALUE_TYPE_10, MARK_TYPE_RED_SQUARE, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_10, 100),
 	// J
-	PokerBuildModel(VALUE_TYPE_J, MARK_TYPE_BLACK_PEACH, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_J, 114),
-	PokerBuildModel(VALUE_TYPE_J, MARK_TYPE_RED_PEACH, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_J, 113),
-	PokerBuildModel(VALUE_TYPE_J, MARK_TYPE_PLUM_BLOSSOM, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_J, 112),
-	PokerBuildModel(VALUE_TYPE_J, MARK_TYPE_RED_SQUARE, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_J, 111),
+	PokerBuildModel(VALUE_TYPE_J, MARK_TYPE_BLACK_PEACH, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_J, 110),
+	PokerBuildModel(VALUE_TYPE_J, MARK_TYPE_RED_PEACH, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_J, 110),
+	PokerBuildModel(VALUE_TYPE_J, MARK_TYPE_PLUM_BLOSSOM, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_J, 110),
+	PokerBuildModel(VALUE_TYPE_J, MARK_TYPE_RED_SQUARE, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_J, 110),
 	// Q
-	PokerBuildModel(VALUE_TYPE_Q, MARK_TYPE_BLACK_PEACH, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_Q, 124),
-	PokerBuildModel(VALUE_TYPE_Q, MARK_TYPE_RED_PEACH, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_Q, 123),
-	PokerBuildModel(VALUE_TYPE_Q, MARK_TYPE_PLUM_BLOSSOM, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_Q, 122),
-	PokerBuildModel(VALUE_TYPE_Q, MARK_TYPE_RED_SQUARE, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_Q, 121),
+	PokerBuildModel(VALUE_TYPE_Q, MARK_TYPE_BLACK_PEACH, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_Q, 120),
+	PokerBuildModel(VALUE_TYPE_Q, MARK_TYPE_RED_PEACH, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_Q, 120),
+	PokerBuildModel(VALUE_TYPE_Q, MARK_TYPE_PLUM_BLOSSOM, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_Q, 120),
+	PokerBuildModel(VALUE_TYPE_Q, MARK_TYPE_RED_SQUARE, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_Q, 120),
 	// K
-	PokerBuildModel(VALUE_TYPE_K, MARK_TYPE_BLACK_PEACH, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_K, 134),
-	PokerBuildModel(VALUE_TYPE_K, MARK_TYPE_RED_PEACH, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_K, 133),
-	PokerBuildModel(VALUE_TYPE_K, MARK_TYPE_PLUM_BLOSSOM, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_K, 132),
-	PokerBuildModel(VALUE_TYPE_K, MARK_TYPE_RED_SQUARE, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_K, 131),
+	PokerBuildModel(VALUE_TYPE_K, MARK_TYPE_BLACK_PEACH, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_K, 130),
+	PokerBuildModel(VALUE_TYPE_K, MARK_TYPE_RED_PEACH, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_K, 130),
+	PokerBuildModel(VALUE_TYPE_K, MARK_TYPE_PLUM_BLOSSOM, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_K, 130),
+	PokerBuildModel(VALUE_TYPE_K, MARK_TYPE_RED_SQUARE, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_K, 130),
 	// A
-	PokerBuildModel(VALUE_TYPE_A, MARK_TYPE_BLACK_PEACH, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_A, 144),
-	PokerBuildModel(VALUE_TYPE_A, MARK_TYPE_RED_PEACH, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_A, 143),
-	PokerBuildModel(VALUE_TYPE_A, MARK_TYPE_PLUM_BLOSSOM, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_A, 142),
-	PokerBuildModel(VALUE_TYPE_A, MARK_TYPE_RED_SQUARE, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_A, 141),
+	PokerBuildModel(VALUE_TYPE_A, MARK_TYPE_BLACK_PEACH, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_A, 140),
+	PokerBuildModel(VALUE_TYPE_A, MARK_TYPE_RED_PEACH, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_A, 140),
+	PokerBuildModel(VALUE_TYPE_A, MARK_TYPE_PLUM_BLOSSOM, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_A, 140),
+	PokerBuildModel(VALUE_TYPE_A, MARK_TYPE_RED_SQUARE, PokerValueTypeOfValue::VALUE_TYPE_OF_VALUE_A, 140),
 
 };
 
