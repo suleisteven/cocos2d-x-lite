@@ -156,6 +156,12 @@ public:
 	static const int32_t CHAIN_FIND_TYPE_COUNT_TYPE_3 = 1; // 查找连子个数类型，仅三张
 	static const int32_t CHAIN_FIND_TYPE_COUNT_TYPE_5 = 2; // 查找连子个数类型，仅五张
 	static const int32_t CHAIN_FIND_TYPE_COUNT_TYPE_LONG = 3; // 查找最长的顺子
+
+
+	static const int32_t WULONG_FIND_TYPE_COUNT_TYPE_3_OR_5 = 0; // 查找乌龙个数类型，3张或5张
+	static const int32_t WULONG_FIND_TYPE_COUNT_TYPE_3 = 1; // 查找乌龙个数类型，仅三张
+	static const int32_t WULONG_FIND_TYPE_COUNT_TYPE_5 = 2; // 查找乌龙个数类型，仅五张
+	
 public:
 
 	virtual RuleType getRuleType();
@@ -216,6 +222,12 @@ protected:
 	 */
 	virtual vector<shared_ptr<PokerCombinationModel>> findDuiZiPokerCombination(vector<shared_ptr<PokerModel>>& pokerVector, const shared_ptr<PokerCountInfo> pokerCountInfo);
 
+	/**
+	 * 查找乌龙牌型
+	 * @param wulongCountType 乌龙个数类型
+	 */
+	virtual vector<shared_ptr<PokerCombinationModel>> findWuLongPokerCombination(vector<shared_ptr<PokerModel>>& pokerVector, const shared_ptr<PokerCountInfo> pokerCountInfo, const int32_t& wulongCountType);
+
 	virtual int32_t getPokerValueByCombination(const PokerCombinationType& type, const vector<shared_ptr<PokerModel>>& pokerVector, const shared_ptr<PokerCountInfo> pokerCountInfo = nullptr);
 
 	
@@ -224,7 +236,7 @@ private:
 	/**
 	 * 递归查找普通牌型
 	 */
-	virtual vector<shared_ptr<PokerCombinationModel>> findSimplePokerCombinationRecursion(vector<shared_ptr<PokerModel>>& pokerVector, const shared_ptr<PokerCountInfo> pokerCountInfo, const int32_t& step);
+	virtual vector<shared_ptr<vector<shared_ptr<PokerCombinationModel>>>> findSimplePokerCombinationRecursion(vector<shared_ptr<PokerModel>>& pokerVector, const shared_ptr<PokerCountInfo> pokerCountInfo, const int32_t& step);
 };
 
 #endif  /* __RULE_MANAGER_CPP_H__ */
