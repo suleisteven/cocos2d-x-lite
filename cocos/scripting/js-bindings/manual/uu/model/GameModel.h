@@ -282,7 +282,6 @@ public:
 			string result;
 			for (shared_ptr<PokerModel> poker : pokerVector)
 			{
-				
 				result.append(StringUtils::format("%d-%d,", poker->getPokerValueType(), poker->getPokerMarkType()));
 			}
 			return result;
@@ -567,6 +566,11 @@ public:
 	*/
 	static vector<shared_ptr<PokerCombinationModel>> findPokerCombinationAll(vector<shared_ptr<PokerCombinationModel>>& pokerCombinationModelVector, const PokerCombinationType &pokerCombinationType);
 
+	/**
+	* 将牌类型转换为可视化string
+	*/
+	static string toString(const PokerCombinationType& type);
+
 	~PokerCombinationModel();
 
 	/**
@@ -587,6 +591,8 @@ public:
 	* 获取牌的值
 	*/
 	int32_t getValue();
+
+	
 	/**
 	* 获取扑克集合
 	*/
@@ -607,6 +613,7 @@ protected:
 
 	static shared_ptr<PokerCombinationModel> create(const PokerCombinationType& pokerCombinationType, const vector<shared_ptr<PokerModel>>& pokerModelVector, const int32_t& value);
 
+	void setValue(const int32_t& value);
 private:
 	PokerCombinationType _pokerCombinationType;
 	signed int _value;

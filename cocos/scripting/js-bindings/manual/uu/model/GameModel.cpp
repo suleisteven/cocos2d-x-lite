@@ -410,6 +410,11 @@ shared_ptr<PokerCombinationModel> PokerCombinationModel::create(const PokerCombi
 }
 
 
+void PokerCombinationModel::setValue(const int32_t& value)
+{
+	this->_value = value;
+}
+
 PokerCombinationType& PokerCombinationModel::getPokerCombinationType()
 {
 	return this->_pokerCombinationType;
@@ -471,6 +476,64 @@ vector<shared_ptr<PokerCombinationModel>> PokerCombinationModel::findPokerCombin
 	return result;
 }
 
+
+std::string PokerCombinationModel::toString(const PokerCombinationType& type)
+{
+
+	switch (type)
+	{
+	case POKER_COMBINATION_TYPE_NONE:
+		return "none";
+	case POKER_COMBINATION_TYPE_WU_LONG:
+		return "wu_long";
+	case POKER_COMBINATION_TYPE_DUI_ZI:
+		return "dui_zi";
+	case POKER_COMBINATION_TYPE_LIANG_DUI:
+		return "liang_dui";
+	case POKER_COMBINATION_TYPE_SAN_TIAO:
+		return "san_tiao";
+	case POKER_COMBINATION_TYPE_SHUN_ZI:
+		return "shun_zi";
+	case POKER_COMBINATION_TYPE_TONG_HUA:
+		return "tong_hua";
+	case POKER_COMBINATION_TYPE_HU_LU:
+		return "hu_lu";
+	case POKER_COMBINATION_TYPE_TIE_ZHI:
+		return "tie_zhi";
+	case POKER_COMBINATION_TYPE_TONG_HUA_SHUN:
+		return "tong_hua_shun";
+
+		// 特殊牌型开始
+	case POKER_COMBINATION_TYPE_SAN_TONG_HUA:
+		return "super_san_tong_hua";
+	case POKER_COMBINATION_TYPE_SAN_SHUN_ZI:
+		return "super_san_shun_zi";
+	case POKER_COMBINATION_TYPE_LIU_DUI_BAN:
+		return "super_liu_dui_ban";
+	case POKER_COMBINATION_TYPE_WU_DUI_SAN_TIAO:
+		return "super_wu_dui_san_tiao";
+	case POKER_COMBINATION_TYPE_SI_TAO_SAN_TIAO:
+		return "super_si_tao_san_tiao";
+	case POKER_COMBINATION_TYPE_COU_YI_SE:
+		return "super_cou_yi_se";
+	case POKER_COMBINATION_TYPE_QUAN_XIAO:
+		return "super_quan_xiao";
+	case POKER_COMBINATION_TYPE_QUAN_DA:
+		return "super_quan_da";
+	case POKER_COMBINATION_TYPE_SAN_FEN_TIAN_XIA:
+		return "super_san_fen_tian_xia";
+	case POKER_COMBINATION_TYPE_SAN_TONG_HUA_SHUN:
+		return "super_san_tong_hua_shun";
+	case POKER_COMBINATION_TYPE_SHI_ER_HUANG_ZU:
+		return "super_shi_er_huang_zu";
+	case POKER_COMBINATION_TYPE_YI_TIAO_LONG:
+		return "super_yi_tiao_long";
+	case POKER_COMBINATION_TYPE_QING_LONG:
+		return "super_qing_long";
+	default:
+		return "unknow";
+	}
+}
 
 ///////////////////////////扑克模型生产工厂/////////////////////////////////////////////
 shared_ptr<PokerModel> PokerModelFactory::createPokerModel(const PokerBuildModel& pokerBuildModel)

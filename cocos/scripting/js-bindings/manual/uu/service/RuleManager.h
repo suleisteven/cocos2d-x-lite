@@ -89,6 +89,9 @@ public:
 	 * @param pokerVector 扑克集合，可以是3张的头道，也可以是5张的中尾道
 	 */
 	virtual shared_ptr<PokerCombinationModel> getPokerCombination(vector<shared_ptr<PokerModel>>& pokerVector) = 0;
+
+
+
 public:
 	/**
 	 * 获取牌个数信息
@@ -180,7 +183,7 @@ protected:
 	/**
 	* 找出所有普通推荐牌型
 	*/
-	virtual vector<shared_ptr<PokerCombinationModel>> findSimplePokerCombination(vector<shared_ptr<PokerModel>>& pokerVector,const shared_ptr<PokerCountInfo> pokerCountInfo);
+	virtual vector<shared_ptr<vector<shared_ptr<PokerCombinationModel>>>> findSimplePokerCombination(vector<shared_ptr<PokerModel>>& pokerVector, const shared_ptr<PokerCountInfo> pokerCountInfo);
 
 	
 
@@ -236,7 +239,12 @@ private:
 	/**
 	 * 递归查找普通牌型
 	 */
-	virtual vector<shared_ptr<vector<shared_ptr<PokerCombinationModel>>>> findSimplePokerCombinationRecursion(vector<shared_ptr<PokerModel>>& pokerVector, const shared_ptr<PokerCountInfo> pokerCountInfo, const int32_t& step);
+	virtual vector<shared_ptr<vector<shared_ptr<PokerCombinationModel>>>> findSimplePokerCombinationRecursion(vector<shared_ptr<PokerModel>>& pokerVector, const shared_ptr<PokerCountInfo> pokerCountInfo, shared_ptr<PokerCombinationModel> curPokerCombination, const int32_t& step);
+
+	/**
+	 * 计算牌型值
+	 */
+	virtual int32_t calcPokerCombinationValue(const PokerCombinationType& type, vector<shared_ptr<PokerModel>> pokerVector);
 };
 
 #endif  /* __RULE_MANAGER_CPP_H__ */
