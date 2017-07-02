@@ -179,31 +179,31 @@ void PokerModel::sortPokerModel(vector<shared_ptr<PokerModel>>& pokerModelVector
 	});
 }
 
-void PokerModel::sortPokerModelWithGroup(vector<vector<shared_ptr<PokerModel>>>& pokerModelGroupVector, const SortType& sortType, const bool& sortSubstitute/* = true*/)
+void PokerModel::sortPokerModelWithGroup(vector<shared_ptr<vector<shared_ptr<PokerModel>>>>& pokerModelGroupVector, const SortType& sortType, const bool& sortSubstitute/* = true*/)
 {
-	std::sort(pokerModelGroupVector.begin(), pokerModelGroupVector.end(), [=](vector<shared_ptr<PokerModel>> pokerModelVector1, vector<shared_ptr<PokerModel>> pokerModelVector2)
+	std::sort(pokerModelGroupVector.begin(), pokerModelGroupVector.end(), [=](shared_ptr<vector<shared_ptr<PokerModel>>> pokerModelVector1, shared_ptr<vector<shared_ptr<PokerModel>>> pokerModelVector2)
 	{
 		bool result = false;
 
 		int32_t sortValue1 = 0;
 		int32_t sortValue2 = 0;
 
-		if (sortSubstitute && pokerModelVector1.front()->isChanged())
+		if (sortSubstitute && pokerModelVector1->front()->isChanged())
 		{
-			sortValue1 = pokerModelVector1.front()->getChangedSortValue();
+			sortValue1 = pokerModelVector1->front()->getChangedSortValue();
 		}
 		else
 		{
-			sortValue1 = pokerModelVector1.front()->getSortValue();
+			sortValue1 = pokerModelVector1->front()->getSortValue();
 		}
 
-		if (sortSubstitute && pokerModelVector2.front()->isChanged())
+		if (sortSubstitute && pokerModelVector2->front()->isChanged())
 		{
-			sortValue2 = pokerModelVector2.front()->getChangedSortValue();
+			sortValue2 = pokerModelVector2->front()->getChangedSortValue();
 		}
 		else
 		{
-			sortValue2 = pokerModelVector2.front()->getSortValue();
+			sortValue2 = pokerModelVector2->front()->getSortValue();
 		}
 
 		if (sortType == SORT_TYPE_ASC)

@@ -192,44 +192,44 @@ protected:
 	 * @param tonghuaType 同花类型
 	 * @param countType  个数类型
 	 */
-	virtual vector<shared_ptr<PokerCombinationModel>> findChainPokerCombination(vector<shared_ptr<PokerModel>>& pokerVector, const shared_ptr<PokerCountInfo> pokerCountInfo, const int32_t& tonghuaType, const int32_t& countType);
+	virtual vector<shared_ptr<PokerCombinationModel>> findChainPokerCombination(const vector<shared_ptr<PokerModel>>& pokerVector, const shared_ptr<PokerCountInfo> pokerCountInfo, const int32_t& tonghuaType, const int32_t& countType);
 
 	/**
 	 * 找出所有葫芦牌型
 	 *
 	 */
-	virtual vector<shared_ptr<PokerCombinationModel>> findHuLuPokerCombination(vector<shared_ptr<PokerModel>>& pokerVector, const shared_ptr<PokerCountInfo> pokerCountInfo);
+	virtual vector<shared_ptr<PokerCombinationModel>> findHuLuPokerCombination(const vector<shared_ptr<PokerModel>>& pokerVector, const shared_ptr<PokerCountInfo> pokerCountInfo);
 
 	/**
 	 * 查找所有铁支牌型
 	 */
-	virtual vector<shared_ptr<PokerCombinationModel>> findTieZhiPokerCombination(vector<shared_ptr<PokerModel>>& pokerVector, const shared_ptr<PokerCountInfo> pokerCountInfo);
+	virtual vector<shared_ptr<PokerCombinationModel>> findTieZhiPokerCombination(const vector<shared_ptr<PokerModel>>& pokerVector, const shared_ptr<PokerCountInfo> pokerCountInfo);
 
 	/**
 	 * 查找所有同花牌型
 	 */
-	virtual vector<shared_ptr<PokerCombinationModel>> findTongHuaPokerCombination(vector<shared_ptr<PokerModel>>& pokerVector, const shared_ptr<PokerCountInfo> pokerCountInfo);
+	virtual vector<shared_ptr<PokerCombinationModel>> findTongHuaPokerCombination(const vector<shared_ptr<PokerModel>>& pokerVector, const shared_ptr<PokerCountInfo> pokerCountInfo);
 
 	/**
 	 * 查找所有三条牌型
 	 */
-	virtual vector<shared_ptr<PokerCombinationModel>> findSanTiaoPokerCombination(vector<shared_ptr<PokerModel>>& pokerVector, const shared_ptr<PokerCountInfo> pokerCountInfo);
+	virtual vector<shared_ptr<PokerCombinationModel>> findSanTiaoPokerCombination(const vector<shared_ptr<PokerModel>>& pokerVector, const shared_ptr<PokerCountInfo> pokerCountInfo);
 
 	/**
 	 * 查找所有两对牌型
 	 */
-	virtual vector<shared_ptr<PokerCombinationModel>> findLiangDuiPokerCombination(vector<shared_ptr<PokerModel>>& pokerVector, const shared_ptr<PokerCountInfo> pokerCountInfo);
+	virtual vector<shared_ptr<PokerCombinationModel>> findLiangDuiPokerCombination(const vector<shared_ptr<PokerModel>>& pokerVector, const shared_ptr<PokerCountInfo> pokerCountInfo);
 
 	/**
 	 * 查找所有对子牌型
 	 */
-	virtual vector<shared_ptr<PokerCombinationModel>> findDuiZiPokerCombination(vector<shared_ptr<PokerModel>>& pokerVector, const shared_ptr<PokerCountInfo> pokerCountInfo);
+	virtual vector<shared_ptr<PokerCombinationModel>> findDuiZiPokerCombination(const vector<shared_ptr<PokerModel>>& pokerVector, const shared_ptr<PokerCountInfo> pokerCountInfo);
 
 	/**
 	 * 查找乌龙牌型
 	 * @param wulongCountType 乌龙个数类型
 	 */
-	virtual vector<shared_ptr<PokerCombinationModel>> findWuLongPokerCombination(vector<shared_ptr<PokerModel>>& pokerVector, const shared_ptr<PokerCountInfo> pokerCountInfo, const int32_t& wulongCountType);
+	virtual vector<shared_ptr<PokerCombinationModel>> findWuLongPokerCombination(const vector<shared_ptr<PokerModel>>& pokerVector, const shared_ptr<PokerCountInfo> pokerCountInfo, const int32_t& wulongCountType);
 
 	virtual int32_t getPokerValueByCombination(const PokerCombinationType& type, const vector<shared_ptr<PokerModel>>& pokerVector, const shared_ptr<PokerCountInfo> pokerCountInfo = nullptr);
 
@@ -239,7 +239,7 @@ private:
 	/**
 	 * 递归查找普通牌型
 	 */
-	virtual vector<shared_ptr<vector<shared_ptr<PokerCombinationModel>>>> findSimplePokerCombinationRecursion(vector<shared_ptr<PokerModel>>& pokerVector, const shared_ptr<PokerCountInfo> pokerCountInfo, shared_ptr<PokerCombinationModel> curPokerCombination, const int32_t& step);
+	virtual vector<shared_ptr<vector<shared_ptr<PokerCombinationModel>>>> findSimplePokerCombinationRecursion(const vector<shared_ptr<PokerModel>>& pokerVector, const shared_ptr<PokerCountInfo> pokerCountInfo, shared_ptr<PokerCombinationModel> curPokerCombination, const int32_t& step);
 
 	/**
 	 * 计算牌型值

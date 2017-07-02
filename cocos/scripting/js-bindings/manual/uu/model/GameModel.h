@@ -176,7 +176,7 @@ public:
 	/**
 	* 排序分组扑克（按相同的牌进行分组）,所有组里一定有元素
 	*/
-	static void sortPokerModelWithGroup(vector<vector<shared_ptr<PokerModel>>>& pokerModelGroupVector, const SortType& sortType, const bool& sortSubstitute = true);
+	static void sortPokerModelWithGroup(vector<shared_ptr<vector<shared_ptr<PokerModel>>>>& pokerModelGroupVector, const SortType& sortType, const bool& sortSubstitute = true);
 
 	/**
 	* 查找扑克
