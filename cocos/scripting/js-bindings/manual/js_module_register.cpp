@@ -39,6 +39,9 @@
 #include "scripting/js-bindings/manual/platform/ios/JavaScriptObjCBridge.h"
 #endif
 
+// update by sulei
+#include "uu/jsb_uu_water13.h"
+
 USING_NS_CC;
 int js_module_register()
 {
@@ -87,7 +90,11 @@ int js_module_register()
     sc->addRegisterCallback(register_jsb_socketio);
     // Downloader
     sc->addRegisterCallback(register_all_cocos2dx_network);
-    
+
+
+	// update by sulei, add uuwater13
+	sc->addRegisterCallback(register_jsb_uu_water13);
+
 #if CC_USE_3D_PHYSICS && CC_ENABLE_BULLET_INTEGRATION
     // Physics 3d can be commented out to reduce the package
     sc->addRegisterCallback(register_all_cocos2dx_physics3d);

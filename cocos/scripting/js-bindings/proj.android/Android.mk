@@ -49,7 +49,13 @@ LOCAL_SRC_FILES := ../auto/jsb_cocos2dx_extension_auto.cpp \
                    ../manual/spine/jsb_cocos2dx_spine_manual.cpp \
                    ../manual/dragonbones/jsb_cocos2dx_dragonbones_manual.cpp \
                    ../manual/ui/jsb_cocos2dx_ui_manual.cpp \
-                   ../manual/platform/android/CCJavascriptJavaBridge.cpp
+                   ../manual/platform/android/CCJavascriptJavaBridge.cpp \
+				   ../manual/uu/jsb_uu_water13.cpp \
+				   ../manual/uu/model/BaseModel.cpp \
+				   ../manual/uu/model/GameModel.cpp \
+				   ../manual/uu/service/RuleManager.cpp \
+				   ../manual/uu/util/CommonUtils.cpp \
+				   ../manual/uu/util/StringUtils.cpp
 
 LOCAL_CFLAGS := -DCOCOS2D_JAVASCRIPT
 

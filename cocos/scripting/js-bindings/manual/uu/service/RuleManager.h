@@ -73,6 +73,10 @@ class RuleManagerAbstract
 
 public:
 
+	RuleManagerAbstract() :_ptr(nullptr)
+	{
+	}
+
 	/**
 	* 获取游戏规则类型
 	*/
@@ -82,16 +86,31 @@ public:
 	 * 根据手牌获得推荐牌型
 	 * @param pokerVector 
 	 */
-	virtual vector<shared_ptr<vector<shared_ptr<PokerCombinationModel>>>> getRecommondPokerCombination(vector<shared_ptr<PokerModel>> pokerVector) = 0;
+	virtual vector<shared_ptr<vector<shared_ptr<PokerCombinationModel>>>> getRecommendPokerCombination(vector<shared_ptr<PokerModel>> pokerVector) = 0;
 
 	/**
-	 * 根据扑克集合获取牌型
+	 * 根据某道扑克集合获取牌型
 	 * @param pokerVector 扑克集合，可以是3张的头道，也可以是5张的中尾道
+	 * @param row 0-2 道序号
 	 */
-	virtual shared_ptr<PokerCombinationModel> getPokerCombination(vector<shared_ptr<PokerModel>>& pokerVector) = 0;
+	virtual shared_ptr<PokerCombinationModel> getPokerCombinationAtRow(vector<shared_ptr<PokerModel>>& pokerVector, const int32_t& row) = 0;
 
+	/**
+	 * 根据已经排好的扑克集合获取牌型
+	 * @param pokerVector 扑克集合，13张牌
+	 */
+	virtual vector<shared_ptr<PokerCombinationModel>> getPokerCombinationAllRow(vector<shared_ptr<PokerModel>>& pokerVector) = 0;
 
+	/**
+	 * 获取当前玩法的整副扑克
+	 */
+	virtual vector<shared_ptr<PokerModel>> getAllPokerVector() = 0;
 
+	/**
+	* 是否为相公牌型
+	*/
+	virtual bool isXiangGong(vector<shared_ptr<PokerCombinationModel>> pokerCombinationVector);
+	
 public:
 	/**
 	 * 获取牌个数信息
@@ -109,10 +128,7 @@ public:
 	 */
 	virtual int32_t comparePokerCombination(shared_ptr<PokerCombinationModel> model1, shared_ptr<PokerCombinationModel> model2);
 
-	/**
-	* 是否为相公牌型
-	*/
-	virtual bool isXiangGong(vector<shared_ptr<PokerCombinationModel>> pokerCombinationVector);
+	
 
 	/**
 	* 是否是特殊牌型
@@ -129,6 +145,17 @@ public:
 	*/
 	virtual shared_ptr<PokerCombinationModel> getPeculiarPokerCombination(vector<shared_ptr<vector<shared_ptr<PokerCombinationModel>>>> pokerCombinationVector);
 
+public:
+	void setRefPtr(void *ptr)
+	{
+		this->_ptr = ptr;
+	}
+
+	void* getRefPtr()
+	{
+		return this->_ptr;
+	}
+
 protected:
 
 
@@ -137,6 +164,14 @@ protected:
 	* @param pokerCountInfo 扑克统计信息，不为NULL时将使用统计信息中的数据
 	*/
 	virtual int32_t getPokerValueByCombination(const PokerCombinationType& type, const vector<shared_ptr<PokerModel>>& pokerVector, const shared_ptr<PokerCountInfo> pokerCountInfo = nullptr) = 0;
+
+	/**
+	 * 判断一组牌是否是连子
+	 */
+	virtual bool isChain(vector<shared_ptr<PokerModel>> pokerVector);
+
+private:
+	void* _ptr;
 };
 
 /************************************************************************/
@@ -145,34 +180,42 @@ protected:
 class SimpleRuleManager : public RuleManagerAbstract
 {
 public:
-	static const int32_t POKER_COUNT_ROW_1 = 3;// 头道牌数
-	static const int32_t POKER_COUNT_ROW_2 = 5;// 中道牌数
-	static const int32_t POKER_COUNT_ROW_3 = 5;// 尾道牌数
+	const int32_t POKER_COUNT_ROW_1 = 3;// 头道牌数
+	const int32_t POKER_COUNT_ROW_2 = 5;// 中道牌数
+	const int32_t POKER_COUNT_ROW_3 = 5;// 尾道牌数
 
-	static const int32_t POKER_COUNT_SINGLE_PLAYER = 13; // 玩家手牌总数
+	const int32_t POKER_COUNT_SINGLE_PLAYER = 13; // 玩家手牌总数
 
-	static const int32_t CHAIN_FIND_TYPE_TONGHUA_ALL = 0; // 查找连子，所有类型
-	static const int32_t CHAIN_FIND_TYPE_TONGHUA_ONLY = 1; // 查找连子，仅同花顺
-	static const int32_t CHAIN_FIND_TYPE_TONGHUA_OTHER = 2; // 查找连子，非同花顺
+	const int32_t CHAIN_FIND_TYPE_TONGHUA_ALL = 0; // 查找连子，所有类型
+	const int32_t CHAIN_FIND_TYPE_TONGHUA_ONLY = 1; // 查找连子，仅同花顺
+	const int32_t CHAIN_FIND_TYPE_TONGHUA_OTHER = 2; // 查找连子，非同花顺
 
-	static const int32_t CHAIN_FIND_TYPE_COUNT_TYPE_3_OR_5 = 0; // 查找连子个数类型，3张或5张
-	static const int32_t CHAIN_FIND_TYPE_COUNT_TYPE_3 = 1; // 查找连子个数类型，仅三张
-	static const int32_t CHAIN_FIND_TYPE_COUNT_TYPE_5 = 2; // 查找连子个数类型，仅五张
-	static const int32_t CHAIN_FIND_TYPE_COUNT_TYPE_LONG = 3; // 查找最长的顺子
+	const int32_t CHAIN_FIND_TYPE_COUNT_TYPE_3_OR_5 = 0; // 查找连子个数类型，3张或5张
+	const int32_t CHAIN_FIND_TYPE_COUNT_TYPE_3 = 1; // 查找连子个数类型，仅三张
+	const int32_t CHAIN_FIND_TYPE_COUNT_TYPE_5 = 2; // 查找连子个数类型，仅五张
+	const int32_t CHAIN_FIND_TYPE_COUNT_TYPE_LONG = 3; // 查找最长的顺子
 
 
-	static const int32_t WULONG_FIND_TYPE_COUNT_TYPE_3_OR_5 = 0; // 查找乌龙个数类型，3张或5张
-	static const int32_t WULONG_FIND_TYPE_COUNT_TYPE_3 = 1; // 查找乌龙个数类型，仅三张
-	static const int32_t WULONG_FIND_TYPE_COUNT_TYPE_5 = 2; // 查找乌龙个数类型，仅五张
+	const int32_t WULONG_FIND_TYPE_COUNT_TYPE_3_OR_5 = 0; // 查找乌龙个数类型，3张或5张
+	const int32_t WULONG_FIND_TYPE_COUNT_TYPE_3 = 1; // 查找乌龙个数类型，仅三张
+	const int32_t WULONG_FIND_TYPE_COUNT_TYPE_5 = 2; // 查找乌龙个数类型，仅五张
 	
 public:
 
+	SimpleRuleManager()
+	{
+		this->_allPokerVector = PokerModelFactory::createPokerModelPack(RuleType::RULE_TYPE_SIMPLE); // 创建当前玩法的整副扑克
+	}
+
 	virtual RuleType getRuleType();
 
-	virtual vector<shared_ptr<vector<shared_ptr<PokerCombinationModel>>>> getRecommondPokerCombination(vector<shared_ptr<PokerModel>> pokerVector);
+	virtual vector<shared_ptr<vector<shared_ptr<PokerCombinationModel>>>> getRecommendPokerCombination(vector<shared_ptr<PokerModel>> pokerVector);
 
-	virtual shared_ptr<PokerCombinationModel> getPokerCombination(vector<shared_ptr<PokerModel>>& pokerVector);
-	
+	virtual shared_ptr<PokerCombinationModel> getPokerCombinationAtRow(vector<shared_ptr<PokerModel>>& pokerVector, const int32_t& row);
+
+	virtual vector<shared_ptr<PokerCombinationModel>> getPokerCombinationAllRow(vector<shared_ptr<PokerModel>>& pokerVector);
+
+	virtual vector<shared_ptr<PokerModel>> getAllPokerVector();
 protected:
 
 	/**
@@ -245,6 +288,10 @@ private:
 	 * 计算牌型值
 	 */
 	virtual int32_t calcPokerCombinationValue(const PokerCombinationType& type, vector<shared_ptr<PokerModel>> pokerVector);
+
+private:
+	vector<shared_ptr<PokerModel>> _allPokerVector; // 整副扑克
+
 };
 
 #endif  /* __RULE_MANAGER_CPP_H__ */

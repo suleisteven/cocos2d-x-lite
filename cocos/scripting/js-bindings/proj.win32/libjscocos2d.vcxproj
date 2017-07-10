@@ -49,6 +49,7 @@
     <ClCompile Include="..\manual\ScriptingCore.cpp" />
     <ClCompile Include="..\manual\spine\jsb_cocos2dx_spine_manual.cpp" />
     <ClCompile Include="..\manual\ui\jsb_cocos2dx_ui_manual.cpp" />
+    <ClCompile Include="..\manual\uu\jsb_uu_water13.cpp" />
     <ClCompile Include="..\manual\uu\model\BaseModel.cpp" />
     <ClCompile Include="..\manual\uu\model\GameModel.cpp" />
     <ClCompile Include="..\manual\uu\service\RuleManager.cpp" />
@@ -101,6 +102,7 @@
     <ClInclude Include="..\manual\spidermonkey_specifics.h" />
     <ClInclude Include="..\manual\spine\jsb_cocos2dx_spine_manual.h" />
     <ClInclude Include="..\manual\ui\jsb_cocos2dx_ui_manual.h" />
+    <ClInclude Include="..\manual\uu\jsb_uu_water13.h" />
     <ClInclude Include="..\manual\uu\model\BaseModel.h" />
     <ClInclude Include="..\manual\uu\model\GameModel.h" />
     <ClInclude Include="..\manual\uu\service\RuleManager.h" />

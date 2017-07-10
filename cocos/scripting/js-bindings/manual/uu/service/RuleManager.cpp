@@ -16,6 +16,8 @@ PokerCountInfo::PokerCountInfo() :_singleCount(0), _twosomeCount(0), _threesomeC
 }
 
 
+
+
 ////////////////////////////规则管理器抽象类//////////////////////////////////////////////
 shared_ptr<PokerCountInfo> RuleManagerAbstract::getPokerCountInfo(vector<shared_ptr<PokerModel>> pokerVector)
 {
@@ -245,7 +247,22 @@ shared_ptr<PokerCombinationModel> RuleManagerAbstract::getPeculiarPokerCombinati
 
 
 
+bool RuleManagerAbstract::isChain(vector<shared_ptr<PokerModel>> pokerVector)
+{
+
+	int32_t count = pokerVector.size();
+	PokerModel::sortPokerModel(pokerVector, SortType::SORT_TYPE_ASC);
+
+	// 判断是否是连子
+	if (count>1 && pokerVector.back().get()->getPokerValueType() == pokerVector.front().get()->getPokerValueType() + (count - 1))
+	{
+		return true;
+	}
+	return false;
+}
+
 //////////////////////////基础玩法规则管理器  ////////////////////////////////////////////////
+
 RuleType SimpleRuleManager::getRuleType()
 {
 	return RuleType::RULE_TYPE_SIMPLE;
@@ -253,7 +270,7 @@ RuleType SimpleRuleManager::getRuleType()
 
 #include "cocos2d.h"
 
-vector<shared_ptr<vector<shared_ptr<PokerCombinationModel>>>> SimpleRuleManager::getRecommondPokerCombination(vector<shared_ptr<PokerModel>> pokerVector)
+vector<shared_ptr<vector<shared_ptr<PokerCombinationModel>>>> SimpleRuleManager::getRecommendPokerCombination(vector<shared_ptr<PokerModel>> pokerVector)
 {
 
 	vector<shared_ptr<vector<shared_ptr<PokerCombinationModel>>>> result;
@@ -292,12 +309,12 @@ vector<shared_ptr<vector<shared_ptr<PokerCombinationModel>>>> SimpleRuleManager:
 	cocos2d::log("poker is:%s  solutionCount:%d\n", PokerModel::toString(pokerVector).c_str(), result.size());
 	for (int32_t i = 0, sizeI = result.size(); i < sizeI; ++i)
 	{
-		shared_ptr<vector<shared_ptr<PokerCombinationModel>>> curRecommondVector = result.at(i);
+		shared_ptr<vector<shared_ptr<PokerCombinationModel>>> curRecommendVector = result.at(i);
 
 		string str;
-		for (int32_t j = 0, sizeJ = curRecommondVector->size(); j < sizeJ; ++j)
+		for (int32_t j = 0, sizeJ = curRecommendVector->size(); j < sizeJ; ++j)
 		{
-			shared_ptr<PokerCombinationModel> curPCM = curRecommondVector->at(j);
+			shared_ptr<PokerCombinationModel> curPCM = curRecommendVector->at(j);
 			str.append("row:");
 			str.append(StringUtils::format("%d", j));
 			str.append(" type:");
@@ -318,9 +335,39 @@ vector<shared_ptr<vector<shared_ptr<PokerCombinationModel>>>> SimpleRuleManager:
 	return result;
 }
 
-shared_ptr<PokerCombinationModel> SimpleRuleManager::getPokerCombination(vector<shared_ptr<PokerModel>>& pokerVector)
+shared_ptr<PokerCombinationModel> SimpleRuleManager::getPokerCombinationAtRow(vector<shared_ptr<PokerModel>>& pokerVector, const int32_t& row)
 {
-	throw std::logic_error("The method or operation is not implemented.");
+	return NULL;
+}
+
+vector<shared_ptr<PokerCombinationModel>> SimpleRuleManager::getPokerCombinationAllRow(vector<shared_ptr<PokerModel>>& pokerVector)
+{
+	vector<shared_ptr<PokerCombinationModel>> result;
+	if (pokerVector.size() == 13)
+	{
+		vector<shared_ptr<PokerModel>> pokerVectorRow0;
+		pokerVectorRow0.insert(pokerVectorRow0.begin(), pokerVector.begin(), pokerVector.begin()+3);
+		shared_ptr<PokerCombinationModel> row0PCM = getPokerCombinationAtRow(pokerVectorRow0, 0);
+
+
+		vector<shared_ptr<PokerModel>> pokerVectorRow1;
+		pokerVectorRow1.insert(pokerVectorRow1.begin(), pokerVector.begin()+3, pokerVector.begin() + 8);
+		shared_ptr<PokerCombinationModel> row1PCM = getPokerCombinationAtRow(pokerVectorRow1, 1);
+
+		vector<shared_ptr<PokerModel>> pokerVectorRow2;
+		pokerVectorRow2.insert(pokerVectorRow2.begin(), pokerVector.begin() + 3, pokerVector.begin() + 8);
+		shared_ptr<PokerCombinationModel> row2PCM = getPokerCombinationAtRow(pokerVectorRow2, 2);
+
+		result.push_back(row0PCM);
+		result.push_back(row1PCM);
+		result.push_back(row2PCM);
+
+		if (isXiangGong(result)) // 相公，则当前牌型不符合规则
+		{
+			result.clear();
+		}
+	}
+	return result;
 }
 
 vector<shared_ptr<vector<shared_ptr<PokerCombinationModel>>>> SimpleRuleManager::findSimplePokerCombination(vector<shared_ptr<PokerModel>>& pokerVector, const shared_ptr<PokerCountInfo> pokerCountInfo)
@@ -568,6 +615,12 @@ vector<shared_ptr<vector<shared_ptr<PokerCombinationModel>>>> SimpleRuleManager:
 				}
 			}
 
+			// 矫正冲三
+			if (curPCM->getPokerCombinationType() == PokerCombinationType::POKER_COMBINATION_TYPE_SAN_TIAO)
+			{
+				curPCM->setPokerCombinationType(PokerCombinationType::POKER_COMBINATION_TYPE_CHONG_SAN);
+			}
+
 			curV->push_back(curPCM);
 			if (!isXiangGong)
 			{
@@ -584,16 +637,32 @@ vector<shared_ptr<vector<shared_ptr<PokerCombinationModel>>>> SimpleRuleManager:
 			vector<shared_ptr<vector<shared_ptr<PokerCombinationModel>>>> nextPCMV = findSimplePokerCombinationRecursion(pokerVectorTmp, getPokerCountInfo(pokerVectorTmp), curPCM, step - 1);
 			for (int32_t j = 0, sizeJ = nextPCMV.size(); j < sizeJ; ++j)
 			{
-				
 
+				// test debug point
+				int t1 = 0;
+				if (curPokerCombination)
+				{
+					t1 = curPokerCombination->getPokerCombinationType();
+				}
+				 
+				auto t2 = curPCM->getPokerCombinationType();
+
+				isXiangGong = false;
 				shared_ptr<vector<shared_ptr<PokerCombinationModel>>> curTmpV = nextPCMV.at(j);
 
 				shared_ptr<PokerCombinationModel> curPCMNew = PokerCombinationModel::clone(curPCM);
 
-				if (curPCMNew->getPokerCount() != POKER_COUNT_ROW_2) // 中道和尾道，牌数不够，从剩余牌中取
+				if (curPCMNew->getPokerCount() != POKER_COUNT_ROW_2) // 中道和尾道，牌数不够，从剩余牌中取,牌数不够的都是对子、三条、铁支、两对
 				{
-					auto tempValue = curPCMNew->getPokerModelVector().front().get()->getPokerValueType();
-					auto tempPCMType = curPCMNew->getPokerCombinationType();
+					auto curPokerValueTemp1 = curPCMNew->getPokerModelVector().front().get()->getPokerValueType();
+
+					auto curPokerValueTemp2 = -1;
+					auto curPokerCombinationTypeTemp = curPCMNew->getPokerCombinationType();
+					if (curPokerCombinationTypeTemp == PokerCombinationType::POKER_COMBINATION_TYPE_LIANG_DUI)
+					{
+						curPokerValueTemp2 = curPCMNew->getPokerModelVector().at(2).get()->getPokerValueType();
+					}
+					
 
 					int32_t diffCount = POKER_COUNT_ROW_2 - curPCMNew->getPokerCount();
 
@@ -607,12 +676,38 @@ vector<shared_ptr<vector<shared_ptr<PokerCombinationModel>>>> SimpleRuleManager:
 						shared_ptr<PokerCombinationModel> tmpPCM = curTmpV->at(k);
 						PokerModel::removeSpecifyPokerVector(pokerVectorTmp2, tmpPCM->getPokerModelVector());
 					}
+
+
+					// 排除不能有的牌，不能有相同的牌，也不能有已经存在的牌
+					std::map<int32_t, int32_t> existsMap;
+					for (auto it = pokerVectorTmp2.begin(); it != pokerVectorTmp2.end();)
+					{
+						auto curPoker = *it;
+
+						auto curPokerValueTypeTmp = curPoker->getPokerValueType();
+						if (curPokerValueTypeTmp == curPokerValueTemp1 || curPokerValueTypeTmp == curPokerValueTemp2 || existsMap.find(curPokerValueTypeTmp) != existsMap.end())
+						{
+							it = pokerVectorTmp2.erase(it);
+						}
+						else
+						{
+							existsMap[curPokerValueTypeTmp] = curPokerValueTypeTmp;
+							++it;
+						}
+					}
 					
 					vector<shared_ptr<PokerModel>>& curPCMPVector = curPCMNew->getPokerModelVector();
 
+
+					if (pokerVectorTmp2.size() < diffCount) // 满足补充剩余牌型，则进行补充，否则本次牌型不符合规则
+					{
+						isXiangGong = true;
+						continue;
+					}
+
 					curPCMPVector.insert(curPCMPVector.end(), pokerVectorTmp2.begin(), pokerVectorTmp2.begin() + diffCount); // 补充差的牌
 
-					auto tempValue2 = curPCMNew->getPokerModelVector().at(3).get()->getPokerValueType();
+					
 
 					curPCMNew->setValue(getPokerValueByCombination(curPCMNew->getPokerCombinationType(), curPCMPVector, nullptr)); // 重新计算牌型值
 
@@ -625,12 +720,37 @@ vector<shared_ptr<vector<shared_ptr<PokerCombinationModel>>>> SimpleRuleManager:
 						}
 					}
 				}
-				curTmpV->push_back(curPCMNew);
-			}
-			
-			if (!isXiangGong)
-			{
-				result.insert(result.end(), nextPCMV.begin(), nextPCMV.end());
+
+
+				if (!isXiangGong)
+				{
+
+					if (step == 1)
+					{
+
+						// 矫正中墩葫芦
+						if (curPCMNew->getPokerCombinationType() == PokerCombinationType::POKER_COMBINATION_TYPE_HU_LU)
+						{
+							curPCMNew->setPokerCombinationType(PokerCombinationType::POKER_COMBINATION_TYPE_ZHONG_DUN_HU_LU);
+						}
+
+						// 矫正中墩铁支
+						if (curPCMNew->getPokerCombinationType() == PokerCombinationType::POKER_COMBINATION_TYPE_TIE_ZHI)
+						{
+							curPCMNew->setPokerCombinationType(PokerCombinationType::POKER_COMBINATION_TYPE_ZHONG_DUN_TIE_ZHI);
+						}
+
+						// 矫正中墩同花顺
+						if (curPCMNew->getPokerCombinationType() == PokerCombinationType::POKER_COMBINATION_TYPE_TONG_HUA_SHUN)
+						{
+							curPCMNew->setPokerCombinationType(PokerCombinationType::POKER_COMBINATION_TYPE_ZHONG_DUN_TONG_HUA_SHUN);
+						}
+					}
+
+					curTmpV->push_back(curPCMNew);
+
+					result.push_back(nextPCMV.at(j));
+				}
 			}
 		}
 	}
@@ -772,7 +892,7 @@ shared_ptr<PokerCombinationModel> SimpleRuleManager::findPeculiarPokerCombinatio
 		// 找到三同花顺
 		if (!foundResultVector.empty())
 		{
-			result = PokerCombinationModel::create(PokerCombinationType::POKER_COMBINATION_TYPE_SAN_FEN_TIAN_XIA, pokerVector, getPokerValueByCombination(PokerCombinationType::POKER_COMBINATION_TYPE_SAN_FEN_TIAN_XIA, foundResultVector, pokerCountInfoPtr));
+			result = PokerCombinationModel::create(PokerCombinationType::POKER_COMBINATION_TYPE_SAN_TONG_HUA_SHUN, pokerVector, getPokerValueByCombination(PokerCombinationType::POKER_COMBINATION_TYPE_SAN_TONG_HUA_SHUN, foundResultVector, pokerCountInfoPtr));
 			return result;
 		}
 	}
@@ -809,7 +929,7 @@ shared_ptr<PokerCombinationModel> SimpleRuleManager::findPeculiarPokerCombinatio
 		pokerCountInfo._countEveryPokerTypeMap[PokerValueType::VALUE_TYPE_8] >= POKER_COUNT_SINGLE_PLAYER)
 	{
 		PokerModel::sortPokerModel(pokerVector, SortType::SORT_TYPE_ASC);
-		result = PokerCombinationModel::create(PokerCombinationType::POKER_COMBINATION_TYPE_QUAN_DA, pokerVector, getPokerValueByCombination(PokerCombinationType::POKER_COMBINATION_TYPE_QUAN_XIAO, pokerVector, pokerCountInfoPtr));
+		result = PokerCombinationModel::create(PokerCombinationType::POKER_COMBINATION_TYPE_QUAN_XIAO, pokerVector, getPokerValueByCombination(PokerCombinationType::POKER_COMBINATION_TYPE_QUAN_XIAO, pokerVector, pokerCountInfoPtr));
 		return result;
 	}
 
@@ -1079,18 +1199,18 @@ vector<shared_ptr<PokerCombinationModel>> SimpleRuleManager::findChainPokerCombi
 		{
 
 			bool isTongHua = false; // 是否为同花
-			if (tonghuaType == CHAIN_FIND_TYPE_TONGHUA_ALL)
+			/*if (tonghuaType == CHAIN_FIND_TYPE_TONGHUA_ALL)
 			{
-				isTongHua = k != allSortPokerModelVector.size() - 1;
+			isTongHua = k != allSortPokerModelVector.size() - 1;
 			}
 			else if (tonghuaType == CHAIN_FIND_TYPE_TONGHUA_ONLY)
 			{
-				isTongHua = true;
+			isTongHua = true;
 			}
 			else if (tonghuaType == CHAIN_FIND_TYPE_TONGHUA_OTHER)
 			{
-				isTongHua = false;
-			}
+			isTongHua = false;
+			}*/
 			
 			bool isCut = false; // 是否断开连续
 			bool isFound = false; // 是否找到目标牌型
@@ -1104,12 +1224,13 @@ vector<shared_ptr<PokerCombinationModel>> SimpleRuleManager::findChainPokerCombi
 
 				shared_ptr<PokerModel> startFindPokerModel = targetPokerVector.front(); // 从某个元素开始找
 
-				
+				PokerMarkType prePokerMarkType = MARK_TYPE_NONE;
+				isTongHua = true;
 				for (int32_t i = 0, sizei = targetPokerVector.size(); i < sizei; ++i)
 				{
 					isCut = false;
 					isFound = false;
-
+					
 					shared_ptr<PokerModel> curPokerModel = targetPokerVector.at(i);
 					int startOriginalValue = startFindPokerModel->getOriginalValue();
 					if (curPokerModel->getOriginalValue() < startOriginalValue) // 没有到达预期的开始位置，继续循环
@@ -1120,6 +1241,7 @@ vector<shared_ptr<PokerCombinationModel>> SimpleRuleManager::findChainPokerCombi
 					bool isAddedNormalPoker = false; // 本轮循环是否添加了普通扑克到链子中，在本来循环结束时需要判断刚添加的这张牌是单牌、对子、三张、四张的类型
 					if (curFoundChainPokerModelVector.empty())
 					{
+						prePokerMarkType = curPokerModel->getPokerMarkType();
 						curFoundChainPokerModelVector.push_back(curPokerModel);
 						isAddedNormalPoker = true;
 					}
@@ -1130,6 +1252,10 @@ vector<shared_ptr<PokerCombinationModel>> SimpleRuleManager::findChainPokerCombi
 						int lastPokerModelValue = lastPokerModel->getOriginalValue();
 						if (curPokerModel->getOriginalValue() - lastPokerModelValue == 1)
 						{
+							if (prePokerMarkType != curPokerModel->getPokerMarkType()) // 与上一个花色不一致，不是同花
+							{
+								isTongHua = false;
+							}
 							curFoundChainPokerModelVector.push_back(curPokerModel);
 							isAddedNormalPoker = true;
 						}
@@ -1145,9 +1271,16 @@ vector<shared_ptr<PokerCombinationModel>> SimpleRuleManager::findChainPokerCombi
 						{
 
 							PokerCombinationType type = isTongHua ? PokerCombinationType::POKER_COMBINATION_TYPE_TONG_HUA_SHUN : PokerCombinationType::POKER_COMBINATION_TYPE_SHUN_ZI;
-							shared_ptr<PokerCombinationModel> combination = PokerCombinationModel::create(type, curFoundChainPokerModelVector, getPokerValueByCombination(type, curFoundChainPokerModelVector, nullptr));
 
-							curTargetPokerCountResult.push_back(combination);
+							if (tonghuaType == CHAIN_FIND_TYPE_TONGHUA_OTHER && isTongHua) // 只找普通连子，但是这里是同花顺，则不添加到集合中
+							{
+
+							}
+							else{
+								shared_ptr<PokerCombinationModel> combination = PokerCombinationModel::create(type, curFoundChainPokerModelVector, getPokerValueByCombination(type, curFoundChainPokerModelVector, nullptr));
+								curTargetPokerCountResult.push_back(combination);
+							}
+							
 							
 							startFindPokerModel = curFoundChainPokerModelVector.at(1); // 从这里开始找下一组链子
 							i = 0; // 重置下标位置，这里重置为0而不是-1，是因为再次查找时至少是从第二个元素开始查
@@ -1177,11 +1310,15 @@ vector<shared_ptr<PokerCombinationModel>> SimpleRuleManager::findChainPokerCombi
 							{
 								result.push_back(curTargetPokerCountResult.front());
 							}
+
+							isTongHua = true; // 重置同花标示
 							curTargetPokerCountResult.clear(); // 清空当前找的这一批链子，准备找下一批
 						}
 
 						if (isCut || isFound)
 						{
+
+							isTongHua = true; // 重置同花标示
 							curFoundChainPokerModelVector.clear(); // 清除刚找到的链子，准备下一轮查找
 						}
 					}
@@ -1208,6 +1345,39 @@ vector<shared_ptr<PokerCombinationModel>> SimpleRuleManager::findHuLuPokerCombin
 	vector<shared_ptr<vector<shared_ptr<PokerModel>>>> pokerVector_3 = pokerCountInfo->_everyCountPokerMap[3];
 	vector<shared_ptr<vector<shared_ptr<PokerModel>>>> pokerVector_2 = pokerCountInfo->_everyCountPokerMap[2];
 
+	vector<shared_ptr<vector<shared_ptr<PokerModel>>>> pokerVector_4 = pokerCountInfo->_everyCountPokerMap[4];
+
+
+	// 把四张牌型抽两张，组合成对子牌型
+	for (int32_t i = pokerVector_4.size() - 1; i >= 0; --i)
+	{
+		shared_ptr<vector<shared_ptr<PokerModel>>> curPoker4(new vector<shared_ptr<PokerModel>>);
+		curPoker4->insert(curPoker4->end(), pokerVector_4.at(i).get()->begin(), pokerVector_4.at(i).get()->end());
+		curPoker4->pop_back();
+		curPoker4->pop_back();
+		pokerVector_2.push_back(curPoker4);
+	}
+
+	// 把三张牌型抽一张，组合成对子牌型
+	for (int32_t i = pokerVector_3.size() - 1; i >= 0; --i)
+	{
+		shared_ptr<vector<shared_ptr<PokerModel>>> curPoker3(new vector<shared_ptr<PokerModel>>);
+		curPoker3->insert(curPoker3->end(), pokerVector_3.at(i).get()->begin(), pokerVector_3.at(i).get()->end());
+		curPoker3->pop_back();
+		pokerVector_2.push_back(curPoker3);
+	}
+	PokerModel::sortPokerModelWithGroup(pokerVector_2, SortType::SORT_TYPE_ASC);
+
+	// 把四张牌型抽一张，组合成三张牌型
+	for (int32_t i = pokerVector_4.size() - 1; i >= 0; --i)
+	{
+		shared_ptr<vector<shared_ptr<PokerModel>>> curPoker4(new vector<shared_ptr<PokerModel>>);
+		curPoker4->insert(curPoker4->end(), pokerVector_4.at(i).get()->begin(), pokerVector_4.at(i).get()->end());
+		curPoker4->pop_back();
+		pokerVector_3.push_back(curPoker4);
+	}
+	PokerModel::sortPokerModelWithGroup(pokerVector_3, SortType::SORT_TYPE_ASC);
+
 	int32_t sizeI = pokerVector_3.size();
 	for (int32_t i= sizeI-1; i>=0; --i)
 	{
@@ -1215,6 +1385,11 @@ vector<shared_ptr<PokerCombinationModel>> SimpleRuleManager::findHuLuPokerCombin
 		for (int32_t j = 0, sizeJ = pokerVector_2.size(); j < sizeJ; ++j)
 		{
 			shared_ptr<vector<shared_ptr<PokerModel>>> curPoker2 = pokerVector_2.at(j);
+
+			if (curPoker2->front().get()->getPokerValueType() == curPoker3->front().get()->getPokerValueType())
+			{
+				continue; // 相同的牌型去掉
+			}
 
 			// 找到葫芦牌型
 			vector<shared_ptr<PokerModel>> tmpPokerVector;
@@ -1266,7 +1441,14 @@ vector<shared_ptr<PokerCombinationModel>> SimpleRuleManager::findTongHuaPokerCom
 			// 找到同花牌型
 			vector<shared_ptr<PokerModel>> tmpPokerVector;
 			tmpPokerVector.insert(tmpPokerVector.end(), curMarkVector.begin(), curMarkVector.begin() + POKER_COUNT_ROW_2);
-			shared_ptr<PokerCombinationModel> combination = PokerCombinationModel::create(PokerCombinationType::POKER_COMBINATION_TYPE_TONG_HUA, tmpPokerVector, getPokerValueByCombination(PokerCombinationType::POKER_COMBINATION_TYPE_TONG_HUA, tmpPokerVector, nullptr));
+
+			PokerCombinationType type = PokerCombinationType::POKER_COMBINATION_TYPE_TONG_HUA;
+			if (isChain(tmpPokerVector)) // 矫正同花顺
+			{
+				type = PokerCombinationType::POKER_COMBINATION_TYPE_TONG_HUA_SHUN;
+			}
+
+			shared_ptr<PokerCombinationModel> combination = PokerCombinationModel::create(type, tmpPokerVector, getPokerValueByCombination(type, tmpPokerVector, nullptr));
 			result.push_back(combination);
 		}
 	}
@@ -1501,7 +1683,7 @@ vector<shared_ptr<PokerCombinationModel>> SimpleRuleManager::findWuLongPokerComb
 					}
 					
 					// 判断是否是连子
-					if (tmpPokerVector.back().get()->getPokerValueType() == tmpPokerVector.front().get()->getPokerValueType() + (count - 1))
+					if (isChain(tmpPokerVector))
 					{
 						tmpPokerVector.pop_back();
 						tmpPokerVector.push_back(singlePokerVector.at(++curIndex));
@@ -1528,7 +1710,7 @@ int32_t SimpleRuleManager::getPokerValueByCombination(const PokerCombinationType
 {
 	//int32_t value = pokerCountInfo != nullptr ? pokerCountInfo->_pokerValueCount : getPokerValueTotal(pokerVector);
 	int32_t value = calcPokerCombinationValue(type, pokerVector);
-	
+
 	switch (type)
 	{
 	case POKER_COMBINATION_TYPE_NONE:
@@ -1542,6 +1724,7 @@ int32_t SimpleRuleManager::getPokerValueByCombination(const PokerCombinationType
 	case POKER_COMBINATION_TYPE_LIANG_DUI:
 		value += 44000000;
 		break;
+	case POKER_COMBINATION_TYPE_CHONG_SAN:
 	case POKER_COMBINATION_TYPE_SAN_TIAO:
 		value += 45000000;
 		break;
@@ -1551,12 +1734,15 @@ int32_t SimpleRuleManager::getPokerValueByCombination(const PokerCombinationType
 	case POKER_COMBINATION_TYPE_TONG_HUA:
 		value += 47000000;
 		break;
+	case POKER_COMBINATION_TYPE_ZHONG_DUN_HU_LU:
 	case POKER_COMBINATION_TYPE_HU_LU:
 		value += 48000000;
 		break;
+	case POKER_COMBINATION_TYPE_ZHONG_DUN_TIE_ZHI:
 	case POKER_COMBINATION_TYPE_TIE_ZHI:
 		value += 49000000;
 		break;
+	case POKER_COMBINATION_TYPE_ZHONG_DUN_TONG_HUA_SHUN:
 	case POKER_COMBINATION_TYPE_TONG_HUA_SHUN:
 		value += 50000000;
 		break;
@@ -1637,6 +1823,7 @@ int32_t SimpleRuleManager::calcPokerCombinationValue(const PokerCombinationType&
 		PokerModel::concatSpecifyPokerVector(pokerVector, tmpV);
 	}
 		break;
+	case POKER_COMBINATION_TYPE_CHONG_SAN:
 	case POKER_COMBINATION_TYPE_SAN_TIAO:
 	{
 		vector<shared_ptr<PokerModel>> tmpV;
@@ -1652,10 +1839,14 @@ int32_t SimpleRuleManager::calcPokerCombinationValue(const PokerCombinationType&
 	case POKER_COMBINATION_TYPE_TONG_HUA:
 		PokerModel::sortPokerModel(pokerVector, SortType::SORT_TYPE_DESC, SortPokerType::SORT_POKER_TYPE_VALUE_FIRST);
 		break;
+	case POKER_COMBINATION_TYPE_ZHONG_DUN_HU_LU:
 	case POKER_COMBINATION_TYPE_HU_LU:
 		break;
+
+	case POKER_COMBINATION_TYPE_ZHONG_DUN_TIE_ZHI:
 	case POKER_COMBINATION_TYPE_TIE_ZHI:
 		break;
+	case POKER_COMBINATION_TYPE_ZHONG_DUN_TONG_HUA_SHUN:
 	case POKER_COMBINATION_TYPE_TONG_HUA_SHUN:
 		PokerModel::sortPokerModel(pokerVector, SortType::SORT_TYPE_DESC, SortPokerType::SORT_POKER_TYPE_VALUE_FIRST);
 		break;
@@ -1722,4 +1913,9 @@ int32_t SimpleRuleManager::calcPokerCombinationValue(const PokerCombinationType&
 		}
 	}
 	return result;
+}
+
+vector<shared_ptr<PokerModel>> SimpleRuleManager::getAllPokerVector()
+{
+	return this->_allPokerVector;
 }

@@ -179,6 +179,9 @@
     <ClCompile Include="..\manual\uu\util\CommonUtils.cpp">
       <Filter>manual\uu\util</Filter>
     </ClCompile>
+    <ClCompile Include="..\manual\uu\jsb_uu_water13.cpp">
+      <Filter>manual\uu</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\auto\jsb_cocos2dx_auto.hpp">
@@ -330,6 +333,9 @@
     </ClInclude>
     <ClInclude Include="..\manual\uu\util\CommonUtils.h">
       <Filter>manual\uu\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\manual\uu\jsb_uu_water13.h">
+      <Filter>manual\uu</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

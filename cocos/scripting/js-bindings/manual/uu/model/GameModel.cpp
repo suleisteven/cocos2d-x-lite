@@ -415,6 +415,11 @@ void PokerCombinationModel::setValue(const int32_t& value)
 	this->_value = value;
 }
 
+void PokerCombinationModel::setPokerCombinationType(const PokerCombinationType& pokerCombinationType)
+{
+	this->_pokerCombinationType = pokerCombinationType;
+}
+
 PokerCombinationType& PokerCombinationModel::getPokerCombinationType()
 {
 	return this->_pokerCombinationType;
@@ -492,16 +497,24 @@ std::string PokerCombinationModel::toString(const PokerCombinationType& type)
 		return "liang_dui";
 	case POKER_COMBINATION_TYPE_SAN_TIAO:
 		return "san_tiao";
+	case POKER_COMBINATION_TYPE_CHONG_SAN:
+		return "chong_san";
 	case POKER_COMBINATION_TYPE_SHUN_ZI:
 		return "shun_zi";
 	case POKER_COMBINATION_TYPE_TONG_HUA:
 		return "tong_hua";
 	case POKER_COMBINATION_TYPE_HU_LU:
 		return "hu_lu";
+	case POKER_COMBINATION_TYPE_ZHONG_DUN_HU_LU:
+		return "zhong_dun_hu_lu";
 	case POKER_COMBINATION_TYPE_TIE_ZHI:
 		return "tie_zhi";
+	case POKER_COMBINATION_TYPE_ZHONG_DUN_TIE_ZHI:
+		return "zhong_dun_tie_zhi";
 	case POKER_COMBINATION_TYPE_TONG_HUA_SHUN:
 		return "tong_hua_shun";
+	case POKER_COMBINATION_TYPE_ZHONG_DUN_TONG_HUA_SHUN:
+		return "zhong_dun_tong_hua_shun";
 
 		// 特殊牌型开始
 	case POKER_COMBINATION_TYPE_SAN_TONG_HUA:

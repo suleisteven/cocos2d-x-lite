@@ -461,9 +461,13 @@ enum PokerCombinationType : uint32_t
 	*/
 	POKER_COMBINATION_TYPE_LIANG_DUI,
 	/**
-	* 三条（3张相同点数牌+2张单张，如333+79）
+	* 三条（3张相同点数牌+2张单张且不在第一道，如333+79）
 	*/
 	POKER_COMBINATION_TYPE_SAN_TIAO,
+	/**
+	 * 冲三（3张相同点数的牌并且在第一道，如：555）
+	 */
+	POKER_COMBINATION_TYPE_CHONG_SAN,
 	/**
 	* 顺子（连着但花色不同的3张牌，如黑桃4+红桃5+梅花6；）
 	*/
@@ -473,18 +477,30 @@ enum PokerCombinationType : uint32_t
 	*/
 	POKER_COMBINATION_TYPE_TONG_HUA,
 	/**
-	* 葫芦（3张相同点数牌+对子，如333+88）
+	* 葫芦（3张相同点数牌+对子且在第三道，如333+88）
 	*/
 	POKER_COMBINATION_TYPE_HU_LU,
 	/**
-	* 铁支（4张相同点数牌 + 1张单张，如AAAA+3）
-	*/
+	 * 中墩葫芦（3张相同点数牌+对子并且在第二道，如333+88）
+	 */
+	POKER_COMBINATION_TYPE_ZHONG_DUN_HU_LU,
+	
+	/**
+	 * 铁支（4张相同点数牌 + 1张单张且在第三道，如AAAA+3）
+	 */
 	POKER_COMBINATION_TYPE_TIE_ZHI,
 	/**
-	* 同花顺（相同花色且连着的3/5张牌，如 黑桃56789）
+	* 中墩铁支（4张相同点数牌 + 1张单张且在第二道，如AAAA+3）
+	*/
+	POKER_COMBINATION_TYPE_ZHONG_DUN_TIE_ZHI,
+	/**
+	* 同花顺（相同花色且连着的3/5张牌且在第三道，如 黑桃56789）
 	*/
 	POKER_COMBINATION_TYPE_TONG_HUA_SHUN,
-
+	/**
+	 * 中墩同花顺（相同花色且连着的3/5张牌且在第二道，如 黑桃56789）
+	 */
+	POKER_COMBINATION_TYPE_ZHONG_DUN_TONG_HUA_SHUN,
 	// 特殊牌型
 	/**
 	* 三同花（头道为3张相同花色的牌，中、尾道为同花）
@@ -614,6 +630,11 @@ protected:
 	static shared_ptr<PokerCombinationModel> create(const PokerCombinationType& pokerCombinationType, const vector<shared_ptr<PokerModel>>& pokerModelVector, const int32_t& value);
 
 	void setValue(const int32_t& value);
+
+	/**
+	 * 设置牌型，用于矫正特殊牌型，只有规则管理器可以调用
+	 */
+	void setPokerCombinationType(const PokerCombinationType& pokerCombinationType);
 private:
 	PokerCombinationType _pokerCombinationType;
 	signed int _value;
