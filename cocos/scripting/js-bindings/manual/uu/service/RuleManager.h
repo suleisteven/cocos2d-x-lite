@@ -89,15 +89,9 @@ public:
 	virtual vector<shared_ptr<vector<shared_ptr<PokerCombinationModel>>>> getRecommendPokerCombination(vector<shared_ptr<PokerModel>> pokerVector) = 0;
 
 	/**
-	 * 根据某道扑克集合获取牌型
-	 * @param pokerVector 扑克集合，可以是3张的头道，也可以是5张的中尾道
-	 * @param row 0-2 道序号
-	 */
-	virtual shared_ptr<PokerCombinationModel> getPokerCombinationAtRow(vector<shared_ptr<PokerModel>>& pokerVector, const int32_t& row) = 0;
-
-	/**
-	 * 根据已经排好的扑克集合获取牌型
+	 * 根据自定排好的扑克集合获取牌型
 	 * @param pokerVector 扑克集合，13张牌
+	 * @return empty则表示没有符合规则的牌型，反之返回当前牌型
 	 */
 	virtual vector<shared_ptr<PokerCombinationModel>> getPokerCombinationAllRow(vector<shared_ptr<PokerModel>>& pokerVector) = 0;
 
@@ -110,7 +104,23 @@ public:
 	* 是否为相公牌型
 	*/
 	virtual bool isXiangGong(vector<shared_ptr<PokerCombinationModel>> pokerCombinationVector);
+
+	/**
+	 * 是否是特殊牌型
+	 */
+	virtual bool isPeculiarPokerCombination(const PokerCombinationType& pokerCombinationType);
 	
+	/**
+	* 是否包含特殊牌型
+	*/
+	virtual bool hasPeculiarCombination(vector<shared_ptr<vector<shared_ptr<PokerCombinationModel>>>> pokerCombinationVector);
+
+	/**
+	* 比较两个牌型的大小
+	* @return >0:model1大于model2，=0：model1等于model2，<0:model1小于model2
+	*/
+	virtual int32_t comparePokerCombination(shared_ptr<PokerCombinationModel> model1, shared_ptr<PokerCombinationModel> model2);
+
 public:
 	/**
 	 * 获取牌个数信息
@@ -123,22 +133,12 @@ public:
 	int32_t getPokerValueTotal(const vector<shared_ptr<PokerModel>>& pokerVector);
 
 	/**
-	 * 比较两个牌型的大小
-	 * @return >0:model1大于model2，=0：model1等于model2，<0:model1小于model2
-	 */
-	virtual int32_t comparePokerCombination(shared_ptr<PokerCombinationModel> model1, shared_ptr<PokerCombinationModel> model2);
-
-	
-
-	/**
-	* 是否是特殊牌型
+	* 根据某道扑克集合获取牌型
+	* @param pokerVector 扑克集合，可以是3张的头道，也可以是5张的中尾道
+	* @param row 0-2 道序号
 	*/
-	virtual bool isSpecialPokerCombination(const PokerCombinationType& pcType);
+	virtual shared_ptr<PokerCombinationModel> getPokerCombinationAtRow(vector<shared_ptr<PokerModel>>& pokerVector, const int32_t& row) = 0;
 
-	/**
-	* 是否包含特殊牌型
-	*/
-	virtual bool hasPeculiarCombination(vector<shared_ptr<vector<shared_ptr<PokerCombinationModel>>>> pokerCombinationVector);
 
 	/**
 	* 从所有牌型中取出特殊牌型
@@ -163,7 +163,7 @@ protected:
 	* 根据牌型获取牌型对应的分数
 	* @param pokerCountInfo 扑克统计信息，不为NULL时将使用统计信息中的数据
 	*/
-	virtual int32_t getPokerValueByCombination(const PokerCombinationType& type, const vector<shared_ptr<PokerModel>>& pokerVector, const shared_ptr<PokerCountInfo> pokerCountInfo = nullptr) = 0;
+	virtual int32_t getPokerValueByCombination(const PokerCombinationType& type, vector<shared_ptr<PokerModel>> pokerVector, const shared_ptr<PokerCountInfo> pokerCountInfo = nullptr) = 0;
 
 	/**
 	 * 判断一组牌是否是连子
@@ -274,7 +274,7 @@ protected:
 	 */
 	virtual vector<shared_ptr<PokerCombinationModel>> findWuLongPokerCombination(const vector<shared_ptr<PokerModel>>& pokerVector, const shared_ptr<PokerCountInfo> pokerCountInfo, const int32_t& wulongCountType);
 
-	virtual int32_t getPokerValueByCombination(const PokerCombinationType& type, const vector<shared_ptr<PokerModel>>& pokerVector, const shared_ptr<PokerCountInfo> pokerCountInfo = nullptr);
+	virtual int32_t getPokerValueByCombination(const PokerCombinationType& type, vector<shared_ptr<PokerModel>> pokerVector, const shared_ptr<PokerCountInfo> pokerCountInfo = nullptr);
 
 	
 private:
@@ -287,7 +287,7 @@ private:
 	/**
 	 * 计算牌型值
 	 */
-	virtual int32_t calcPokerCombinationValue(const PokerCombinationType& type, vector<shared_ptr<PokerModel>> pokerVector);
+	virtual int32_t calcPokerCombinationValue(const PokerCombinationType& type, vector<shared_ptr<PokerModel>>& pokerVector);
 
 private:
 	vector<shared_ptr<PokerModel>> _allPokerVector; // 整副扑克
