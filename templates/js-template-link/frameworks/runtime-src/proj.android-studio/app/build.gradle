@@ -1,34 +1,74 @@
 apply plugin: 'com.android.application'
 
+repositories {
+    flatDir {
+        dirs 'libs' //this way we can find the .aar file in libs folder
+    }
+}
 android {
-    compileSdkVersion 22
-    buildToolsVersion "22.0.1"
+    compileSdkVersion 23
+    buildToolsVersion "25.0.0"
 
     defaultConfig {
-        applicationId "org.cocos2dx.hellojavascript"
-        minSdkVersion 10
+        applicationId "com.iflytek.leagueofglutton"
+        minSdkVersion 15
         targetSdkVersion 22
-        versionCode 1
-        versionName "1.0"
+        versionCode 10100
+        versionName "1.1.0"
     }
-
-    sourceSets.main {
-        java.srcDir "src"
-        res.srcDir "res"
-        jniLibs.srcDir "libs"
-        manifest.srcFile "AndroidManifest.xml"
-        assets.srcDir "assets"
+    lintOptions {
+        abortOnError false
+        disable 'MissingRegistered'
     }
+    sourceSets {
+        main {
+            java.srcDir "src"
+            res.srcDir "res"
+            jniLibs.srcDir "libs"
+            manifest.srcFile "AndroidManifest.xml"
+            assets.srcDir "assets"
 
+        }
+        tmall {
+            manifest.srcFile 'channel/common/AndroidManifest.xml'
+            assets.srcDirs = ['assets', 'channel/common/assets']
+        }
+
+        unicom {
+            manifest.srcFile 'channel/unicom/AndroidManifest.xml'
+            assets.srcDirs = ['assets', 'channel/unicom/assets']
+        }
+
+        xiaowo {
+            manifest.srcFile 'channel/xiaowo/AndroidManifest.xml'
+            assets.srcDirs = ['assets', 'channel/xiaowo/assets']
+        }
+        jscmcc {
+            manifest.srcFile 'channel/common/AndroidManifest.xml'
+			assets.srcDirs = ['assets', 'channel/jscmcc/assets']
+        }
+    }
+    productFlavors {
+        tmall {
+
+        }
+        unicom {
+
+        }
+        xiaowo {
+
+        }
+        jscmcc {
+
+        }
+    }
     signingConfigs {
 
-       release {
-            if (project.hasProperty("RELEASE_STORE_FILE")) {
-                storeFile file(RELEASE_STORE_FILE)
-                storePassword RELEASE_STORE_PASSWORD
-                keyAlias RELEASE_KEY_ALIAS
-                keyPassword RELEASE_KEY_PASSWORD
-            }
+        release {
+                storeFile file('musicnb.keystore')
+                storePassword 'iflytek_musicnb_2016'
+                keyAlias 'iflytek_musicnb'
+                keyPassword 'iflytek_musicnb_2016'
         }
     }
 
@@ -36,14 +76,70 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            if (project.hasProperty("RELEASE_STORE_FILE")) {
+            //if (project.hasProperty("RELEASE_STORE_FILE")) {
                 signingConfig signingConfigs.release
+            //}
+        }
+    }
+//    dexOptions {
+//        incremental false
+//    }
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+}
+
+private upperFirst(name) {
+    return name[0].toUpperCase() + name[1..-1]
+}
+
+private findSourceSets(name) {
+    return android.sourceSets.find { set -> name == "${set.name}" }
+}
+
+afterEvaluate {
+    def buildTypes = ['Release', 'Debug']
+
+    android.productFlavors.each { flavor ->
+        def sourceSets = findSourceSets(flavor.name)
+        if (sourceSets.assets.srcDirs.size() > 1) {
+            // merge assets dirs
+            buildTypes.each { buildType ->
+                def upperFlavorName = upperFirst(flavor.name);
+                def prepareTask = tasks.findByName("prepare${upperFlavorName}${buildType}Dependencies")
+                prepareTask.dependsOn task("merge${upperFlavorName}${buildType}AssetsDirs", {
+                    def assetsDir = new File(project.buildDir, "intermediates/merged/assets/${flavor.name}/${buildType.toLowerCase()}")
+                    sourceSets.assets.srcDirs.each { dir ->
+                        copy {
+                            from file(dir)
+                            into assetsDir
+                        }
+                    }
+                    sourceSets.assets.srcDirs = [assetsDir.path];
+                })
             }
         }
     }
 }
 
+
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     compile project(':libcocos2dx')
+    compile project(':CommonUtil')
+    compile project(':unipay')
+    compile project(path: ':unipayforjs')
+
+    tmallCompile project(':commonPay')
+
+    unicomCompile project(':unicomPay')
+
+    xiaowoCompile project(':xiaowoPay')
+
+    jscmccCompile project(':jiangsucmccPay')
+
 }

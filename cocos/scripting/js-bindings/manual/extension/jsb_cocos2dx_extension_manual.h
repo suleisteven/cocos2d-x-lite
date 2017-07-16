@@ -29,7 +29,7 @@
 #include "network/CCDownloader.h"
 #include "renderer/CCTexture2D.h"
 
-class __JSDownloaderDelegator : cocos2d::Ref
+class __JSDownloaderDelegator : public cocos2d::Ref
 {
 public:
     void downloadAsync();
@@ -39,11 +39,11 @@ public:
 
 protected:
     __JSDownloaderDelegator(JSContext *cx, JS::HandleObject obj, const std::string &url, JS::HandleObject callback);
-    ~__JSDownloaderDelegator();
-
-    void startDownload();
-
-private:
+	virtual ~__JSDownloaderDelegator();
+//modified by shiqi luo
+    virtual void startDownload();
+//modified by shiqi luo
+//private:
     void onSuccess(cocos2d::Texture2D *tex);
     void onError();
     std::shared_ptr<cocos2d::network::Downloader> _downloader;

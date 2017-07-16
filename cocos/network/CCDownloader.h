@@ -49,6 +49,9 @@ namespace cocos2d { namespace network {
         std::string requestURL;
         std::string storagePath;
 
+		//add by shiqi Luo
+		std::string proxy;
+
         DownloadTask();
         virtual ~DownloadTask();
 
@@ -99,9 +102,12 @@ namespace cocos2d { namespace network {
                                                int errorCodeInternal,
                                                const std::string& errorStr)>& callback) {onTaskError = callback;};
 
-        std::shared_ptr<const DownloadTask> createDownloadDataTask(const std::string& srcUrl, const std::string& identifier = "");
+		//modified by shiqi luo
+		std::shared_ptr<const DownloadTask> createDownloadDataTask(const std::string& srcUrl, const std::string& identifier = "", const std::string& proxy = "");
 
-        std::shared_ptr<const DownloadTask> createDownloadFileTask(const std::string& srcUrl, const std::string& storagePath, const std::string& identifier = "");
+		//modified by shiqi luo
+        std::shared_ptr<const DownloadTask> createDownloadFileTask(const std::string& srcUrl, const std::string& storagePath
+			, const std::string& identifier = "", const std::string& proxy = "");
 
     private:
         std::unique_ptr<IDownloaderImpl> _impl;

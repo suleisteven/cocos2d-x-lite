@@ -128,7 +128,7 @@ namespace cocos2d { namespace network {
         DLLOG("Destruct Downloader %p", this);
     }
 
-    std::shared_ptr<const DownloadTask> Downloader::createDownloadDataTask(const std::string& srcUrl, const std::string& identifier/* = ""*/)
+	std::shared_ptr<const DownloadTask> Downloader::createDownloadDataTask(const std::string& srcUrl, const std::string& identifier/* = ""*/, const std::string& proxy/* = ""*/)
     {
         DownloadTask *task_ = new (std::nothrow) DownloadTask();
         std::shared_ptr<const DownloadTask> task(task_);
@@ -136,6 +136,9 @@ namespace cocos2d { namespace network {
         {
             task_->requestURL    = srcUrl;
             task_->identifier    = identifier;
+			//add by shiqi Luo
+			task_->proxy = proxy;
+			//add end
             if (0 == srcUrl.length())
             {
                 if (onTaskError)
@@ -153,7 +156,8 @@ namespace cocos2d { namespace network {
 
     std::shared_ptr<const DownloadTask> Downloader::createDownloadFileTask(const std::string& srcUrl,
                                                                            const std::string& storagePath,
-                                                                           const std::string& identifier/* = ""*/)
+                                                                           const std::string& identifier,/* = ""*/
+																		   const std::string& proxy/* = ""*/)
     {
         DownloadTask *task_ = new (std::nothrow) DownloadTask();
         std::shared_ptr<const DownloadTask> task(task_);
@@ -162,6 +166,8 @@ namespace cocos2d { namespace network {
             task_->requestURL    = srcUrl;
             task_->storagePath   = storagePath;
             task_->identifier    = identifier;
+			//add by shiqi Luo
+			task_->proxy         = proxy;
             if (0 == srcUrl.length() || 0 == storagePath.length())
             {
                 if (onTaskError)

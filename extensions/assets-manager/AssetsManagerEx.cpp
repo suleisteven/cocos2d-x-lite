@@ -35,6 +35,7 @@
 #endif
 #include "base/CCAsyncTaskPool.h"
 
+
 NS_CC_EXT_BEGIN
 
 #define VERSION_FILENAME        "version.manifest"
@@ -143,7 +144,16 @@ void AssetsManagerEx::initManifests(const std::string& manifestUrl)
     _localManifest = new (std::nothrow) Manifest();
     if (_localManifest)
     {
-        loadLocalManifest(manifestUrl);
+		loadLocalManifest(manifestUrl);
+
+
+		// update by sulei, modify hot update url params
+		if (!AssetsManagerEx::_packageUrl.empty())
+		{
+			_localManifest->_packageUrl = AssetsManagerEx::_packageUrl;
+			_localManifest->_remoteManifestUrl = AssetsManagerEx::_remoteManifestUrl;
+			_localManifest->_remoteVersionUrl = AssetsManagerEx::_remoteVersionUrl;
+		}
         
         // Init and load temporary manifest
         _tempManifest = new (std::nothrow) Manifest();
@@ -551,7 +561,7 @@ void AssetsManagerEx::downloadVersion()
     {
         _updateState = State::DOWNLOADING_VERSION;
         // Download version file asynchronously
-        _downloader->createDownloadFileTask(versionUrl, _tempVersionPath, VERSION_ID);
+        _downloader->createDownloadFileTask(versionUrl, _tempVersionPath, VERSION_ID, getGlobalProxy());
     }
     // No version file found
     else
@@ -577,6 +587,14 @@ void AssetsManagerEx::parseVersion()
     }
     else
     {
+		// update by sulei, modify hot update url params
+		if (!AssetsManagerEx::_packageUrl.empty())
+		{
+			_remoteManifest->_packageUrl = AssetsManagerEx::_packageUrl;
+			_remoteManifest->_remoteManifestUrl = AssetsManagerEx::_remoteManifestUrl;
+			_remoteManifest->_remoteVersionUrl = AssetsManagerEx::_remoteVersionUrl;
+		}
+
         if (_localManifest->versionGreater(_remoteManifest, _versionCompareHandle))
         {
             _updateState = State::UP_TO_DATE;
@@ -619,7 +637,7 @@ void AssetsManagerEx::downloadManifest()
     {
         _updateState = State::DOWNLOADING_MANIFEST;
         // Download version file asynchronously
-        _downloader->createDownloadFileTask(manifestUrl, _tempManifestPath, MANIFEST_ID);
+		_downloader->createDownloadFileTask(manifestUrl, _tempManifestPath, MANIFEST_ID, getGlobalProxy());
     }
     // No manifest file found
     else
@@ -645,6 +663,15 @@ void AssetsManagerEx::parseManifest()
     }
     else
     {
+
+		// update by sulei, modify hot update url params
+		if (!AssetsManagerEx::_packageUrl.empty())
+		{
+			_remoteManifest->_packageUrl = AssetsManagerEx::_packageUrl;
+			_remoteManifest->_remoteManifestUrl = AssetsManagerEx::_remoteManifestUrl;
+			_remoteManifest->_remoteVersionUrl = AssetsManagerEx::_remoteVersionUrl;
+		}
+
         if (_localManifest->versionGreater(_remoteManifest, _versionCompareHandle))
         {
             _updateState = State::UP_TO_DATE;
@@ -1167,7 +1194,7 @@ void AssetsManagerEx::queueDowload()
         _currConcurrentTask++;
         DownloadUnit& unit = _downloadUnits[key];
         _fileUtils->createDirectory(basename(unit.storagePath));
-        _downloader->createDownloadFileTask(unit.srcUrl, unit.storagePath, unit.customId);
+		_downloader->createDownloadFileTask(unit.srcUrl, unit.storagePath, unit.customId, getGlobalProxy());
         
         _tempManifest->setAssetDownloadState(key, Manifest::DownloadState::DOWNLOADING);
     }
@@ -1194,6 +1221,27 @@ void AssetsManagerEx::onDownloadUnitsFinished()
     {
         updateSucceed();
     }
+}
+
+//add by shiqi luo
+std::string AssetsManagerEx::_proxy = "";
+std::string AssetsManagerEx::getGlobalProxy() {
+	return AssetsManagerEx::_proxy;
+}
+
+
+std::string AssetsManagerEx::_packageUrl = "";
+std::string AssetsManagerEx::_remoteManifestUrl = "";
+std::string AssetsManagerEx::_remoteVersionUrl = "";
+void AssetsManagerEx::setHotUpdateUrl(const std::string& packageUrl, const std::string& remoteManifestUrl, const std::string& remoteVersionUrl)
+{
+	AssetsManagerEx::_packageUrl = packageUrl;
+	AssetsManagerEx::_remoteManifestUrl = remoteManifestUrl;
+	AssetsManagerEx::_remoteVersionUrl = remoteVersionUrl;
+}
+
+void AssetsManagerEx::setGlobalProxy(std::string& proxy) {
+	AssetsManagerEx::_proxy = proxy;
 }
 
 NS_CC_EXT_END
