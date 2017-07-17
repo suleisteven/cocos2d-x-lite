@@ -45,6 +45,18 @@
     <Filter Include="manual\iflytek\umeng">
       <UniqueIdentifier>{d470a149-9420-41c4-835c-3a7ac33ae573}</UniqueIdentifier>
     </Filter>
+    <Filter Include="manual\uu">
+      <UniqueIdentifier>{98714c63-e707-41bc-bf6c-6e894506c00c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="manual\uu\util">
+      <UniqueIdentifier>{aa4721f6-0f8a-41bd-b727-d19b7efda183}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="manual\uu\service">
+      <UniqueIdentifier>{bdd1f7a4-4b18-42cb-89c9-ca529b66520c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="manual\uu\model">
+      <UniqueIdentifier>{c27f6f48-8f4c-45b8-801a-c375e9af0307}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\auto\jsb_cocos2dx_auto.cpp">
@@ -199,6 +211,24 @@
     </ClCompile>
     <ClCompile Include="..\manual\iflytek\umeng\jsb_umeng.cpp">
       <Filter>manual\iflytek\umeng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\manual\uu\jsb_uu_water13.cpp">
+      <Filter>manual\uu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\manual\uu\util\CommonUtils.cpp">
+      <Filter>manual\uu\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\manual\uu\util\StringUtils.cpp">
+      <Filter>manual\uu\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\manual\uu\service\RuleManager.cpp">
+      <Filter>manual\uu\service</Filter>
+    </ClCompile>
+    <ClCompile Include="..\manual\uu\model\BaseModel.cpp">
+      <Filter>manual\uu\model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\manual\uu\model\GameModel.cpp">
+      <Filter>manual\uu\model</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1434,6 +1464,24 @@
     </ClInclude>
     <ClInclude Include="..\manual\iflytek\umeng\jsb_umeng.h">
       <Filter>manual\iflytek\umeng</Filter>
+    </ClInclude>
+    <ClInclude Include="..\manual\uu\jsb_uu_water13.h">
+      <Filter>manual\uu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\manual\uu\util\CommonUtils.h">
+      <Filter>manual\uu\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\manual\uu\util\StringUtils.h">
+      <Filter>manual\uu\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\manual\uu\service\RuleManager.h">
+      <Filter>manual\uu\service</Filter>
+    </ClInclude>
+    <ClInclude Include="..\manual\uu\model\BaseModel.h">
+      <Filter>manual\uu\model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\manual\uu\model\GameModel.h">
+      <Filter>manual\uu\model</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

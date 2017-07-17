@@ -658,11 +658,7 @@ bool js_cocos2dx_extension_AsioConnection_constructor(JSContext *cx, uint32_t ar
 
 			runOnCocosThread([cobj, tempData, dataLen, jsonStr]()
 			{
-				if (tempData)
-				{
-					std::unique_ptr<int8_t[]> tempDataPtr(tempData);
-				}
-				
+				std::unique_ptr<int8_t[]> tempDataPtr(tempData);
 
 				if (cocos2d::Director::getInstance() == nullptr || cocos2d::ScriptEngineManager::getInstance() == nullptr)
 					return;
@@ -684,6 +680,7 @@ bool js_cocos2dx_extension_AsioConnection_constructor(JSContext *cx, uint32_t ar
 					{
 						uint8_t* bufdata = JS_GetArrayBufferData(buffer);
 						memcpy((void*)bufdata, tempData, dataLen);
+						
 					}
 					JS::RootedValue dataVal(cx);
 					dataVal = OBJECT_TO_JSVAL(buffer);

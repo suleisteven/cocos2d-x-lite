@@ -5,7 +5,7 @@ LOCAL_MODULE := cocos2d_simulator_static
 
 LOCAL_MODULE_FILENAME := libsimulator
 
-LOCAL_SRC_FILES := ..\..\..\..\..\prebuilt\android/$(TARGET_ARCH_ABI)/libsimulator.a
+LOCAL_SRC_FILES := ../../../../../prebuilt/android/$(TARGET_ARCH_ABI)/libsimulator.a
 
 
 LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/../../lib \

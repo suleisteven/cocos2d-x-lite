@@ -268,7 +268,7 @@ RuleType SimpleRuleManager::getRuleType()
 	return RuleType::RULE_TYPE_SIMPLE;
 }
 
-#include "cocos2d.h"
+//#include "cocos2d.h"
 
 vector<shared_ptr<vector<shared_ptr<PokerCombinationModel>>>> SimpleRuleManager::getRecommendPokerCombination(vector<shared_ptr<PokerModel>> pokerVector)
 {
@@ -297,29 +297,29 @@ vector<shared_ptr<vector<shared_ptr<PokerCombinationModel>>>> SimpleRuleManager:
 	result.insert(result.end(), simpPokerCombinationVector.begin(), simpPokerCombinationVector.end());
 	
 
-	cocos2d::log("poker is:%s  solutionCount:%d\n", PokerModel::toString(pokerVector).c_str(), result.size());
-	for (int32_t i = 0, sizeI = result.size(); i < sizeI; ++i)
-	{
-		shared_ptr<vector<shared_ptr<PokerCombinationModel>>> curRecommendVector = result.at(i);
+	//cocos2d::log("poker is:%s  solutionCount:%d\n", PokerModel::toString(pokerVector).c_str(), result.size());
+	//for (int32_t i = 0, sizeI = result.size(); i < sizeI; ++i)
+	//{
+	//	shared_ptr<vector<shared_ptr<PokerCombinationModel>>> curRecommendVector = result.at(i);
 
-		string str;
-		for (int32_t j = 0, sizeJ = curRecommendVector->size(); j < sizeJ; ++j)
-		{
-			shared_ptr<PokerCombinationModel> curPCM = curRecommendVector->at(j);
-			str.append("row:");
-			str.append(StringUtils::format("%d", j));
-			str.append(" type:");
-			str.append(PokerCombinationModel::toString(curPCM->getPokerCombinationType()));
-			str.append("  ");
-			str.append(PokerModel::toString(curPCM->getPokerModelVector()));
-			str.append("\n");
-		}
-		
-		str.append("\n");
-		str.append("\n");
-		
-		cocos2d::log("solution:%d is:\n%s",i, str.c_str());
-	}
+	//	string str;
+	//	for (int32_t j = 0, sizeJ = curRecommendVector->size(); j < sizeJ; ++j)
+	//	{
+	//		shared_ptr<PokerCombinationModel> curPCM = curRecommendVector->at(j);
+	//		str.append("row:");
+	//		str.append(StringUtils::format("%d", j));
+	//		str.append(" type:");
+	//		str.append(PokerCombinationModel::toString(curPCM->getPokerCombinationType()));
+	//		str.append("  ");
+	//		str.append(PokerModel::toString(curPCM->getPokerModelVector()));
+	//		str.append("\n");
+	//	}
+	//	
+	//	str.append("\n");
+	//	str.append("\n");
+	//	
+	//	cocos2d::log("solution:%d is:\n%s",i, str.c_str());
+	//}
 
 	
 
