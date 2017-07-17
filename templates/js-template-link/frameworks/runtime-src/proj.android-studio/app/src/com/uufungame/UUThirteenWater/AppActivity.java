@@ -131,6 +131,8 @@ public class AppActivity extends Cocos2dxActivity {
 
     @Override
     protected void onLoadNativeLibraries() {
-        super.onLoadNativeLibraries();
+//        super.onLoadNativeLibraries();
+        System.loadLibrary("iflyteknet");
+        System.loadLibrary("cocos2djs");
     }
 }
