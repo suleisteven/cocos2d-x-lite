@@ -27,6 +27,7 @@
 #include "scripting/js-bindings/manual/iflytek/ZipHelper.h"
 #include "scripting/js-bindings/manual/iflytek/gameLoG/jsb_GameLogic.h"
 #include "scripting/js-bindings/manual/iflytek/umeng/jsb_umeng.h"
+#include "scripting/js-bindings/manual/iflytek/umeng/share/jsb_umeng_share.h"
 //#include "scripting/js-bindings/manual/iflytek/jsb_ThreadNative.h"
 
 
@@ -107,6 +108,7 @@ int js_module_register()
 	sc->addRegisterCallback(register_jsb_zip_helper);
 	sc->addRegisterCallback(register_jsb_game_logic_native);
 	sc->addRegisterCallback(register_jsb_umeng_native);
+	sc->addRegisterCallback(register_jsb_umeng_share_native);
 	//sc->addRegisterCallback(register_jsb_thread_native);
 	
 	

@@ -68,6 +68,10 @@ LOCAL_SRC_FILES := ../auto/jsb_cocos2dx_extension_auto.cpp \
 				   ../manual/iflytek/umeng/jsb_umeng.cpp \
 				   ../manual/iflytek/umeng/MobClickCpp.cpp \
 				   ../manual/iflytek/umeng/umengJniHelper.cpp \
+				   ../manual/iflytek/umeng/share/Cocos2dx/Android/CCUMSocialController.cpp \
+				   ../manual/iflytek/umeng/share/Cocos2dx/Common/CCUMSocialSDK.cpp \
+				   ../manual/iflytek/umeng/share/Cocos2dx/ShareButton/UMShareButton.cpp \
+				   ../manual/iflytek/umeng/share/jsb_umeng_share.cpp \
 				   ../manual/platform/android/pay/PayListener.cpp \
 				   ../manual/platform/android/JS_Binder.cpp  \
 				   
@@ -94,7 +98,9 @@ LOCAL_C_INCLUDES := $(LOCAL_PATH)/../manual \
                     $(LOCAL_PATH)/../../../editor-support/cocostudio \
                     $(LOCAL_PATH)/../../../editor-support/creator \
 					$(LOCAL_PATH)/../../../../external/sources/iflyteknet/src \
-					$(LOCAL_PATH)/../../../../external/sources/iflyteknet/src/boost
+					$(LOCAL_PATH)/../../../../external/sources/iflyteknet/src/boost \
+					$(LOCAL_PATH)/../manual/iflytek/umeng/share
+					
 
 LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/../manual \
                            $(LOCAL_PATH)/../auto \

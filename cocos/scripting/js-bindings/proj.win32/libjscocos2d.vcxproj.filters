@@ -57,6 +57,24 @@
     <Filter Include="manual\uu\model">
       <UniqueIdentifier>{c27f6f48-8f4c-45b8-801a-c375e9af0307}</UniqueIdentifier>
     </Filter>
+    <Filter Include="manual\iflytek\umeng\share">
+      <UniqueIdentifier>{2d7399d0-890f-4e13-99ab-f50f9fc5ccdb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="manual\iflytek\umeng\share\Cocos2dx">
+      <UniqueIdentifier>{853512d9-2e2e-4ee2-bb09-f77db7d9cb69}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="manual\iflytek\umeng\share\Cocos2dx\ShareButton">
+      <UniqueIdentifier>{cdf22e3b-f41d-4c3c-afa8-6535306a1161}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="manual\iflytek\umeng\share\Cocos2dx\Android">
+      <UniqueIdentifier>{479e9c3a-f037-40cf-b49f-2ff449dd096e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="manual\iflytek\umeng\share\Cocos2dx\Common">
+      <UniqueIdentifier>{98f87346-88e5-48b2-9cde-1ebda88a921f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="manual\iflytek\umeng\share\Cocos2dx\iOS">
+      <UniqueIdentifier>{2be4a4dd-fd08-45a6-802f-41e0906fdff3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\auto\jsb_cocos2dx_auto.cpp">
@@ -229,6 +247,18 @@
     </ClCompile>
     <ClCompile Include="..\manual\uu\model\GameModel.cpp">
       <Filter>manual\uu\model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\manual\iflytek\umeng\share\Cocos2dx\Android\CCUMSocialController.cpp">
+      <Filter>manual\iflytek\umeng\share\Cocos2dx\Android</Filter>
+    </ClCompile>
+    <ClCompile Include="..\manual\iflytek\umeng\share\Cocos2dx\Common\CCUMSocialSDK.cpp">
+      <Filter>manual\iflytek\umeng\share\Cocos2dx\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\manual\iflytek\umeng\share\Cocos2dx\ShareButton\UMShareButton.cpp">
+      <Filter>manual\iflytek\umeng\share\Cocos2dx\ShareButton</Filter>
+    </ClCompile>
+    <ClCompile Include="..\manual\iflytek\umeng\share\jsb_umeng_share.cpp">
+      <Filter>manual\iflytek\umeng\share</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1483,6 +1513,27 @@
     <ClInclude Include="..\manual\uu\model\GameModel.h">
       <Filter>manual\uu\model</Filter>
     </ClInclude>
+    <ClInclude Include="..\manual\iflytek\umeng\share\Cocos2dx\Android\CCUMSocialController.h">
+      <Filter>manual\iflytek\umeng\share\Cocos2dx\Android</Filter>
+    </ClInclude>
+    <ClInclude Include="..\manual\iflytek\umeng\share\Cocos2dx\Common\CCUMSocialSDK.h">
+      <Filter>manual\iflytek\umeng\share\Cocos2dx\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\manual\iflytek\umeng\share\Cocos2dx\Common\CCUMTypeDef.h">
+      <Filter>manual\iflytek\umeng\share\Cocos2dx\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\manual\iflytek\umeng\share\Cocos2dx\iOS\UmSocialControllerIOS.h">
+      <Filter>manual\iflytek\umeng\share\Cocos2dx\iOS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\manual\iflytek\umeng\share\Cocos2dx\iOS\UMSocialUIObject.h">
+      <Filter>manual\iflytek\umeng\share\Cocos2dx\iOS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\manual\iflytek\umeng\share\Cocos2dx\ShareButton\UMShareButton.h">
+      <Filter>manual\iflytek\umeng\share\Cocos2dx\ShareButton</Filter>
+    </ClInclude>
+    <ClInclude Include="..\manual\iflytek\umeng\share\jsb_umeng_share.h">
+      <Filter>manual\iflytek\umeng\share</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\manual\network\boost\asio\detail\impl\buffer_sequence_adapter.ipp" />
@@ -1541,5 +1592,11 @@
     <None Include="..\manual\network\boost\asio\ssl\impl\context.ipp" />
     <None Include="..\manual\network\boost\asio\ssl\impl\error.ipp" />
     <None Include="..\manual\network\boost\asio\ssl\impl\rfc2818_verification.ipp" />
+    <None Include="..\manual\iflytek\umeng\share\Cocos2dx\iOS\UmSocialControllerIOS.mm">
+      <Filter>manual\iflytek\umeng\share\Cocos2dx\iOS</Filter>
+    </None>
+    <None Include="..\manual\iflytek\umeng\share\Cocos2dx\iOS\UMSocialUIObject.mm">
+      <Filter>manual\iflytek\umeng\share\Cocos2dx\iOS</Filter>
+    </None>
   </ItemGroup>
 </Project>

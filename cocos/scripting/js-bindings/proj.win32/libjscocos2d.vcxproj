@@ -42,6 +42,10 @@
     <ClCompile Include="..\manual\iflytek\ProxyHttpGet.cpp" />
     <ClCompile Include="..\manual\iflytek\umeng\jsb_umeng.cpp" />
     <ClCompile Include="..\manual\iflytek\umeng\MobClickCpp.cpp" />
+    <ClCompile Include="..\manual\iflytek\umeng\share\Cocos2dx\Android\CCUMSocialController.cpp" />
+    <ClCompile Include="..\manual\iflytek\umeng\share\Cocos2dx\Common\CCUMSocialSDK.cpp" />
+    <ClCompile Include="..\manual\iflytek\umeng\share\Cocos2dx\ShareButton\UMShareButton.cpp" />
+    <ClCompile Include="..\manual\iflytek\umeng\share\jsb_umeng_share.cpp" />
     <ClCompile Include="..\manual\iflytek\umeng\umengJniHelper.cpp" />
     <ClCompile Include="..\manual\iflytek\ZipHelper.cpp" />
     <ClCompile Include="..\manual\jsb_event_dispatcher_manual.cpp" />
@@ -104,6 +108,13 @@
     <ClInclude Include="..\manual\iflytek\ProxyHttpGet.h" />
     <ClInclude Include="..\manual\iflytek\umeng\jsb_umeng.h" />
     <ClInclude Include="..\manual\iflytek\umeng\MobClickCpp.h" />
+    <ClInclude Include="..\manual\iflytek\umeng\share\Cocos2dx\Android\CCUMSocialController.h" />
+    <ClInclude Include="..\manual\iflytek\umeng\share\Cocos2dx\Common\CCUMSocialSDK.h" />
+    <ClInclude Include="..\manual\iflytek\umeng\share\Cocos2dx\Common\CCUMTypeDef.h" />
+    <ClInclude Include="..\manual\iflytek\umeng\share\Cocos2dx\iOS\UmSocialControllerIOS.h" />
+    <ClInclude Include="..\manual\iflytek\umeng\share\Cocos2dx\iOS\UMSocialUIObject.h" />
+    <ClInclude Include="..\manual\iflytek\umeng\share\Cocos2dx\ShareButton\UMShareButton.h" />
+    <ClInclude Include="..\manual\iflytek\umeng\share\jsb_umeng_share.h" />
     <ClInclude Include="..\manual\iflytek\umeng\umengJniHelper.h" />
     <ClInclude Include="..\manual\iflytek\umeng\umenglog.h" />
     <ClInclude Include="..\manual\iflytek\ZipHelper.h" />
@@ -507,6 +518,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\manual\iflytek\umeng\share\Cocos2dx\iOS\UmSocialControllerIOS.mm" />
+    <None Include="..\manual\iflytek\umeng\share\Cocos2dx\iOS\UMSocialUIObject.mm" />
     <None Include="..\manual\network\boost\asio\detail\impl\buffer_sequence_adapter.ipp" />
     <None Include="..\manual\network\boost\asio\detail\impl\descriptor_ops.ipp" />
     <None Include="..\manual\network\boost\asio\detail\impl\dev_poll_reactor.ipp" />
