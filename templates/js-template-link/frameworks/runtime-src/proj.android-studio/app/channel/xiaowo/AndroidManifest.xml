@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.iflytek.UUThirteenWater">
+    package="com.uufungame.UUThirteenWater">
 
     <uses-permission android:name="android.permission.VIBRATE" />
 
@@ -36,7 +36,7 @@
         </activity>
         <activity
             android:name=".AppActivity"
-            android:screenOrientation="landscape"
+            android:screenOrientation="sensorLandscape"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >

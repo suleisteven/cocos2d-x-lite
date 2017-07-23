@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.uufungame.UUThirteenWater"
+    package="com.tomatocloud.uulandlord"
     android:installLocation="auto">
 
     <uses-feature android:glEsVersion="0x00020000" />
@@ -22,22 +22,87 @@
         android:allowBackup="true"
 		android:label="@string/app_name"
         android:icon="@mipmap/icon">
+
+        <activity
+            android:name=".AppActivity"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="uu" android:host="uuwater13" android:pathPrefix="/openwith"/>
+            </intent-filter>
+        </activity>
+
+        <!-- ###################注册SDK使用的Activity###################### -->
+        <!--分享编辑页-->
+        <activity
+            android:name="com.umeng.socialize.view.ShareActivity"
+            android:configChanges="orientation|keyboard"
+            android:launchMode="singleTask"
+            android:noHistory="true"
+            android:theme="@style/Theme.UMDialog"
+            android:windowSoftInputMode="stateVisible|adjustResize" >
+        </activity>
+
+        <!-- ############ QQ空间和QQ SSO授权的Activity注册 ############ -->
+        <activity
+            android:name="com.tencent.tauth.AuthActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:noHistory="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!-- 100424468，如果你使用的公用账号，则不需要修改；否则修改成你在QQ开放平台申请的 APP ID-->
+                <data android:scheme="tencent1104979614" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.tencent.plus.ImageActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name="com.tencent.connect.common.AssistActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <!-- 微信分享activity注册 -->
+        <activity
+            android:name=".wxapi.WXEntryActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:scheme="wxc1651208a490959d" />
+            </intent-filter>
+        </activity>
         
         <!-- Tell Cocos2dxActivity the name of our .so -->
         <meta-data android:name="android.app.lib_name"
                    android:value="cocos2djs" />
 
-        <!--计费配置，吃货联盟 每个应用需要配置不同的UBPAppKey和UBPAppSecret-->
+
+        <!-- ###################添加UmengAppkey###################### -->
         <meta-data
-            android:name="UBPAppKey"
-            android:value="a83ac67e0b9e4b138e009ed32dbe61b8" />
-        <!--android:value="6cac7caae73a4322addd6494fd8b09e1" />-->
-        <meta-data
-            android:name="UBPAppSecret"
-            android:value="e0e81f5a856d42ea9f834dc7dbc1609e" />
-        <!--android:value="d4b2f35d37da4ebdbcdf02b89dca7062" />-->
-        <meta-data android:name="IflytekAppId" android:value="7pom" />
-        <meta-data android:name="IflytekChannelId" android:value="9k9a" />
+            android:name="UMENG_APPKEY"
+            android:value="56433b3767e58e272b001549" >
+        </meta-data>
     </application>
     
 

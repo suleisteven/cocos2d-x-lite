@@ -51,7 +51,8 @@ public:
 	mozilla::Maybe<JS::PersistentRootedObject> _JSDelegate;
 };
 
-static JSB_UmengShareNative* curDelegate = nullptr;
+static JSB_UmengShareNative* curLoginDelegate = nullptr;
+static JSB_UmengShareNative* curShareToDelegate = nullptr;
 
 bool js_cocos2dx_umeng_share_init(JSContext *cx, uint32_t argc, jsval *vp)
 {
@@ -208,7 +209,7 @@ void authCallback(int platform, int stCode, std::map<string, string>& data)
 			if (!isDeleteOauth)
 			{
 				
-				if(curDelegate)
+				if(curLoginDelegate)
 				{
 					Director::getInstance()->getScheduler()->performFunctionInCocosThread([=](){
 
@@ -239,7 +240,7 @@ void authCallback(int platform, int stCode, std::map<string, string>& data)
 
 						JS::RootedValue args(cx, OBJECT_TO_JSVAL(jsobj));
 
-						ScriptingCore::getInstance()->executeFunctionWithOwner(OBJECT_TO_JSVAL(curDelegate->_JSDelegate.ref()), "onLoginResult", 1, args.address());
+						ScriptingCore::getInstance()->executeFunctionWithOwner(OBJECT_TO_JSVAL(curLoginDelegate->_JSDelegate.ref()), "onLoginResult", 1, args.address());
 					});
 				}
 			}
@@ -251,7 +252,7 @@ void authCallback(int platform, int stCode, std::map<string, string>& data)
 	{
 		CCLOG("##authError");
 
-		if(curDelegate)
+		if(curLoginDelegate)
 		{
 			Director::getInstance()->getScheduler()->performFunctionInCocosThread([=](){
 
@@ -282,7 +283,7 @@ void authCallback(int platform, int stCode, std::map<string, string>& data)
 
 				JS::RootedValue args(cx, OBJECT_TO_JSVAL(jsobj));
 
-				ScriptingCore::getInstance()->executeFunctionWithOwner(OBJECT_TO_JSVAL(curDelegate->_JSDelegate.ref()), "onLoginResult", 1, args.address());
+				ScriptingCore::getInstance()->executeFunctionWithOwner(OBJECT_TO_JSVAL(curLoginDelegate->_JSDelegate.ref()), "onLoginResult", 1, args.address());
 			});
 		}
 
@@ -292,7 +293,7 @@ void authCallback(int platform, int stCode, std::map<string, string>& data)
 	{
 		CCLOG("##authCancel");
 
-		if(curDelegate)
+		if(curLoginDelegate)
 		{
 			Director::getInstance()->getScheduler()->performFunctionInCocosThread([=](){
 
@@ -323,7 +324,7 @@ void authCallback(int platform, int stCode, std::map<string, string>& data)
 
 				JS::RootedValue args(cx, OBJECT_TO_JSVAL(jsobj));
 
-				ScriptingCore::getInstance()->executeFunctionWithOwner(OBJECT_TO_JSVAL(curDelegate->_JSDelegate.ref()), "onLoginResult", 1, args.address());
+				ScriptingCore::getInstance()->executeFunctionWithOwner(OBJECT_TO_JSVAL(curLoginDelegate->_JSDelegate.ref()), "onLoginResult", 1, args.address());
 			});
 		}
 	}
@@ -337,7 +338,115 @@ void authCallback(int platform, int stCode, std::map<string, string>& data)
 }
 
 
+void shareCallbackDelegate(int platform, int stCode,
+	const string& errorMsg)
+{
+	CCLOG("share callback:%d, %d, %s", platform, stCode, errorMsg.c_str());
+#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS
+	if (curShareToDelegate)
+	{
+		Director::getInstance()->getScheduler()->performFunctionInCocosThread([=](){
 
+			if (cocos2d::Director::getInstance() == nullptr || cocos2d::ScriptEngineManager::getInstance() == nullptr)
+				return;
+
+			JSB_AUTOCOMPARTMENT_WITH_GLOBAL_OBJCET
+
+
+				JSContext* cx = ScriptingCore::getInstance()->getGlobalContext();
+			JS::RootedObject jsobj(cx, JS_NewObject(cx, NULL, JS::NullPtr(), JS::NullPtr()));
+
+			int32_t status = 0;
+
+			JS::RootedValue statusCodeJS(cx);
+			statusCodeJS = INT_TO_JSVAL(stCode);
+			JS_SetProperty(cx, jsobj, "status", statusCodeJS);
+
+			string platformStr = "";
+			if (platform == Platform::QQ)
+			{
+				platformStr = "qq";
+			}
+			else if (platform == Platform::WEIXIN)
+			{
+				platformStr = "weixin";
+			}
+
+			JS::RootedValue platformJS(cx);
+			platformJS = c_string_to_jsval(cx, platformStr.c_str());
+			JS_SetProperty(cx, jsobj, "platform", platformJS);
+
+
+			JS::RootedValue errorMsgJS(cx);
+			errorMsgJS = c_string_to_jsval(cx, errorMsg.c_str());
+			JS_SetProperty(cx, jsobj, "errorMsg", errorMsgJS);
+
+
+			JS::RootedValue args(cx, OBJECT_TO_JSVAL(jsobj));
+
+			ScriptingCore::getInstance()->executeFunctionWithOwner(OBJECT_TO_JSVAL(curLoginDelegate->_JSDelegate.ref()), "onShareResult", 1, args.address());
+		});
+	}
+#endif
+	
+}
+
+bool js_cocos2dx_umeng_share_share_to(JSContext *cx, uint32_t argc, jsval *vp)
+{
+	JS::CallArgs argv = JS::CallArgsFromVp(argc, vp);
+	JS::RootedObject obj(cx, argv.thisv().toObjectOrNull());
+
+	js_proxy_t *proxy = jsb_get_js_proxy(obj);
+	JSB_UmengShareNative* cobj = (JSB_UmengShareNative *)(proxy ? proxy->ptr : NULL);
+	JSB_PRECONDITION2(cobj, cx, false, "Invalid Native Object");
+
+	if (argc == 5)
+	{
+		if (argv[0].isString())
+		{
+			std::string accountType;
+			jsval_to_std_string(cx, argv[0], &accountType);
+
+			std::string content;
+			jsval_to_std_string(cx, argv[1], &content);
+
+			std::string img;
+			jsval_to_std_string(cx, argv[2], &img);
+
+			std::string title;
+			jsval_to_std_string(cx, argv[3], &title);
+
+			std::string url;
+			jsval_to_std_string(cx, argv[4], &url);
+
+			
+#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS
+			
+			curShareToDelegate = cobj;
+			
+			Platform platform = Platform::WEIXIN;
+
+			if (accountType == "qq")
+			{
+				platform = Platform::QQ;
+			}
+			else if (accountType == "weixin")
+			{
+				platform = Platform::WEIXIN;
+			}
+
+			sdk->setPlatformShareContent(platform, content.c_str(), img.c_str(), title.c_str(), url.c_str());
+			sdk->directShare(platform, "", "", share_selector(shareCallbackDelegate));
+#endif
+		}
+	}
+	else
+	{
+		JS_ReportError(cx, "wrong number of arguments: %d, was expecting %d", argc, 5);
+		return false;
+	}
+	return true;
+}
 
 bool js_cocos2dx_umeng_share_login(JSContext *cx, uint32_t argc, jsval *vp)
 {
@@ -356,7 +465,7 @@ bool js_cocos2dx_umeng_share_login(JSContext *cx, uint32_t argc, jsval *vp)
 			jsval_to_std_string(cx, argv[0], &accountType);
 
 #if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS
-			curDelegate = cobj;
+			curLoginDelegate = cobj;
 			if (accountType == "qq")
 			{
 				// 对某个平台授权, 参数二为授权回调
@@ -409,7 +518,8 @@ void js_cocos2dx_umeng_share_finalize(JSFreeOp *fop, JSObject *obj) {
 	{
 		CC_SAFE_DELETE(cobj);
 	}
-	curDelegate = nullptr;
+	curLoginDelegate = nullptr;
+	curShareToDelegate = nullptr;
 }
 
 
@@ -437,6 +547,8 @@ void register_jsb_umeng_share_native(JSContext* cx, JS::HandleObject global)
 	static JSFunctionSpec funcs[] = {
 		JS_FN("login", js_cocos2dx_umeng_share_login, 1, JSPROP_PERMANENT | JSPROP_ENUMERATE),
 		JS_FN("init", js_cocos2dx_umeng_share_init, 5, JSPROP_PERMANENT | JSPROP_ENUMERATE),
+		JS_FN("shareTo", js_cocos2dx_umeng_share_share_to, 5, JSPROP_PERMANENT | JSPROP_ENUMERATE),
+		
 		JS_FS_END
 	};
 

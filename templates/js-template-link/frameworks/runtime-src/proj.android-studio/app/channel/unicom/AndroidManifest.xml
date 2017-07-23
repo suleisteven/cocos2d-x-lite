@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.iflytek.UUThirteenWater">
+    package="com.uufungame.UUThirteenWater">
 
     <uses-permission android:name="android.permission.RECEIVE_SMS"/>
 
@@ -15,7 +15,7 @@
         <activity
             android:name="com.odin.framework.proxy.ProxyActivity"
             android:configChanges="orientation|navigation|screenSize|keyboardHidden|keyboard"
-            android:screenOrientation="landscape"
+            android:screenOrientation="sensorLandscape"
             android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
             android:windowSoftInputMode="adjustPan" >
         </activity>

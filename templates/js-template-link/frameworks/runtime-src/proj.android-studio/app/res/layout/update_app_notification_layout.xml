@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 手动更新通知栏布局 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="horizontal"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <!--//TODO 新版去掉了背景 和ProgressBar背景-->
+    <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@null"
+            android:gravity="center_vertical"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp">
+        <ImageView
+                android:id="@+id/icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/icon"
+                android:scaleType="fitCenter"
+                android:padding="2dp"/>
+        <LinearLayout android:layout_width="fill_parent"
+                      android:layout_height="match_parent"
+                      android:gravity="center_vertical"
+                      android:orientation="vertical">
+            <TextView android:id="@+id/text"
+                      android:layout_width="fill_parent"
+                      android:layout_height="wrap_content"
+                      android:text="123123"
+                      android:singleLine="true"
+                      android:ellipsize="marquee"
+                      android:fadingEdge="horizontal"
+                      android:textAppearance="?android:attr/textAppearanceLarge"
+                      android:textSize="14sp"
+                      android:paddingLeft="4dp"
+                    />
+            <ProgressBar
+                    android:id="@+id/progressBar"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="13dp"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:paddingLeft="4dp"
+                    android:paddingTop="4dp"
+                    android:max="100"
+                    android:progress="50"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

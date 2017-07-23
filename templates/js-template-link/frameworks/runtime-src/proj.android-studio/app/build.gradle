@@ -10,7 +10,8 @@ android {
     buildToolsVersion "25.0.3"
 
     defaultConfig {
-        applicationId "com.uufungame.UUThirteenWater"
+        //applicationId "com.uufungame.UUThirteenWater"
+        applicationId "com.tomatocloud.uulandlord"
         minSdkVersion 15
         targetSdkVersion 22
         versionCode 1
@@ -27,7 +28,6 @@ android {
             jniLibs.srcDir "libs"
             manifest.srcFile "AndroidManifest.xml"
             assets.srcDir "assets"
-
         }
 
         "default" {
@@ -71,14 +71,30 @@ android {
     signingConfigs {
 
         release {
-                storeFile file('uufungame.keystore')
-                storePassword 'uuanzhuodang'
-                keyAlias 'uufungame'
-                keyPassword 'uuanzhuodang'
+            storeFile file('tomatocloud.keystore')
+            keyAlias 'tomatocloud'
+            keyPassword '2014anzhuodang'
+            storePassword '2014anzhuodang'
         }
+
+//        release {
+//                storeFile file('uufungame.keystore')
+//                storePassword 'uuanzhuodang'
+//                keyAlias 'uufungame'
+//                keyPassword 'uuanzhuodang'
+//        }
     }
 
     buildTypes {
+        debug {
+            buildConfigField "boolean","LOG_DEBUG","true"
+            debuggable true
+            minifyEnabled false
+            zipAlignEnabled false
+            shrinkResources false
+            signingConfig signingConfigs.release
+        }
+
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
