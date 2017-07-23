@@ -252,8 +252,9 @@ void CCUMSocialSDK::directShare(int platform, const char* text,
  */
 void CCUMSocialSDK::setQQAppIdAndAppKey(const char* appid, const char* appKey) {
 #if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
-
+	CCLOG("##init xxxxx1");
 	setQQAndQzoneAppIdWithAppKey(appid, appKey);
+	CCLOG("##init xxxxx2");
 
 #elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
 

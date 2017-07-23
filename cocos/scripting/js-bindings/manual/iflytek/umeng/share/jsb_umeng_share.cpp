@@ -84,15 +84,13 @@ bool js_cocos2dx_umeng_share_init(JSContext *cx, uint32_t argc, jsval *vp)
 
 			//////////////////////////////////// 初始化umeng第三方登录设置 ////////////////////////////////////
 			sdk = CCUMSocialSDK::create(umengKey.c_str());
-			CCLOG("##init 2");
+			CCLOG("##init 2xxx");
 			//sdk->setQQAppIdAndAppKey("1103185283", "YTfduIwhHmCPwjzs");
 
 			if (!_isInitedUmengSocial)
 			{
-				CCLOG("##init 3");
-				string qqId = qqOpenId;
-				string qqKey = qqKey;
-				sdk->setQQAppIdAndAppKey(qqId.c_str(), qqKey.c_str());
+				CCLOG("##init 3xxxxx:%s", qqOpenId.c_str());
+				sdk->setQQAppIdAndAppKey(qqOpenId.c_str(), qqKey.c_str());
 				CCLOG("##init 4");
 				sdk->setWeiXinAppInfo(weixinAppId.c_str(), weixinAppKey.c_str());
 				CCLOG("##init 6");
@@ -113,7 +111,7 @@ bool js_cocos2dx_umeng_share_init(JSContext *cx, uint32_t argc, jsval *vp)
 			}
 
 			CCLOG("##init 9");
-			sdk->deleteAuthorization(WEIXIN, nullptr);
+			sdk->deleteAuthorization(Platform::WEIXIN, nullptr);
 			CCLOG("##init 10");
 			bool resultQQ = sdk->isAuthorized(QQ);
 			CCLOG("##init 11");

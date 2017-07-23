@@ -350,17 +350,28 @@ void initCocos2dxSDKFromJni(const char* type, const char* version) {
  * @param appid
  */
 void setQQAndQzoneAppIdWithAppKey(const char* appid, const char* appKey) {
+	CCLOG("setQQAndQzoneAppIdWithAppKey1");
     JniMethodInfo mi;
+	CCLOG("setQQAndQzoneAppIdWithAppKey2");
     bool isHave = getMethod(mi, "setQQAndQzoneAppIdWithAppKey",
                             "(Ljava/lang/String;Ljava/lang/String;)V");
+	CCLOG("setQQAndQzoneAppIdWithAppKey3");
     if (isHave) {
+		CCLOG("setQQAndQzoneAppIdWithAppKey4");
         jstring jAppid = mi.env->NewStringUTF(appid);
+		CCLOG("setQQAndQzoneAppIdWithAppKey5");
         jstring jAppKey = mi.env->NewStringUTF(appKey);
+		CCLOG("setQQAndQzoneAppIdWithAppKey6");
         mi.env->CallStaticVoidMethod(mi.classID, mi.methodID, jAppid, jAppKey);
+		CCLOG("setQQAndQzoneAppIdWithAppKey7");
         mi.env->DeleteLocalRef(jAppid);
+		CCLOG("setQQAndQzoneAppIdWithAppKey8");
         mi.env->DeleteLocalRef(jAppKey);
+		CCLOG("setQQAndQzoneAppIdWithAppKey9");
         releaseMethod(mi);
+		CCLOG("setQQAndQzoneAppIdWithAppKey10");
     }
+	CCLOG("setQQAndQzoneAppIdWithAppKey11");
     CCLOG("#### setQQAndQzoneAppIdAndAppKey");
 }
 
