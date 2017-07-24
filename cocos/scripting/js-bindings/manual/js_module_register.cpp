@@ -28,6 +28,7 @@
 #include "scripting/js-bindings/manual/iflytek/gameLoG/jsb_GameLogic.h"
 #include "scripting/js-bindings/manual/iflytek/umeng/jsb_umeng.h"
 #include "scripting/js-bindings/manual/iflytek/umeng/share/jsb_umeng_share.h"
+#include "scripting/js-bindings/manual/uu/jsb_uu_water13.h"
 //#include "scripting/js-bindings/manual/iflytek/jsb_ThreadNative.h"
 
 
@@ -109,6 +110,8 @@ int js_module_register()
 	sc->addRegisterCallback(register_jsb_game_logic_native);
 	sc->addRegisterCallback(register_jsb_umeng_native);
 	sc->addRegisterCallback(register_jsb_umeng_share_native);
+	sc->addRegisterCallback(register_jsb_uu_water13);
+	
 	//sc->addRegisterCallback(register_jsb_thread_native);
 	
 	

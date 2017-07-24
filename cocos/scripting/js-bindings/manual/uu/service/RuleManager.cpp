@@ -261,6 +261,30 @@ bool RuleManagerAbstract::isChain(vector<shared_ptr<PokerModel>> pokerVector)
 	return false;
 }
 
+//void test()
+//{
+//	RuleManagerAbstract* manager = new SimpleRuleManager();
+//	vector<shared_ptr<PokerModel>> allPokers = manager->getAllPokerVector();
+//
+//
+//	// 洗牌,伪代码
+//	//std::shuffle(allPokers.begin(), allPokers.end(), std::default_random_engine((unsigned int)SystemUtil::getCurrentTimeMillis()));
+//
+//	vector<shared_ptr<PokerModel>> playerPoker;
+//	playerPoker.insert(playerPoker.end(), allPokers.begin(), playerPoker.begin() + 13); // 取13张牌发牌，只演示一家
+//
+//
+//	// 计算推荐牌型
+//	vector<shared_ptr<vector<shared_ptr<PokerCombinationModel>>>> recommendPCMVector = manager->getRecommendPokerCombination(playerPoker);
+//
+//	// 或者计算玩家已排好的牌型，如果排好的牌不符合规则，这里会返回空集合
+//	vector<shared_ptr<PokerCombinationModel>> customPCM = manager->getPokerCombinationAllRow(playerPoker);
+//
+//	//recommendPCMVector 这个东西就是推荐牌型集合
+//	//customPCM 这个东西是玩家自己排好后，识别出来的牌型 
+//
+//}
+
 //////////////////////////基础玩法规则管理器  ////////////////////////////////////////////////
 
 RuleType SimpleRuleManager::getRuleType()

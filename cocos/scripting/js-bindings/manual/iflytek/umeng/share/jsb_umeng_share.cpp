@@ -151,6 +151,8 @@ void authCallback(int platform, int stCode, std::map<string, string>& data)
 {
 
 #if CC_TARGET_PLATFORM==CC_PLATFORM_IOS || CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+
+	bool isError =false;
 	if (stCode == 100)
 	{
 		CCLOG("##authStart");
@@ -201,48 +203,46 @@ void authCallback(int platform, int stCode, std::map<string, string>& data)
 				break;
 			}
 
+			if(curLoginDelegate)
+			{
+				Director::getInstance()->getScheduler()->performFunctionInCocosThread([=](){
 
+					if (cocos2d::Director::getInstance() == nullptr || cocos2d::ScriptEngineManager::getInstance() == nullptr)
+						return;
+
+					JSB_AUTOCOMPARTMENT_WITH_GLOBAL_OBJCET
+
+					JSContext* cx = ScriptingCore::getInstance()->getGlobalContext();
+					JS::RootedObject jsobj(cx, JS_NewObject(cx, NULL, JS::NullPtr(), JS::NullPtr()));
+
+					int32_t status = stCode;
+
+					JS::RootedValue statusCodeJS(cx);
+					statusCodeJS = INT_TO_JSVAL(status);
+					JS_SetProperty(cx, jsobj, "status", statusCodeJS);
+
+					JS::RootedValue openidJS(cx);
+					openidJS = c_string_to_jsval(cx,openid.c_str());
+					JS_SetProperty(cx, jsobj, "openid", openidJS);
+
+
+					JS::RootedValue tokenJS(cx);
+					tokenJS = c_string_to_jsval(cx, token.c_str());
+					JS_SetProperty(cx, jsobj, "token", tokenJS);
+
+
+					JS::RootedValue args(cx, OBJECT_TO_JSVAL(jsobj));
+
+					ScriptingCore::getInstance()->executeFunctionWithOwner(OBJECT_TO_JSVAL(curLoginDelegate->_JSDelegate.ref()), "onLoginResult", 1, args.address());
+				});
+			}
 			
 		}
 		else
 		{
 			if (!isDeleteOauth)
 			{
-				
-				if(curLoginDelegate)
-				{
-					Director::getInstance()->getScheduler()->performFunctionInCocosThread([=](){
-
-						if (cocos2d::Director::getInstance() == nullptr || cocos2d::ScriptEngineManager::getInstance() == nullptr)
-							return;
-
-						JSB_AUTOCOMPARTMENT_WITH_GLOBAL_OBJCET
-
-
-						JSContext* cx = ScriptingCore::getInstance()->getGlobalContext();
-						JS::RootedObject jsobj(cx, JS_NewObject(cx, NULL, JS::NullPtr(), JS::NullPtr()));
-
-						int32_t status = 0;
-
-						JS::RootedValue statusCodeJS(cx);
-						statusCodeJS = INT_TO_JSVAL(status);
-						JS_SetProperty(cx, jsobj, "status", statusCodeJS);
-
-						JS::RootedValue openidJS(cx);
-						openidJS = c_string_to_jsval(cx,openid.c_str());
-						JS_SetProperty(cx, jsobj, "openid", openidJS);
-
-
-						JS::RootedValue tokenJS(cx);
-						tokenJS = c_string_to_jsval(cx, token.c_str());
-						JS_SetProperty(cx, jsobj, "token", tokenJS);
-
-
-						JS::RootedValue args(cx, OBJECT_TO_JSVAL(jsobj));
-
-						ScriptingCore::getInstance()->executeFunctionWithOwner(OBJECT_TO_JSVAL(curLoginDelegate->_JSDelegate.ref()), "onLoginResult", 1, args.address());
-					});
-				}
+				isError = true;
 			}
 		}
 
@@ -252,42 +252,8 @@ void authCallback(int platform, int stCode, std::map<string, string>& data)
 	{
 		CCLOG("##authError");
 
-		if(curLoginDelegate)
-		{
-			Director::getInstance()->getScheduler()->performFunctionInCocosThread([=](){
-
-				if (cocos2d::Director::getInstance() == nullptr || cocos2d::ScriptEngineManager::getInstance() == nullptr)
-					return;
-
-				JSB_AUTOCOMPARTMENT_WITH_GLOBAL_OBJCET
-
-
-					JSContext* cx = ScriptingCore::getInstance()->getGlobalContext();
-				JS::RootedObject jsobj(cx, JS_NewObject(cx, NULL, JS::NullPtr(), JS::NullPtr()));
-
-				int32_t status = 0;
-
-				JS::RootedValue statusCodeJS(cx);
-				statusCodeJS = INT_TO_JSVAL(-1);
-				JS_SetProperty(cx, jsobj, "status", statusCodeJS);
-
-				JS::RootedValue openidJS(cx);
-				openidJS = c_string_to_jsval(cx,"");
-				JS_SetProperty(cx, jsobj, "openid", openidJS);
-
-
-				JS::RootedValue tokenJS(cx);
-				tokenJS = c_string_to_jsval(cx, "");
-				JS_SetProperty(cx, jsobj, "token", tokenJS);
-
-
-				JS::RootedValue args(cx, OBJECT_TO_JSVAL(jsobj));
-
-				ScriptingCore::getInstance()->executeFunctionWithOwner(OBJECT_TO_JSVAL(curLoginDelegate->_JSDelegate.ref()), "onLoginResult", 1, args.address());
-			});
-		}
-
-
+		isError = true;
+		
 	}
 	else if (stCode == -1)
 	{
@@ -306,10 +272,10 @@ void authCallback(int platform, int stCode, std::map<string, string>& data)
 					JSContext* cx = ScriptingCore::getInstance()->getGlobalContext();
 				JS::RootedObject jsobj(cx, JS_NewObject(cx, NULL, JS::NullPtr(), JS::NullPtr()));
 
-				int32_t status = 0;
+				int32_t status = stCode;
 
 				JS::RootedValue statusCodeJS(cx);
-				statusCodeJS = INT_TO_JSVAL(-2);
+				statusCodeJS = INT_TO_JSVAL(status);
 				JS_SetProperty(cx, jsobj, "status", statusCodeJS);
 
 				JS::RootedValue openidJS(cx);
@@ -328,6 +294,46 @@ void authCallback(int platform, int stCode, std::map<string, string>& data)
 			});
 		}
 	}
+
+
+	if(isError)
+	{
+		if(curLoginDelegate)
+		{
+			Director::getInstance()->getScheduler()->performFunctionInCocosThread([=](){
+
+				if (cocos2d::Director::getInstance() == nullptr || cocos2d::ScriptEngineManager::getInstance() == nullptr)
+					return;
+
+				JSB_AUTOCOMPARTMENT_WITH_GLOBAL_OBJCET
+
+
+					JSContext* cx = ScriptingCore::getInstance()->getGlobalContext();
+				JS::RootedObject jsobj(cx, JS_NewObject(cx, NULL, JS::NullPtr(), JS::NullPtr()));
+
+				int32_t status = -1;
+
+				JS::RootedValue statusCodeJS(cx);
+				statusCodeJS = INT_TO_JSVAL(status);
+				JS_SetProperty(cx, jsobj, "status", statusCodeJS);
+
+				JS::RootedValue openidJS(cx);
+				openidJS = c_string_to_jsval(cx, "");
+				JS_SetProperty(cx, jsobj, "openid", openidJS);
+
+
+				JS::RootedValue tokenJS(cx);
+				tokenJS = c_string_to_jsval(cx, "");
+				JS_SetProperty(cx, jsobj, "token", tokenJS);
+
+
+				JS::RootedValue args(cx, OBJECT_TO_JSVAL(jsobj));
+
+				ScriptingCore::getInstance()->executeFunctionWithOwner(OBJECT_TO_JSVAL(curLoginDelegate->_JSDelegate.ref()), "onLoginResult", 1, args.address());
+			});
+		}
+	}
+	
 
 	// 输入授权数据, 如果授权失败,则会输出错误信息
 	map<string, string>::iterator it = data.begin();

@@ -72,6 +72,12 @@ LOCAL_SRC_FILES := ../auto/jsb_cocos2dx_extension_auto.cpp \
 				   ../manual/iflytek/umeng/share/Cocos2dx/Common/CCUMSocialSDK.cpp \
 				   ../manual/iflytek/umeng/share/Cocos2dx/ShareButton/UMShareButton.cpp \
 				   ../manual/iflytek/umeng/share/jsb_umeng_share.cpp \
+				   ../manual/uu/jsb_uu_water13.cpp \
+				   ../manual/uu/model/BaseModel.cpp \
+				   ../manual/uu/model/GameModel.cpp \
+				   ../manual/uu/service/RuleManager.cpp \
+				   ../manual/uu/util/CommonUtils.cpp \
+				   ../manual/uu/util/StringUtils.cpp \
 				   ../manual/platform/android/pay/PayListener.cpp \
 				   ../manual/platform/android/JS_Binder.cpp  \
 				   
