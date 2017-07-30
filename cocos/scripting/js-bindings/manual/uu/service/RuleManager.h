@@ -83,13 +83,20 @@ public:
 	virtual RuleType getRuleType() = 0;
 
 	/**
-	 * 根据手牌获得推荐牌型
+	 * 根据手牌获得推荐牌型,返回所有推荐牌型，包含特殊牌和普通牌，特殊牌排在第一个（如果有，则仅有一个）
 	 * @param pokerVector 
 	 */
 	virtual vector<shared_ptr<vector<shared_ptr<PokerCombinationModel>>>> getRecommendPokerCombination(vector<shared_ptr<PokerModel>> pokerVector) = 0;
 
 	/**
-	 * 根据自定排好的扑克集合获取牌型
+	 * 根据手牌获取特殊牌型
+	 * @param pokerVector 
+	 * @return empty 没有找到特殊牌，这幅手牌不是特殊牌型，否则返回对应的特殊牌型
+	 */
+	virtual shared_ptr<PokerCombinationModel> getPeculiarPokerCombination(vector<shared_ptr<PokerModel>>& pokerVector) = 0;
+
+	/**
+	 * 根据自定排好的扑克集合获取普通牌型
 	 * @param pokerVector 扑克集合，13张牌
 	 * @return empty则表示没有符合规则的牌型，反之返回当前牌型
 	 */
@@ -210,6 +217,8 @@ public:
 	virtual RuleType getRuleType();
 
 	virtual vector<shared_ptr<vector<shared_ptr<PokerCombinationModel>>>> getRecommendPokerCombination(vector<shared_ptr<PokerModel>> pokerVector);
+
+	virtual shared_ptr<PokerCombinationModel> getPeculiarPokerCombination(vector<shared_ptr<PokerModel>>& pokerVector);
 
 	virtual shared_ptr<PokerCombinationModel> getPokerCombinationAtRow(vector<shared_ptr<PokerModel>>& pokerVector, const int32_t& row);
 

@@ -274,15 +274,8 @@ vector<shared_ptr<vector<shared_ptr<PokerCombinationModel>>>> SimpleRuleManager:
 {
 
 	vector<shared_ptr<vector<shared_ptr<PokerCombinationModel>>>> result;
-
-	
-
 	PokerModel::sortPokerModel(pokerVector, SortType::SORT_TYPE_DESC); // 按升序排列
-
-	
 	shared_ptr<PokerCountInfo> pokerCountInfo = getPokerCountInfo(pokerVector); // 统计牌数信息
-
-	
 	shared_ptr<PokerCombinationModel> peculiarPCM = findPeculiarPokerCombination(pokerVector, pokerCountInfo); // 先查找特殊牌型
 
 	shared_ptr<vector<shared_ptr<PokerCombinationModel>>> peculiarPCMVector(new vector<shared_ptr<PokerCombinationModel>>);
@@ -320,10 +313,17 @@ vector<shared_ptr<vector<shared_ptr<PokerCombinationModel>>>> SimpleRuleManager:
 	//	
 	//	cocos2d::log("solution:%d is:\n%s",i, str.c_str());
 	//}
-
-	
-
 	return result;
+}
+
+shared_ptr<PokerCombinationModel> SimpleRuleManager::getPeculiarPokerCombination(vector<shared_ptr<PokerModel>>& pokerVector)
+{
+	PokerModel::sortPokerModel(pokerVector, SortType::SORT_TYPE_DESC); // 按升序排列
+	shared_ptr<PokerCountInfo> pokerCountInfo = getPokerCountInfo(pokerVector); // 统计牌数信息
+
+	shared_ptr<PokerCombinationModel> peculiarPCM = findPeculiarPokerCombination(pokerVector, pokerCountInfo); // 查找特殊牌型
+
+	return peculiarPCM;
 }
 
 shared_ptr<PokerCombinationModel> SimpleRuleManager::getPokerCombinationAtRow(vector<shared_ptr<PokerModel>>& pokerVector, const int32_t& row)
