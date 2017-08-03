@@ -270,6 +270,71 @@ RuleType SimpleRuleManager::getRuleType()
 
 //#include "cocos2d.h"
 
+#include <stdarg.h>
+#include <wtypes.h>
+
+
+#define MAX_LOG_LENGTH  1024
+void _log(const char *format, va_list args)
+{
+	
+	int bufferSize = MAX_LOG_LENGTH;
+	char* buf = nullptr;
+
+	do
+	{
+		buf = new (std::nothrow) char[bufferSize];
+		if (buf == nullptr)
+			return; // not enough memory
+
+		int ret = vsnprintf(buf, bufferSize - 3, format, args);
+		if (ret < 0)
+		{
+			bufferSize *= 2;
+
+			delete[] buf;
+		}
+		else
+			break;
+
+	} while (true);
+
+	strcat(buf, "\n");
+
+
+	int pos = 0;
+	int len = strlen(buf);
+	char tempBuf[MAX_LOG_LENGTH + 1] = { 0 };
+	WCHAR wszBuf[MAX_LOG_LENGTH + 1] = { 0 };
+
+	do
+	{
+		std::copy(buf + pos, buf + pos + MAX_LOG_LENGTH, tempBuf);
+
+		tempBuf[MAX_LOG_LENGTH] = 0;
+
+		MultiByteToWideChar(CP_UTF8, 0, tempBuf, -1, wszBuf, sizeof(wszBuf));
+		OutputDebugStringW(wszBuf);
+		WideCharToMultiByte(CP_ACP, 0, wszBuf, -1, tempBuf, sizeof(tempBuf), nullptr, FALSE);
+		printf("%s", tempBuf);
+
+		pos += MAX_LOG_LENGTH;
+
+	} while (pos < len);
+	//SendLogToWindow(buf);
+	printf(buf);
+	fflush(stdout);
+
+}
+
+void log(const char * format, ...)
+{
+	va_list args;
+	va_start(args, format);
+	_log(format, args);
+	va_end(args);
+}
+
 vector<shared_ptr<vector<shared_ptr<PokerCombinationModel>>>> SimpleRuleManager::getRecommendPokerCombination(vector<shared_ptr<PokerModel>> pokerVector)
 {
 
@@ -290,29 +355,29 @@ vector<shared_ptr<vector<shared_ptr<PokerCombinationModel>>>> SimpleRuleManager:
 	result.insert(result.end(), simpPokerCombinationVector.begin(), simpPokerCombinationVector.end());
 	
 
-	//cocos2d::log("poker is:%s  solutionCount:%d\n", PokerModel::toString(pokerVector).c_str(), result.size());
-	//for (int32_t i = 0, sizeI = result.size(); i < sizeI; ++i)
-	//{
-	//	shared_ptr<vector<shared_ptr<PokerCombinationModel>>> curRecommendVector = result.at(i);
+	log("poker is:%s  solutionCount:%d\n", PokerModel::toString(pokerVector).c_str(), result.size());
+	for (int32_t i = 0, sizeI = result.size(); i < sizeI; ++i)
+	{
+		shared_ptr<vector<shared_ptr<PokerCombinationModel>>> curRecommendVector = result.at(i);
 
-	//	string str;
-	//	for (int32_t j = 0, sizeJ = curRecommendVector->size(); j < sizeJ; ++j)
-	//	{
-	//		shared_ptr<PokerCombinationModel> curPCM = curRecommendVector->at(j);
-	//		str.append("row:");
-	//		str.append(StringUtils::format("%d", j));
-	//		str.append(" type:");
-	//		str.append(PokerCombinationModel::toString(curPCM->getPokerCombinationType()));
-	//		str.append("  ");
-	//		str.append(PokerModel::toString(curPCM->getPokerModelVector()));
-	//		str.append("\n");
-	//	}
-	//	
-	//	str.append("\n");
-	//	str.append("\n");
-	//	
-	//	cocos2d::log("solution:%d is:\n%s",i, str.c_str());
-	//}
+		string str;
+		for (int32_t j = 0, sizeJ = curRecommendVector->size(); j < sizeJ; ++j)
+		{
+			shared_ptr<PokerCombinationModel> curPCM = curRecommendVector->at(j);
+			str.append("row:");
+			str.append(StringUtils::format("%d", j));
+			str.append(" type:");
+			str.append(PokerCombinationModel::toString(curPCM->getPokerCombinationType()));
+			str.append("  ");
+			str.append(PokerModel::toString(curPCM->getPokerModelVector()));
+			str.append("\n");
+		}
+
+		str.append("\n");
+		str.append("\n");
+
+		log("solution:%d is:\n%s", i, str.c_str());
+	}
 	return result;
 }
 
@@ -514,44 +579,55 @@ vector<shared_ptr<vector<shared_ptr<PokerCombinationModel>>>> SimpleRuleManager:
 {
 	vector<shared_ptr<vector<shared_ptr<PokerCombinationModel>>>> result = findSimplePokerCombinationRecursion(pokerVector, pokerCountInfo, nullptr, 2);
 
-	// 进行去重处理
-	map<int32_t, int32_t> existsMap;
-	for (auto itor = result.begin(); itor != result.end();)
 	{
-		auto curPCMVector = (*itor).get();
 
-		int32_t key = 0;
-		int32_t keyOneTwo = 0; // 前两道的key
+		// 进行反向去重处理
+		map<int32_t, int32_t> existsMap;
 
-		int32_t sizeI = curPCMVector->size();
-		for (int32_t i = sizeI-1; i >=0; --i)
+		
+		for (auto itor = result.end(); itor != result.begin();)
 		{
-			shared_ptr<PokerCombinationModel> curPCM = curPCMVector->at(i);
-			auto curPCMType = curPCM.get()->getPokerCombinationType();
-			int32_t count = i;
-			int32_t countOneTwo = count + 3;
+			auto curPCMVector = (*itor).get();
 
-			int32_t base = pow(10, count);
-			int32_t baseOneTwo = pow(10, countOneTwo);
+			int32_t key = 0;
+			int32_t keyOneTwo = 0; // 前两道的key
 
-			key += (base * curPCMType);
-			if (i != 0)
+			int32_t sizeI = curPCMVector->size();
+			for (int32_t i = sizeI - 1; i >= 0; --i)
 			{
-				keyOneTwo += (baseOneTwo * curPCMType);
-			}
-		}
+				shared_ptr<PokerCombinationModel> curPCM = curPCMVector->at(i);
+				auto curPCMType = curPCM.get()->getPokerCombinationType();
+				int32_t count = i;
+				int32_t countOneTwo = count + 3;
 
-		if (existsMap.find(key) != existsMap.end()) // 已经存在这种类型，去掉
-		{
-			itor = result.erase(itor);
-		}
-		else
-		{
-			if (existsMap.find(keyOneTwo) != existsMap.end()) // 查找是否已经有相同的前两道
-			{
-				if (key <= existsMap[keyOneTwo]) // 比之前的前两道还小，则去掉
+				int32_t base = pow(10, count);
+				int32_t baseOneTwo = pow(10, countOneTwo);
+
+				key += (base * curPCMType);
+				if (i != 0)
 				{
-					itor = result.erase(itor);
+					keyOneTwo += (baseOneTwo * curPCMType);
+				}
+			}
+
+			if (existsMap.find(key) != existsMap.end()) // 已经存在这种类型，去掉
+			{
+				itor = result.erase(itor);
+			}
+			else
+			{
+				if (existsMap.find(keyOneTwo) != existsMap.end()) // 查找是否已经有相同的前两道
+				{
+					if (key <= existsMap[keyOneTwo]) // 比之前的前两道还小，则去掉
+					{
+						itor = result.erase(itor);
+					}
+					else
+					{
+						existsMap[key] = key;
+						existsMap[keyOneTwo] = key;
+						++itor;
+					}
 				}
 				else
 				{
@@ -560,14 +636,71 @@ vector<shared_ptr<vector<shared_ptr<PokerCombinationModel>>>> SimpleRuleManager:
 					++itor;
 				}
 			}
+		}
+	}
+
+	
+	{
+
+		// 进行正向去重处理
+		map<int32_t, int32_t> existsMap;
+		for (auto itor = result.begin(); itor != result.end();)
+		{
+			auto curPCMVector = (*itor).get();
+
+			int32_t key = 0;
+			int32_t keyOneTwo = 0; // 前两道的key
+
+			int32_t sizeI = curPCMVector->size();
+			for (int32_t i = sizeI - 1; i >= 0; --i)
+			{
+				shared_ptr<PokerCombinationModel> curPCM = curPCMVector->at(i);
+				auto curPCMType = curPCM.get()->getPokerCombinationType();
+				int32_t count = i;
+				int32_t countOneTwo = count + 3;
+
+				int32_t base = pow(10, count);
+				int32_t baseOneTwo = pow(10, countOneTwo);
+
+				key += (base * curPCMType);
+				if (i != 0)
+				{
+					keyOneTwo += (baseOneTwo * curPCMType);
+				}
+			}
+
+			if (existsMap.find(key) != existsMap.end()) // 已经存在这种类型，去掉
+			{
+				itor = result.erase(itor);
+			}
 			else
 			{
-				existsMap[key] = key;
-				existsMap[keyOneTwo] = key;
-				++itor;
+				if (existsMap.find(keyOneTwo) != existsMap.end()) // 查找是否已经有相同的前两道
+				{
+					if (key <= existsMap[keyOneTwo]) // 比之前的前两道还小，则去掉
+					{
+						itor = result.erase(itor);
+					}
+					else
+					{
+						existsMap[key] = key;
+						existsMap[keyOneTwo] = key;
+						++itor;
+					}
+				}
+				else
+				{
+					existsMap[key] = key;
+					existsMap[keyOneTwo] = key;
+					++itor;
+				}
 			}
 		}
 	}
+
+	
+	
+
 	
 	return result;
 }
@@ -627,8 +760,63 @@ vector<shared_ptr<vector<shared_ptr<PokerCombinationModel>>>> SimpleRuleManager:
 	if (typeCount < typeCountMax && curPokerCombinationType >= PokerCombinationType::POKER_COMBINATION_TYPE_TONG_HUA && step != 0)
 	{
 
+		vector<shared_ptr<PokerCombinationModel>> tonghuaPCMVector;
+
 		// 查找同花
-		vector<shared_ptr<PokerCombinationModel>> tonghuaPCMVector = findTongHuaPokerCombination(pokerVector, pokerCountInfo);
+		if (step==2)
+		{
+
+			vector<shared_ptr<PokerCombinationModel>> secondPokerCombinationModelVector; //  中道的优选牌型，由于同花的组合太多，这里的算法思想是将中道最优的牌型先找出，再在剩下的牌中找同花
+			vector<shared_ptr<PokerCombinationModel>> shunziPCMVector = findChainPokerCombination(pokerVector, pokerCountInfo, CHAIN_FIND_TYPE_TONGHUA_OTHER, CHAIN_FIND_TYPE_COUNT_TYPE_5);
+
+			if (shunziPCMVector.empty())
+			{
+
+				vector<shared_ptr<PokerCombinationModel>> liangduiPCMVector = findLiangDuiPokerCombination(pokerVector, pokerCountInfo);
+
+				if (!liangduiPCMVector.empty())
+				{
+					secondPokerCombinationModelVector.insert(secondPokerCombinationModelVector.end(), liangduiPCMVector.begin(), liangduiPCMVector.end());
+				}
+				
+			}
+			else
+			{
+				secondPokerCombinationModelVector.insert(secondPokerCombinationModelVector.end(), shunziPCMVector.begin(), shunziPCMVector.end());
+			}
+
+			
+			if (secondPokerCombinationModelVector.empty()) // 第二优选牌型未找到，直接找同花
+			{
+				tonghuaPCMVector = findTongHuaPokerCombination(pokerVector, pokerCountInfo);
+			}
+			else
+			{
+				for (int32_t i = secondPokerCombinationModelVector.size() - 1; i >=0; ++i)
+				{
+					shared_ptr<PokerCombinationModel> curPCM = secondPokerCombinationModelVector.at(i);
+
+					vector<shared_ptr<PokerModel>> pokerVectorTmp2;
+					PokerModel::concatSpecifyPokerVector(pokerVectorTmp2, pokerVector);
+
+					PokerModel::removeSpecifyPokerVector(pokerVectorTmp2, curPCM->getPokerModelVector());
+
+					vector<shared_ptr<PokerCombinationModel>> tmpTonghuaPCMVector = findTongHuaPokerCombination(pokerVectorTmp2, getPokerCountInfo(pokerVectorTmp2));
+
+					if (!tmpTonghuaPCMVector.empty())
+					{
+						tonghuaPCMVector = tmpTonghuaPCMVector;
+						break;
+					}
+				}
+			}
+		}
+		else
+		{
+			tonghuaPCMVector = findTongHuaPokerCombination(pokerVector, pokerCountInfo);
+		}
+
+		 
 		tmpVector.insert(tmpVector.end(), tonghuaPCMVector.begin(), tonghuaPCMVector.end());
 		if (!tonghuaPCMVector.empty())
 		{
