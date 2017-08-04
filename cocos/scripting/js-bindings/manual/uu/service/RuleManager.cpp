@@ -10,6 +10,8 @@
 #include "RuleManager.h"
 #include <math.h>
 
+#define ENABLE_LOG 0 // 是否开启日志
+
 ////////////////////////////////扑克个数信息//////////////////////////////////////////
 PokerCountInfo::PokerCountInfo() :_singleCount(0), _twosomeCount(0), _threesomeCount(0), _foursomeCount(0), _kingCount(0), _substituteCount(0)
 {
@@ -268,6 +270,7 @@ RuleType SimpleRuleManager::getRuleType()
 	return RuleType::RULE_TYPE_SIMPLE;
 }
 
+#if ENABLE_LOG
 //#include "cocos2d.h"
 
 #include <stdarg.h>
@@ -277,7 +280,7 @@ RuleType SimpleRuleManager::getRuleType()
 #define MAX_LOG_LENGTH  1024
 void _log(const char *format, va_list args)
 {
-	
+
 	int bufferSize = MAX_LOG_LENGTH;
 	char* buf = nullptr;
 
@@ -335,6 +338,10 @@ void log(const char * format, ...)
 	va_end(args);
 }
 
+#endif
+
+
+
 vector<shared_ptr<vector<shared_ptr<PokerCombinationModel>>>> SimpleRuleManager::getRecommendPokerCombination(vector<shared_ptr<PokerModel>> pokerVector)
 {
 
@@ -354,7 +361,7 @@ vector<shared_ptr<vector<shared_ptr<PokerCombinationModel>>>> SimpleRuleManager:
 
 	result.insert(result.end(), simpPokerCombinationVector.begin(), simpPokerCombinationVector.end());
 	
-
+#if ENABLE_LOG
 	log("poker is:%s  solutionCount:%d\n", PokerModel::toString(pokerVector).c_str(), result.size());
 	for (int32_t i = 0, sizeI = result.size(); i < sizeI; ++i)
 	{
@@ -378,6 +385,8 @@ vector<shared_ptr<vector<shared_ptr<PokerCombinationModel>>>> SimpleRuleManager:
 
 		log("solution:%d is:\n%s", i, str.c_str());
 	}
+#endif
+	
 	return result;
 }
 
@@ -575,70 +584,61 @@ vector<shared_ptr<PokerCombinationModel>> SimpleRuleManager::getPokerCombination
 	return result;
 }
 
+
+void sortPokerCombinationWithGroup(vector<shared_ptr<vector<shared_ptr<PokerCombinationModel>>>>& pokerPCMVector, const SortType& sortType)
+{
+	std::sort(pokerPCMVector.begin(), pokerPCMVector.end(), [=](shared_ptr<vector<shared_ptr<PokerCombinationModel>>> pcmVector1, shared_ptr<vector<shared_ptr<PokerCombinationModel>>> pcmVector2)
+	{
+		bool result = false;
+
+		int32_t sortValue1 = 0;
+		int32_t sortValue2 = 0;
+
+		{
+			int32_t sizeI = pcmVector1->size();
+			for (int32_t i = sizeI - 1; i >= 0; --i)
+			{
+				shared_ptr<PokerCombinationModel> curPCM = pcmVector1->at(i);
+				auto curPCMType = curPCM.get()->getPokerCombinationType();
+				int32_t count = i*2;
+				int32_t base = pow(10, count);
+
+				sortValue1 += (base * curPCMType);
+			}
+		}
+		
+		{
+			int32_t sizeI = pcmVector2->size();
+			for (int32_t i = sizeI - 1; i >= 0; --i)
+			{
+				shared_ptr<PokerCombinationModel> curPCM = pcmVector2->at(i);
+				auto curPCMType = curPCM.get()->getPokerCombinationType();
+				int32_t count = i*2;
+				int32_t base = pow(10, count);
+
+				sortValue2 += (base * curPCMType);
+			}
+		}
+		
+
+		if (sortType == SORT_TYPE_ASC)
+		{
+			result = sortValue1 < sortValue2;
+		}
+		else if (sortType == SORT_TYPE_DESC)
+		{
+			result = sortValue2 < sortValue1;
+		}
+		return result;
+	});
+}
+
 vector<shared_ptr<vector<shared_ptr<PokerCombinationModel>>>> SimpleRuleManager::findSimplePokerCombination(vector<shared_ptr<PokerModel>>& pokerVector, const shared_ptr<PokerCountInfo> pokerCountInfo)
 {
 	vector<shared_ptr<vector<shared_ptr<PokerCombinationModel>>>> result = findSimplePokerCombinationRecursion(pokerVector, pokerCountInfo, nullptr, 2);
 
-	{
 
-		// 进行反向去重处理
-		map<int32_t, int32_t> existsMap;
-
-		
-		for (auto itor = result.end(); itor != result.begin();)
-		{
-			auto curPCMVector = (*itor).get();
-
-			int32_t key = 0;
-			int32_t keyOneTwo = 0; // 前两道的key
-
-			int32_t sizeI = curPCMVector->size();
-			for (int32_t i = sizeI - 1; i >= 0; --i)
-			{
-				shared_ptr<PokerCombinationModel> curPCM = curPCMVector->at(i);
-				auto curPCMType = curPCM.get()->getPokerCombinationType();
-				int32_t count = i;
-				int32_t countOneTwo = count + 3;
-
-				int32_t base = pow(10, count);
-				int32_t baseOneTwo = pow(10, countOneTwo);
-
-				key += (base * curPCMType);
-				if (i != 0)
-				{
-					keyOneTwo += (baseOneTwo * curPCMType);
-				}
-			}
-
-			if (existsMap.find(key) != existsMap.end()) // 已经存在这种类型，去掉
-			{
-				itor = result.erase(itor);
-			}
-			else
-			{
-				if (existsMap.find(keyOneTwo) != existsMap.end()) // 查找是否已经有相同的前两道
-				{
-					if (key <= existsMap[keyOneTwo]) // 比之前的前两道还小，则去掉
-					{
-						itor = result.erase(itor);
-					}
-					else
-					{
-						existsMap[key] = key;
-						existsMap[keyOneTwo] = key;
-						++itor;
-					}
-				}
-				else
-				{
-					existsMap[key] = key;
-					existsMap[keyOneTwo] = key;
-					++itor;
-				}
-			}
-		}
-	}
-
+	sortPokerCombinationWithGroup(result, SortType::SORT_TYPE_DESC);
 	
 	{
 
