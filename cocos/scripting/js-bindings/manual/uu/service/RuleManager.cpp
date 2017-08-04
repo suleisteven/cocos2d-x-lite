@@ -792,7 +792,7 @@ vector<shared_ptr<vector<shared_ptr<PokerCombinationModel>>>> SimpleRuleManager:
 			}
 			else
 			{
-				for (int32_t i = secondPokerCombinationModelVector.size() - 1; i >=0; ++i)
+				for (int32_t i = secondPokerCombinationModelVector.size() - 1; i >=0; --i)
 				{
 					shared_ptr<PokerCombinationModel> curPCM = secondPokerCombinationModelVector.at(i);
 
