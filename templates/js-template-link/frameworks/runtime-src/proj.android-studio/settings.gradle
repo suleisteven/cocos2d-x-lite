@@ -1,4 +1,4 @@
-include ':libcocos2dx', ':commonPay', ':unipayforjs', ':unicomPay', ':CommonUtil', ':xiaowoPay', ':unipay', ':jiangsucmccPay'
+include ':libcocos2dx', ':CommonUtil'
 project(':libcocos2dx').projectDir = new File('E:/cocos_project/creator_engine/Lanlord/cocos2d-x-lite/cocos/platform/android/libcocos2dx')
 include ':Water13'
 project(':Water13').projectDir = new File(settingsDir, 'app')
