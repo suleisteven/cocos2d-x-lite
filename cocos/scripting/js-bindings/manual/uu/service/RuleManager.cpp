@@ -943,11 +943,12 @@ vector<shared_ptr<vector<shared_ptr<PokerCombinationModel>>>> SimpleRuleManager:
 
 				shared_ptr<PokerCombinationModel> rowPCM = getPokerCombinationAtRow(curPCMPVector, 0); //重新计算牌型
 
-				curPCM->setValue(getPokerValueByCombination(curPCM->getPokerCombinationType(), curPCMPVector, nullptr)); // 重新计算牌型值
 				if (rowPCM)
 				{
 					curPCM->setPokerCombinationType(rowPCM->getPokerCombinationType());
 				}
+
+				curPCM->setValue(getPokerValueByCombination(curPCM->getPokerCombinationType(), curPCMPVector, nullptr)); // 重新计算牌型值
 
 				if (curPCM->getPokerCombinationType() >= curPokerCombinationType) // 与上一级牌型相同，判断是否为相公
 				{
@@ -1055,9 +1056,7 @@ vector<shared_ptr<vector<shared_ptr<PokerCombinationModel>>>> SimpleRuleManager:
 
 					if (rowPCM)
 					{
-						auto t1 =curPCM->getPokerCombinationType();
-						auto t2 = rowPCM->getPokerCombinationType();
-						curPCM->setPokerCombinationType(rowPCM->getPokerCombinationType());
+						curPCMNew->setPokerCombinationType(rowPCM->getPokerCombinationType());
 					}
 
 					curPCMNew->setValue(getPokerValueByCombination(curPCMNew->getPokerCombinationType(), curPCMPVector, nullptr)); // 重新计算牌型值
