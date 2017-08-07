@@ -927,6 +927,7 @@ vector<shared_ptr<vector<shared_ptr<PokerCombinationModel>>>> SimpleRuleManager:
 		if (step == 0)
 		{
 
+
 			shared_ptr<vector<shared_ptr<PokerCombinationModel>>> curV(new vector<shared_ptr<PokerCombinationModel>>);
 			if (curPCM->getPokerCount() != POKER_COUNT_ROW_1) // 头道，牌数不够，从剩余牌中取
 			{
@@ -947,8 +948,8 @@ vector<shared_ptr<vector<shared_ptr<PokerCombinationModel>>>> SimpleRuleManager:
 				{
 					curPCM->setPokerCombinationType(rowPCM->getPokerCombinationType());
 				}
-
 				curPCM->setValue(getPokerValueByCombination(curPCM->getPokerCombinationType(), curPCMPVector, nullptr)); // 重新计算牌型值
+				
 
 				if (curPCM->getPokerCombinationType() >= curPokerCombinationType) // 与上一级牌型相同，判断是否为相公
 				{
@@ -959,6 +960,7 @@ vector<shared_ptr<vector<shared_ptr<PokerCombinationModel>>>> SimpleRuleManager:
 					}
 				}
 			}
+
 
 			// 矫正冲三
 			if (curPCM->getPokerCombinationType() == PokerCombinationType::POKER_COMBINATION_TYPE_SAN_TIAO)
@@ -1104,6 +1106,8 @@ vector<shared_ptr<vector<shared_ptr<PokerCombinationModel>>>> SimpleRuleManager:
 			}
 		}
 	}
+	
+	
 	
 	return result;
 }
