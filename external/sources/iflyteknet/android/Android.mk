@@ -5,12 +5,12 @@ include $(CLEAR_VARS)
 #添加预编译的openssl
 include $(CLEAR_VARS)
 LOCAL_MODULE := libopenssl
-LOCAL_SRC_FILES := $(LOCAL_PATH)/../../../android/$(TARGET_ARCH_ABI)/libssl.a
+LOCAL_SRC_FILES := $(LOCAL_PATH)/prebuilt/libssl.a
 include $(PREBUILT_STATIC_LIBRARY)
 
 include $(CLEAR_VARS)
 LOCAL_MODULE := libcrypto
-LOCAL_SRC_FILES := $(LOCAL_PATH)/../../../android/$(TARGET_ARCH_ABI)/libcrypto.a
+LOCAL_SRC_FILES := $(LOCAL_PATH)/prebuilt/libcrypto.a
 include $(PREBUILT_STATIC_LIBRARY)
 
 LOCAL_MODULE := iflyteknet_shared
@@ -24,7 +24,7 @@ LOCAL_SRC_FILES := 	../src/iflytek/net/TcpConnection.cpp \
 LOCAL_C_INCLUDES := $(LOCAL_PATH)
 LOCAL_C_INCLUDES += $(LOCAL_PATH)/../src/
 LOCAL_C_INCLUDES += $(LOCAL_PATH)/../src/boost/
-LOCAL_C_INCLUDES += $(LOCAL_PATH)/../../../android/$(TARGET_ARCH_ABI)/include
+LOCAL_C_INCLUDES += $(LOCAL_PATH)/prebuilt/include
 
 LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)
 LOCAL_EXPORT_C_INCLUDES += $(LOCAL_PATH)/../src/
