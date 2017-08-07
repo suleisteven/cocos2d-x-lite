@@ -10,7 +10,7 @@
 #include "RuleManager.h"
 #include <math.h>
 
-#define ENABLE_LOG 0 // 是否开启日志
+#define ENABLE_LOG 0// 是否开启日志
 
 ////////////////////////////////扑克个数信息//////////////////////////////////////////
 PokerCountInfo::PokerCountInfo() :_singleCount(0), _twosomeCount(0), _threesomeCount(0), _foursomeCount(0), _kingCount(0), _substituteCount(0)
@@ -273,9 +273,12 @@ RuleType SimpleRuleManager::getRuleType()
 #if ENABLE_LOG
 //#include "cocos2d.h"
 
+#include <string.h>
 #include <stdarg.h>
-#include <wtypes.h>
 
+#ifdef WIN32
+#include <wtypes.h>
+#endif
 
 #define MAX_LOG_LENGTH  1024
 void _log(const char *format, va_list args)
@@ -304,6 +307,7 @@ void _log(const char *format, va_list args)
 
 	strcat(buf, "\n");
 
+#ifdef WIN32
 
 	int pos = 0;
 	int len = strlen(buf);
@@ -324,9 +328,18 @@ void _log(const char *format, va_list args)
 		pos += MAX_LOG_LENGTH;
 
 	} while (pos < len);
+
+
 	//SendLogToWindow(buf);
+#else
+
+	// Linux, Mac, iOS, etc
 	printf(buf);
 	fflush(stdout);
+#endif // WIN32
+
+
+	
 
 }
 
@@ -927,9 +940,16 @@ vector<shared_ptr<vector<shared_ptr<PokerCombinationModel>>>> SimpleRuleManager:
 				vector<shared_ptr<PokerModel>>& curPCMPVector = curPCM->getPokerModelVector();
 
 				curPCMPVector.insert(curPCMPVector.end(), pokerVectorTmp2.begin(), pokerVectorTmp2.begin() + diffCount); // 补充差的牌
-				curPCM->setValue(getPokerValueByCombination(curPCM->getPokerCombinationType(), curPCMPVector, nullptr)); // 重新计算牌型值
 
-				if (curPCM->getPokerCombinationType() == curPokerCombinationType) // 与上一级牌型相同，判断是否为相公
+				shared_ptr<PokerCombinationModel> rowPCM = getPokerCombinationAtRow(curPCMPVector, 0); //重新计算牌型
+
+				curPCM->setValue(getPokerValueByCombination(curPCM->getPokerCombinationType(), curPCMPVector, nullptr)); // 重新计算牌型值
+				if (rowPCM)
+				{
+					curPCM->setPokerCombinationType(rowPCM->getPokerCombinationType());
+				}
+
+				if (curPCM->getPokerCombinationType() >= curPokerCombinationType) // 与上一级牌型相同，判断是否为相公
 				{
 					if (comparePokerCombination(curPCM, curPokerCombination) >= 0) // 相公，排除掉
 					{
@@ -1031,11 +1051,18 @@ vector<shared_ptr<vector<shared_ptr<PokerCombinationModel>>>> SimpleRuleManager:
 
 					curPCMPVector.insert(curPCMPVector.end(), pokerVectorTmp2.begin(), pokerVectorTmp2.begin() + diffCount); // 补充差的牌
 
-					
+					shared_ptr<PokerCombinationModel> rowPCM = getPokerCombinationAtRow(curPCMPVector, step); //重新计算牌型
+
+					if (rowPCM)
+					{
+						auto t1 =curPCM->getPokerCombinationType();
+						auto t2 = rowPCM->getPokerCombinationType();
+						curPCM->setPokerCombinationType(rowPCM->getPokerCombinationType());
+					}
 
 					curPCMNew->setValue(getPokerValueByCombination(curPCMNew->getPokerCombinationType(), curPCMPVector, nullptr)); // 重新计算牌型值
 
-					if (curPCMNew->getPokerCombinationType() == curPokerCombinationType) // 与上一级牌型相同，判断是否为相公
+					if (curPCMNew->getPokerCombinationType() >= curPokerCombinationType) // 与上一级牌型相同，判断是否为相公
 					{
 						if (comparePokerCombination(curPCMNew, curPokerCombination) >= 0) // 相公，排除掉
 						{
@@ -1078,8 +1105,6 @@ vector<shared_ptr<vector<shared_ptr<PokerCombinationModel>>>> SimpleRuleManager:
 			}
 		}
 	}
-	
-	
 	
 	return result;
 }
