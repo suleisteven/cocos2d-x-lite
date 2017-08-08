@@ -71,6 +71,7 @@
     <ClCompile Include="..\manual\uu\model\GameModel.cpp" />
     <ClCompile Include="..\manual\uu\service\RuleManager.cpp" />
     <ClCompile Include="..\manual\uu\util\CommonUtils.cpp" />
+    <ClCompile Include="..\manual\uu\util\PlatformFunUtil.cpp" />
     <ClCompile Include="..\manual\uu\util\StringUtils.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -496,6 +497,8 @@
     <ClInclude Include="..\manual\uu\model\GameModel.h" />
     <ClInclude Include="..\manual\uu\service\RuleManager.h" />
     <ClInclude Include="..\manual\uu\util\CommonUtils.h" />
+    <ClInclude Include="..\manual\uu\util\PlatformFunUtil.h" />
+    <ClInclude Include="..\manual\uu\util\PluginHelper.h" />
     <ClInclude Include="..\manual\uu\util\StringUtils.h" />
     <ClInclude Include="JSBinder.h" />
   </ItemGroup>
@@ -576,6 +579,7 @@
     <None Include="..\manual\network\boost\asio\ssl\impl\context.ipp" />
     <None Include="..\manual\network\boost\asio\ssl\impl\error.ipp" />
     <None Include="..\manual\network\boost\asio\ssl\impl\rfc2818_verification.ipp" />
+    <None Include="..\manual\uu\util\PluginHelper.mm" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{39379840-825A-45A0-B363-C09FFEF864BD}</ProjectGuid>

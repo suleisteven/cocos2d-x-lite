@@ -16,6 +16,7 @@
 #include "scripting/js-bindings/manual/spidermonkey_specifics.h"
 #include "cocos2d.h"
 #include "uu/service/RuleManager.h"
+#include "uu/util/PlatformFunUtil.h"
 
 USING_NS_CC;
 JSClass  *js_cocos2dx_uu_water13_class;
@@ -332,10 +333,218 @@ bool js_cocos2dx_uu_water13_constructor(JSContext *cx, uint32_t argc, jsval *vp)
 		JS_ReportError(cx, "wrong number of arguments: %d, was expecting %d", argc, 1);
 		return false;
 	}
-
-	
 }
 
+
+
+bool js_cocos2dx_uu_water13_rateUs(JSContext *cx, uint32_t argc, jsval *vp)
+{
+	JS::CallArgs argv = JS::CallArgsFromVp(argc, vp);
+	JS::RootedObject obj(cx, argv.thisv().toObjectOrNull());
+	PlatformFunUtil::rateUs();
+	return true;
+}
+
+bool js_cocos2dx_uu_water13_getAppChannel(JSContext *cx, uint32_t argc, jsval *vp)
+{
+	JS::CallArgs argv = JS::CallArgsFromVp(argc, vp);
+	JS::RootedObject obj(cx, argv.thisv().toObjectOrNull());
+	string channel = PlatformFunUtil::getAppChannel();
+
+	argv.rval().set(c_string_to_jsval(cx, channel.c_str()));
+
+	return true;
+}
+
+
+bool js_cocos2dx_uu_water13_getSignInfo(JSContext *cx, uint32_t argc, jsval *vp)
+{
+	JS::CallArgs argv = JS::CallArgsFromVp(argc, vp);
+	JS::RootedObject obj(cx, argv.thisv().toObjectOrNull());
+	string value = PlatformFunUtil::getSignInfo();
+
+	argv.rval().set(c_string_to_jsval(cx, value.c_str()));
+
+	return true;
+}
+
+bool js_cocos2dx_uu_water13_getNetType(JSContext *cx, uint32_t argc, jsval *vp)
+{
+	JS::CallArgs argv = JS::CallArgsFromVp(argc, vp);
+	JS::RootedObject obj(cx, argv.thisv().toObjectOrNull());
+	int32_t value = PlatformFunUtil::getNetType();
+
+	argv.rval().set(INT_TO_JSVAL(value));
+
+	return true;
+}
+
+bool js_cocos2dx_uu_water13_getOSVersion(JSContext *cx, uint32_t argc, jsval *vp)
+{
+	JS::CallArgs argv = JS::CallArgsFromVp(argc, vp);
+	JS::RootedObject obj(cx, argv.thisv().toObjectOrNull());
+	string value = PlatformFunUtil::getOSVersion();
+
+	argv.rval().set(c_string_to_jsval(cx, value.c_str()));
+
+	return true;
+}
+
+bool js_cocos2dx_uu_water13_getNetTypeString(JSContext *cx, uint32_t argc, jsval *vp)
+{
+	JS::CallArgs argv = JS::CallArgsFromVp(argc, vp);
+	JS::RootedObject obj(cx, argv.thisv().toObjectOrNull());
+	string value = PlatformFunUtil::getNetTypeString();
+
+	argv.rval().set(c_string_to_jsval(cx, value.c_str()));
+
+	return true;
+}
+
+bool js_cocos2dx_uu_water13_getOSType(JSContext *cx, uint32_t argc, jsval *vp)
+{
+	JS::CallArgs argv = JS::CallArgsFromVp(argc, vp);
+	JS::RootedObject obj(cx, argv.thisv().toObjectOrNull());
+	string value = PlatformFunUtil::getOSType();
+
+	argv.rval().set(c_string_to_jsval(cx, value.c_str()));
+
+	return true;
+}
+
+bool js_cocos2dx_uu_water13_getDeviceModel(JSContext *cx, uint32_t argc, jsval *vp)
+{
+	JS::CallArgs argv = JS::CallArgsFromVp(argc, vp);
+	JS::RootedObject obj(cx, argv.thisv().toObjectOrNull());
+	string value = PlatformFunUtil::getDeviceModel();
+
+	argv.rval().set(c_string_to_jsval(cx, value.c_str()));
+
+	return true;
+}
+
+bool js_cocos2dx_uu_water13_getBatteryPercent(JSContext *cx, uint32_t argc, jsval *vp)
+{
+	JS::CallArgs argv = JS::CallArgsFromVp(argc, vp);
+	JS::RootedObject obj(cx, argv.thisv().toObjectOrNull());
+	int32_t value = PlatformFunUtil::getBatteryPercent();
+
+	argv.rval().set(INT_TO_JSVAL(value));
+
+	return true;
+}
+
+bool js_cocos2dx_uu_water13_restartApp(JSContext *cx, uint32_t argc, jsval *vp)
+{
+	JS::CallArgs argv = JS::CallArgsFromVp(argc, vp);
+	JS::RootedObject obj(cx, argv.thisv().toObjectOrNull());
+	PlatformFunUtil::restartApp(0);
+	return true;
+}
+
+bool js_cocos2dx_uu_water13_joinQQGroup(JSContext *cx, uint32_t argc, jsval *vp)
+{
+	JS::CallArgs argv = JS::CallArgsFromVp(argc, vp);
+	JS::RootedObject obj(cx, argv.thisv().toObjectOrNull());
+
+	if (argc == 2)
+	{
+		string qqGroupNum;
+		string qqKey = 0;
+		if (argv[0].isString())
+		{
+			jsval_to_std_string(cx, argv[0], &qqGroupNum);
+		}
+		if (argv[1].isString())
+		{
+			jsval_to_std_string(cx, argv[0], &qqKey);
+		}
+
+		bool isSuccess = PlatformFunUtil::joinQQGroup(qqGroupNum, qqKey);
+
+		argv.rval().set(BOOLEAN_TO_JSVAL(isSuccess));
+	}
+	else
+	{
+		JS_ReportError(cx, "wrong number of arguments: %d, was expecting %d", argc, 2);
+		argv.rval().set(BOOLEAN_TO_JSVAL(false));
+		return false;
+	}
+
+	return true;
+}
+
+bool js_cocos2dx_uu_water13_isOpenWithOther(JSContext *cx, uint32_t argc, jsval *vp)
+{
+	JS::CallArgs argv = JS::CallArgsFromVp(argc, vp);
+	JS::RootedObject obj(cx, argv.thisv().toObjectOrNull());
+	bool value  =PlatformFunUtil::isOpenWithOther();
+	argv.rval().set(BOOLEAN_TO_JSVAL(value));
+	return true;
+}
+
+bool js_cocos2dx_uu_water13_setOpenWithOther(JSContext *cx, uint32_t argc, jsval *vp)
+{
+	JS::CallArgs argv = JS::CallArgsFromVp(argc, vp);
+	JS::RootedObject obj(cx, argv.thisv().toObjectOrNull());
+
+
+	if (argc == 1)
+	{
+		
+		if (argv[0].isBoolean())
+		{
+			bool value = argv[0].toBoolean();
+
+
+			PlatformFunUtil::setOpenWithOther(value);
+			
+		}
+		else
+		{
+			JS_ReportError(cx, "wrong params");
+		}
+	}
+	else
+	{
+		JS_ReportError(cx, "wrong number of arguments: %d, was expecting %d", argc, 1);
+		return false;
+	}
+
+	return true;
+}
+
+bool js_cocos2dx_uu_water13_getExternalParam(JSContext *cx, uint32_t argc, jsval *vp)
+{
+	JS::CallArgs argv = JS::CallArgsFromVp(argc, vp);
+	JS::RootedObject obj(cx, argv.thisv().toObjectOrNull());
+
+	if (argc == 1)
+	{
+
+		string key;
+		if (argv[0].isString())
+		{
+			jsval_to_std_string(cx, argv[0], &key);
+
+			string value = PlatformFunUtil::getExternalParam(key);
+			argv.rval().set(std_string_to_jsval(cx, value));
+
+		}
+		else
+		{
+			JS_ReportError(cx, "wrong params");
+		}
+	}
+	else
+	{
+		JS_ReportError(cx, "wrong number of arguments: %d, was expecting %d", argc, 1);
+		return false;
+	}
+
+	
+	return true;
+}
 
 void js_cocos2dx_uu_water13_finalize(JSFreeOp *fop, JSObject *obj) {
 	CCLOG("jsbindings: finalizing JS object %p (UUWater13Native)", obj);
@@ -368,6 +577,23 @@ void register_jsb_uu_water13(JSContext* cx, JS::HandleObject global)
 		JS_FN("getRuleType", js_cocos2dx_uu_water13_getRuleType, 1, JSPROP_PERMANENT | JSPROP_ENUMERATE),
 		JS_FN("getPokerCombination", js_cocos2dx_uu_water13_getPokerCombination, 2, JSPROP_PERMANENT | JSPROP_ENUMERATE),
 		JS_FN("getRecommendPokerCombination", js_cocos2dx_uu_water13_getRecommendPokerCombination, 1, JSPROP_PERMANENT | JSPROP_ENUMERATE),
+
+		JS_FN("rateUs", js_cocos2dx_uu_water13_rateUs, 1, JSPROP_PERMANENT | JSPROP_ENUMERATE),
+		JS_FN("getAppChannel", js_cocos2dx_uu_water13_getAppChannel, 1, JSPROP_PERMANENT | JSPROP_ENUMERATE),
+		JS_FN("getSignInfo", js_cocos2dx_uu_water13_getSignInfo, 1, JSPROP_PERMANENT | JSPROP_ENUMERATE),
+		JS_FN("getNetType", js_cocos2dx_uu_water13_getNetType, 1, JSPROP_PERMANENT | JSPROP_ENUMERATE),
+		JS_FN("getOSVersion", js_cocos2dx_uu_water13_getOSVersion, 1, JSPROP_PERMANENT | JSPROP_ENUMERATE),
+		JS_FN("getNetTypeString", js_cocos2dx_uu_water13_getNetTypeString, 1, JSPROP_PERMANENT | JSPROP_ENUMERATE),
+		JS_FN("getOSType", js_cocos2dx_uu_water13_getOSType, 1, JSPROP_PERMANENT | JSPROP_ENUMERATE),
+		JS_FN("getDeviceModel", js_cocos2dx_uu_water13_getDeviceModel, 1, JSPROP_PERMANENT | JSPROP_ENUMERATE),
+		JS_FN("getBatteryPercent", js_cocos2dx_uu_water13_getBatteryPercent, 1, JSPROP_PERMANENT | JSPROP_ENUMERATE),
+		JS_FN("restartApp", js_cocos2dx_uu_water13_restartApp, 1, JSPROP_PERMANENT | JSPROP_ENUMERATE),
+		JS_FN("joinQQGroup", js_cocos2dx_uu_water13_joinQQGroup, 1, JSPROP_PERMANENT | JSPROP_ENUMERATE),
+		JS_FN("isOpenWithOther", js_cocos2dx_uu_water13_isOpenWithOther, 1, JSPROP_PERMANENT | JSPROP_ENUMERATE),
+		JS_FN("setOpenWithOther", js_cocos2dx_uu_water13_setOpenWithOther, 1, JSPROP_PERMANENT | JSPROP_ENUMERATE),
+		JS_FN("getExternalParam", js_cocos2dx_uu_water13_getExternalParam, 1, JSPROP_PERMANENT | JSPROP_ENUMERATE),
+
+		
 		JS_FS_END
 	};
 

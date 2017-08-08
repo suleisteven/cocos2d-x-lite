@@ -260,6 +260,9 @@
     <ClCompile Include="..\manual\iflytek\umeng\share\jsb_umeng_share.cpp">
       <Filter>manual\iflytek\umeng\share</Filter>
     </ClCompile>
+    <ClCompile Include="..\manual\uu\util\PlatformFunUtil.cpp">
+      <Filter>manual\uu\util</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\auto\jsb_cocos2dx_auto.hpp">
@@ -1534,6 +1537,12 @@
     <ClInclude Include="..\manual\iflytek\umeng\share\jsb_umeng_share.h">
       <Filter>manual\iflytek\umeng\share</Filter>
     </ClInclude>
+    <ClInclude Include="..\manual\uu\util\PlatformFunUtil.h">
+      <Filter>manual\uu\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\manual\uu\util\PluginHelper.h">
+      <Filter>manual\uu\util</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\manual\network\boost\asio\detail\impl\buffer_sequence_adapter.ipp" />
@@ -1597,6 +1606,9 @@
     </None>
     <None Include="..\manual\iflytek\umeng\share\Cocos2dx\iOS\UMSocialUIObject.mm">
       <Filter>manual\iflytek\umeng\share\Cocos2dx\iOS</Filter>
+    </None>
+    <None Include="..\manual\uu\util\PluginHelper.mm">
+      <Filter>manual\uu\util</Filter>
     </None>
   </ItemGroup>
 </Project>
