@@ -35,7 +35,7 @@
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{C357A797-42B0-47DE-83C5-C3FED2E62983}</ProjectGuid>
+    <ProjectGuid>{8F15C302-8F24-42DA-B6A5-93F6ECD33726}</ProjectGuid>
     <RootNamespace>iflyteknet</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />

@@ -356,18 +356,6 @@ bool js_cocos2dx_uu_water13_getAppChannel(JSContext *cx, uint32_t argc, jsval *v
 	return true;
 }
 
-
-bool js_cocos2dx_uu_water13_getSignInfo(JSContext *cx, uint32_t argc, jsval *vp)
-{
-	JS::CallArgs argv = JS::CallArgsFromVp(argc, vp);
-	JS::RootedObject obj(cx, argv.thisv().toObjectOrNull());
-	string value = PlatformFunUtil::getSignInfo();
-
-	argv.rval().set(c_string_to_jsval(cx, value.c_str()));
-
-	return true;
-}
-
 bool js_cocos2dx_uu_water13_getNetType(JSContext *cx, uint32_t argc, jsval *vp)
 {
 	JS::CallArgs argv = JS::CallArgsFromVp(argc, vp);
@@ -580,7 +568,6 @@ void register_jsb_uu_water13(JSContext* cx, JS::HandleObject global)
 
 		JS_FN("rateUs", js_cocos2dx_uu_water13_rateUs, 1, JSPROP_PERMANENT | JSPROP_ENUMERATE),
 		JS_FN("getAppChannel", js_cocos2dx_uu_water13_getAppChannel, 1, JSPROP_PERMANENT | JSPROP_ENUMERATE),
-		JS_FN("getSignInfo", js_cocos2dx_uu_water13_getSignInfo, 1, JSPROP_PERMANENT | JSPROP_ENUMERATE),
 		JS_FN("getNetType", js_cocos2dx_uu_water13_getNetType, 1, JSPROP_PERMANENT | JSPROP_ENUMERATE),
 		JS_FN("getOSVersion", js_cocos2dx_uu_water13_getOSVersion, 1, JSPROP_PERMANENT | JSPROP_ENUMERATE),
 		JS_FN("getNetTypeString", js_cocos2dx_uu_water13_getNetTypeString, 1, JSPROP_PERMANENT | JSPROP_ENUMERATE),

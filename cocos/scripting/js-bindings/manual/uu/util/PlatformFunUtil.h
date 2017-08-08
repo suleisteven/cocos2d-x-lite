@@ -65,11 +65,6 @@ public:
 	 */
 	static std::string getAppChannel();
 
-	/**
-	 * 获取程序签名信息
-	 */
-	static std::string getSignInfo();
-
 
 	/**
 	 * 获取网络类型
@@ -115,17 +110,6 @@ public:
 	 * @param delayTime 延时时间
 	 */
 	static void restartApp(const int& delayTime);
-
-	/**
-	 * 复制内容到剪贴板
-	 * @param content 内容字符串
-	 */
-	static void copyStringToClipboard(const string& content);
-
-	/**
-	 * 从剪贴板获取内容
-	 */
-	static string getStringFromClipboard();
 
 	/**
 	 * 一键加入qq群

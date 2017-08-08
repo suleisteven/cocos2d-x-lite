@@ -78,6 +78,7 @@ LOCAL_SRC_FILES := ../auto/jsb_cocos2dx_extension_auto.cpp \
 				   ../manual/uu/service/RuleManager.cpp \
 				   ../manual/uu/util/CommonUtils.cpp \
 				   ../manual/uu/util/StringUtils.cpp \
+				   ../manual/uu/util/PlatformFunUtil.cpp \
 				   ../manual/platform/android/pay/PayListener.cpp \
 				   ../manual/platform/android/JS_Binder.cpp  \
 				   

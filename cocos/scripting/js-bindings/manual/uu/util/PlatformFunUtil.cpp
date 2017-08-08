@@ -210,51 +210,6 @@ void PlatformFunUtil::restartApp(const int& delayTime)
 #endif
 }
 
-
-void PlatformFunUtil::copyStringToClipboard(const string& content)
-{
-#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
-	cocos2d::JniMethodInfo methodInfo;
-
-	if (!getJNIStaticMethodInfo(methodInfo, "copyStringToClipboard", "(Ljava/lang/String;)V")) {
-		return;
-	}
-
-	jstring contentJStr = methodInfo.env->NewStringUTF(content.c_str());
-
-	methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID, contentJStr);
-	methodInfo.env->DeleteLocalRef(methodInfo.classID);
-	methodInfo.env->DeleteLocalRef(contentJStr);
-
-	
-#elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
-	PluginHelper::getInstance()->copyStringToClipboard(content);
-#endif
-}
-
-std::string PlatformFunUtil::getStringFromClipboard()
-{
-	string result = "";
-#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
-	cocos2d::JniMethodInfo methodInfo;
-
-	if (!getJNIStaticMethodInfo(methodInfo, "getStringFromClipboard", "()Ljava/lang/String;")) {
-		return;
-	}
-
-	jstring str = (jstring)methodInfo.env->CallStaticObjectMethod(methodInfo.classID, methodInfo.methodID);
-
-	methodInfo.env->DeleteLocalRef(methodInfo.classID);
-	result = JniHelper::jstring2string(str);
-	methodInfo.env->DeleteLocalRef(str);
-
-#elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
-	result = PluginHelper::getInstance()->getStringFromClipboard();
-#endif
-
-	return result;
-}
-
 bool PlatformFunUtil::joinQQGroup(const string& qqGroupNum, const string& key)
 {
 	bool result = false;
@@ -262,7 +217,7 @@ bool PlatformFunUtil::joinQQGroup(const string& qqGroupNum, const string& key)
 	cocos2d::JniMethodInfo methodInfo;
 
 	if (!getJNIStaticMethodInfo(methodInfo, "joinQQGroup", "(Ljava/lang/String;)Z")) {
-		return;
+		return result;
 	}
 
 	jstring contentJStr = methodInfo.env->NewStringUTF(key.c_str());
@@ -271,9 +226,11 @@ bool PlatformFunUtil::joinQQGroup(const string& qqGroupNum, const string& key)
 
 	methodInfo.env->DeleteLocalRef(methodInfo.classID);
 	methodInfo.env->DeleteLocalRef(contentJStr);
+	
 
 #elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
 	result = PluginHelper::getInstance()->joinQQGroup(qqGroupNum, key);
+	
 #endif
 
 	return result;
@@ -286,7 +243,7 @@ bool PlatformFunUtil::isOpenWithOther()
 	cocos2d::JniMethodInfo methodInfo;
 
 	if (!getJNIStaticMethodInfo(methodInfo, "isOpenWithOther", "()Z")) {
-		return;
+		return result;
 	}
 
 	result = methodInfo.env->CallStaticBooleanMethod(methodInfo.classID, methodInfo.methodID);
@@ -329,7 +286,7 @@ string PlatformFunUtil::getExternalParam(const string& key)
 	cocos2d::JniMethodInfo methodInfo;
 
 	if (!getJNIStaticMethodInfo(methodInfo, "getExternalParam", "(Ljava/lang/String;)Ljava/lang/String;")) {
-		return;
+		return result;
 	}
 	jstring contentJStr = methodInfo.env->NewStringUTF(key.c_str());
 	jstring str = (jstring)methodInfo.env->CallStaticObjectMethod(methodInfo.classID, methodInfo.methodID,contentJStr);
@@ -351,105 +308,6 @@ string PlatformFunUtil::getExternalParam(const string& key)
 	return result;
 }
 
-
-
-
-std::string PlatformFunUtil::getSignInfo()
-{
-#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
-	//cocos2d::JniMethodInfo methodInfo;
-
-	//if (! getJNIStaticMethodInfo(methodInfo, "getSignInfo", "()Ljava/lang/String;")) {
-	//	return "";
-	//}
-
-	//std::string ret("");
-	//jstring str = (jstring)methodInfo.env->CallStaticObjectMethod(methodInfo.classID, methodInfo.methodID);
-	//methodInfo.env->DeleteLocalRef(methodInfo.classID);
-	//ret = JniHelper::jstring2string(str);
-	//methodInfo.env->DeleteLocalRef(str);
-	//return ret;
-	
-	cocos2d::JniMethodInfo methodInfo;
-
-	if (! getJNIStaticMethodInfo(methodInfo, "getContext", "()Landroid/content/Context;")) 
-	{
-		DEBUG_LOG("getSignInfo");
-		return "";
-	}
-
-	
-	jobject context_object = (jobject)methodInfo.env->CallStaticObjectMethod(methodInfo.classID, methodInfo.methodID);
-	methodInfo.env->DeleteLocalRef(methodInfo.classID);
-
-	jclass context_class = methodInfo.env->GetObjectClass(context_object);  
-	//context.getPackageManager()  
-	jmethodID methodId = methodInfo.env->GetMethodID(context_class, "getPackageManager", "()Landroid/content/pm/PackageManager;");  
-	jobject package_manager_object = methodInfo.env->CallObjectMethod(context_object, methodId);  
-	if (package_manager_object == NULL) {  
-		DEBUG_LOG("getPackageManager() Failed!");  
-		return "";  
-	}  
-
-	//context.getPackageName()  
-	methodId = methodInfo.env->GetMethodID(context_class, "getPackageName", "()Ljava/lang/String;");  
-	jstring package_name_string = (jstring)methodInfo.env->CallObjectMethod(context_object, methodId);
-
-	methodInfo.env->DeleteLocalRef(context_object);
-	if (package_name_string == NULL) {  
-		DEBUG_LOG("getPackageName() Failed!");  
-		return "";  
-	}  
-	methodInfo.env->DeleteLocalRef(context_class);  
-
-	//PackageManager.getPackageInfo(Sting, int)  
-	jclass pack_manager_class = methodInfo.env->GetObjectClass(package_manager_object);  
-	methodId = methodInfo.env->GetMethodID(pack_manager_class, "getPackageInfo", "(Ljava/lang/String;I)Landroid/content/pm/PackageInfo;");  
-	methodInfo.env->DeleteLocalRef(pack_manager_class);  
-	jobject package_info_object = methodInfo.env->CallObjectMethod(package_manager_object, methodId, package_name_string, 64);  
-
-	methodInfo.env->DeleteLocalRef(package_name_string);
-	if (package_info_object == NULL) {  
-		DEBUG_LOG("getPackageInfo() Failed!");  
-		return "";  
-	}  
-
-	methodInfo.env->DeleteLocalRef(package_manager_object);  
-
-	//PackageInfo.signatures[0]  
-	jclass package_info_class = methodInfo.env->GetObjectClass(package_info_object);  
-	jfieldID fieldId = methodInfo.env->GetFieldID(package_info_class, "signatures", "[Landroid/content/pm/Signature;");  
-	methodInfo.env->DeleteLocalRef(package_info_class);  
-	jobjectArray signature_object_array = (jobjectArray)methodInfo.env->GetObjectField(package_info_object, fieldId);  
-	if (signature_object_array == NULL) {  
-		DEBUG_LOG("PackageInfo.signatures[] is null");  
-		return "";  
-	}  
-	jobject signature_object = methodInfo.env->GetObjectArrayElement(signature_object_array, 0);  
-	methodInfo.env->DeleteLocalRef(signature_object_array);  
-	methodInfo.env->DeleteLocalRef(package_info_object);  
-
-	//Signature.toCharsString()  
-	jclass signature_class = methodInfo.env->GetObjectClass(signature_object);  
-	methodId = methodInfo.env->GetMethodID(signature_class, "toByteArray", "()[B");  
-	methodInfo.env->DeleteLocalRef(signature_class);  
-	jbyteArray signatureByteArray = (jbyteArray) methodInfo.env->CallObjectMethod(signature_object, methodId);
-
-	char* signatureData = (char*)methodInfo.env->GetByteArrayElements(signatureByteArray, 0);
-	jsize signatureDataSize = methodInfo.env->GetArrayLength(signatureByteArray);
-	int length = (int)signatureDataSize;
-	methodInfo.env->DeleteLocalRef(signatureByteArray);
-
-	std::string result = MD5Util::getStringUseMD5(signatureData,length);
-	
-	DEBUG_LOG("result:%s", result.c_str());
-	return result;
-
-#elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
-
-#endif
-	return "";
-}
 
 int PlatformFunUtil::getBatteryPercent()
 {
