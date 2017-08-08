@@ -93,10 +93,10 @@ public class AppActivity extends Cocos2dxActivity {
 
 
         // 初始化友盟统计
-		//      ios:  5989d4a2310c933d22001cb0
+
+//      ios:  5989d4a2310c933d22001cb0
 //      android:5989d472f5ade47f720001d9
         MobClickCppHelper.init(this,"5989d472f5ade47f720001d9", MainApplication.channel);
-        
 
         // 初始化umeng社交sdk
         PlatformConfig.setWeixin("wxc1651208a490959d", "d4624c36b6795d1d99dcf0547af5443d");

@@ -80,7 +80,7 @@ public class Util {
 		} catch (Exception e) {
 			e.printStackTrace();
 
-			Toast.makeText(context, R.string.rate_us_no_goolge_play, Toast.LENGTH_SHORT)
+			Toast.makeText(context, "没有市场", Toast.LENGTH_SHORT)
 					.show();
 
 //			// 应用市场和浏览器都没有，给出提示

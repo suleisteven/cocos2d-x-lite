@@ -18,8 +18,6 @@ import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.widget.Toast;
 
-import org.cocos2dx.cpp.update.VersionUpdateManager;
-import org.cocos2dx.cpp.update.VersionUpdater.UpdateInfo;
 
 import java.security.MessageDigest;
 import java.util.HashMap;
@@ -64,101 +62,6 @@ public class NativeInteractive {
 	public static Context getContext() {
 		return mContext;
 	}
-
-	UpdateInfo updateInfo = new UpdateInfo();
-
-	// updateInfo.updateType = 2;
-	// updateInfo.newestVersionCode = 300;
-	// updateInfo.newestVersionName = "default";
-	// updateInfo.updateMD5 = "51a362940f2a04865fadd46c213dc426";
-	// updateInfo.updateInstruction = "阿杜刀功不错";
-	// updateInfo.updateUrl =
-	// "http://120.25.153.194/down/Landlord_20160706.apk";
-	// updateInfo.installTtype = 1;
-	// updateInfo.updateSize = 12842621;
-	// /**
-	// * 升级类型，0 不升级, 1 建议升级, 2 强制升级
-	// */
-	// public int updateType;
-	// /**
-	// * 安装类型，0-全量更新、1-部分更新
-	// */
-	// public int installTtype;
-	// /**
-	// * 最新版本号
-	// */
-	// public int newestVersionCode;
-	// /**
-	// * 最新版本名称
-	// */
-	// public String newestVersionName;
-	// /**
-	// * 渠道名称
-	// */
-	// public String channelName = "";
-	// /**
-	// * 升级地址
-	// */
-	// public String updateUrl = "";
-	// /**
-	// * 升级包大小，单位：字节
-	// */
-	// public long updateSize;
-	// /**
-	// * 升级包md5值
-	// */
-	// public String updateMD5 = "";
-	// /**
-	// * 升级简介
-	// */
-	// public String updateInstruction = "";
-	/**
-	 * 开始更新app
-	 * 
-	 * @param updateType
-	 *            升级类型，0 不升级, 1 建议升级, 2 强制升级
-	 * @param newestVersionCode
-	 *            最新版本号
-	 * @param newestVersionName
-	 *            最新版本名称
-	 * @param channelName
-	 *            渠道名称
-	 * @param updateMD5
-	 *            升级包md5值
-	 * @param updateInstruction
-	 *            升级简介
-	 * @param updateUrl
-	 *            升级地址
-	 * @param installTtype
-	 *            安装类型，0-全量更新、1-部分更新
-	 * @param updateSize
-	 *            升级包大小，单位：字节
-	 */
-	public static void updateApp(int updateType, int newestVersionCode,
-			String newestVersionName, String channelName, String updateMD5,
-			String updateInstruction, String updateUrl, int installTtype,
-			long updateSize) {
-		UpdateInfo updateInfo = new UpdateInfo();
-		updateInfo.updateType = updateType;
-		updateInfo.newestVersionCode = newestVersionCode;
-		updateInfo.newestVersionName = newestVersionName;
-		updateInfo.channelName = channelName;
-		updateInfo.updateMD5 = updateMD5;
-		updateInfo.updateInstruction = updateInstruction;
-		updateInfo.updateUrl = updateUrl;
-		updateInfo.installTtype = installTtype;
-		updateInfo.updateSize = updateSize;
-
-		if (null == sVersionUpdateManager) {
-			sVersionUpdateManager = new VersionUpdateManager(mContext,
-					updateInfo);
-		} else {
-			sVersionUpdateManager.setUpdateInfo(updateInfo);
-		}
-		sVersionUpdateManager.defaultUpdateApp();
-	}
-
-	static VersionUpdateManager sVersionUpdateManager;
 
 	/**
 	 * 给我们评分功能
@@ -624,62 +527,5 @@ public class NativeInteractive {
 	}
 
 
-	/**
-	 * 通知底层收到一条透传消息
-	 * @param msg
-     */
-	public static native void onReceiveMsg(String msg);
 
-	/**
-	 * 处理离线消息，底层进入主页时才会调用此方法，将未处理的离线消息
-	 */
-	public static void handleOfflineMsg()
-	{
-		// 处理离线消息
-		ApplicationExp.handleOfflineMsg();
-	}
-
-
-	/**
-	 * 支付
-	 * @param goodsName 商品名称
-	 * @param desc 商品描述
-	 * @param price 商品价格
-     * @param payType 支付类型 1-微信，2-支付宝
-     */
-	public static void pay(String goodsName, String desc, float price, int payType)
-	{
-		if(payType == 1)
-		{
-			PayManager.getInstance().pay(goodsName, desc, price, false);
-		}
-		else if(payType == 2)
-		{
-			PayManager.getInstance().pay(goodsName, desc, price, true);
-		}
-	}
-
-	/**
-	 * 支付回调
-	 * @param resultCode 支付结果码
-	 * @param orderId 订单号
-	 * @param desc 支付结果描述
-     */
-	public static native void onPayResult(int resultCode, String orderId, String desc);
-
-	/**
-	 * 查询支付订单号
-	 * @param orderId 订单号
-     */
-	public static void queryPayOrderId(String orderId)
-	{
-		PayManager.getInstance().queryOrder(orderId);
-	}
-
-	/**
-	 * 查询订单回调
-	 * @param resultCode  结果码
-	 * @param orderId 订单号
-     */
-	public static native void onQueryPayOrderIdResult(int resultCode, String orderId);
 }
