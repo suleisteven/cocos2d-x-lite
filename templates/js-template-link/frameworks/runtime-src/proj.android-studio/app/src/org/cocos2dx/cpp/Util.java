@@ -2,7 +2,6 @@ package org.cocos2dx.cpp;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.util.Locale;
 
@@ -23,7 +22,7 @@ import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.widget.Toast;
 
-import com.tomatocloud.uulandlord.R;
+import com.game1752.water13.R;
 
 public class Util {
 	public static void rateUs(Context context) {
