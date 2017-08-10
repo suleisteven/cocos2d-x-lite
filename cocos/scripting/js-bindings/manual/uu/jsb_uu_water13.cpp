@@ -296,7 +296,13 @@ bool js_cocos2dx_uu_water13_constructor(JSContext *cx, uint32_t argc, jsval *vp)
 	CCLOG("jsbindings: constructor JS object (UUWater13Native)");
 	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
 
-	if (argc == 1)
+	JS::RootedObject proto(cx, js_cocos2dx_uu_water13_prototype);
+	JS::RootedObject obj(cx, JS_NewObject(cx, js_cocos2dx_uu_water13_class, proto, JS::NullPtr()));
+	args.rval().set(OBJECT_TO_JSVAL(obj));
+
+	return true;
+
+	/*if (argc == 1)
 	{
 		RuleManagerAbstract* cobj = nullptr;
 		if (args[0].isInt32())
@@ -332,7 +338,7 @@ bool js_cocos2dx_uu_water13_constructor(JSContext *cx, uint32_t argc, jsval *vp)
 	{
 		JS_ReportError(cx, "wrong number of arguments: %d, was expecting %d", argc, 1);
 		return false;
-	}
+	}*/
 }
 
 
