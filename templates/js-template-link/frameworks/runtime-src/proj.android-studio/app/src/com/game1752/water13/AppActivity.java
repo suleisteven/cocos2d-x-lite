@@ -26,6 +26,7 @@ package com.game1752.water13;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.WindowManager;
 
@@ -41,6 +42,9 @@ import org.cocos2dx.lib.Cocos2dxActivity;
 import org.cocos2dx.lib.Cocos2dxGLSurfaceView;
 
 import java.io.File;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Set;
 
 // For JS and JAVA reflection test, you can delete it if it's your own project
 
@@ -111,6 +115,62 @@ public class AppActivity extends Cocos2dxActivity {
 
         NativeInteractive.init(this);
 
+        // 处理外部打开参数
+        Intent intent = getIntent();
+        handleIntent(intent);
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        handleIntent(intent);
+    }
+
+    private void handleIntent(Intent intent)
+    {
+
+        if(null == intent)
+        {
+            NativeInteractive.setOpenWithOther(false);
+            NativeInteractive.setExternalParams(null);
+            return;
+        }
+
+        String action = intent.getAction();
+        Uri uri = intent.getData();
+        if(uri != null)
+        {
+            HashMap<String, String> map = new HashMap<String,String>();
+
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.HONEYCOMB) {
+                Set<String> keys =  uri.getQueryParameterNames();
+
+                Iterator<String> itKey = keys.iterator();
+
+                while(itKey.hasNext())
+                {
+                    String key = itKey.next();
+                    String value = uri.getQueryParameter(key);
+                    map.put(key, value);
+                }
+            }
+
+            if(!map.isEmpty())
+            {
+                NativeInteractive.setOpenWithOther(true);
+                NativeInteractive.setExternalParams(map);
+            }
+            else
+            {
+                NativeInteractive.setOpenWithOther(false);
+                NativeInteractive.setExternalParams(null);
+            }
+        }
+        else
+        {
+            NativeInteractive.setOpenWithOther(false);
+//			NativeInteractive.setExternalParams(null);
+        }
     }
 
     /**
