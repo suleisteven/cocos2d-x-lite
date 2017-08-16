@@ -477,20 +477,18 @@ bool js_cocos2dx_uu_water13_isOpenWithOther(JSContext *cx, uint32_t argc, jsval 
 	return true;
 }
 
+#include <cocos2d.h>
+USING_NS_CC;
 bool js_cocos2dx_uu_water13_setOpenWithOther(JSContext *cx, uint32_t argc, jsval *vp)
 {
 	JS::CallArgs argv = JS::CallArgsFromVp(argc, vp);
 	JS::RootedObject obj(cx, argv.thisv().toObjectOrNull());
 
-
 	if (argc == 1)
 	{
-		
 		if (argv[0].isBoolean())
 		{
 			bool value = argv[0].toBoolean();
-
-
 			PlatformFunUtil::setOpenWithOther(value);
 			
 		}
@@ -504,7 +502,6 @@ bool js_cocos2dx_uu_water13_setOpenWithOther(JSContext *cx, uint32_t argc, jsval
 		JS_ReportError(cx, "wrong number of arguments: %d, was expecting %d", argc, 1);
 		return false;
 	}
-
 	return true;
 }
 

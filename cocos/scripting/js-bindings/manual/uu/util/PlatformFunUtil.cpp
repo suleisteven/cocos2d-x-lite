@@ -263,13 +263,11 @@ void PlatformFunUtil::setOpenWithOther(const bool& value)
 #if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
 	cocos2d::JniMethodInfo methodInfo;
 
-	if (!getJNIStaticMethodInfo(methodInfo, "setOpenWithOther", "(Z)")) {
+	if (!getJNIStaticMethodInfo(methodInfo, "setOpenWithOther", "(Z)V")) {
 		return;
 	}
-
-	methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID);
+	methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID, value);
 	methodInfo.env->DeleteLocalRef(methodInfo.classID);
-
 
 #elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
 	PlatformFunUtil::_isOpenWithOther = value;
