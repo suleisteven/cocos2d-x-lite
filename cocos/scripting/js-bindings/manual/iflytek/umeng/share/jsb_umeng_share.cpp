@@ -390,7 +390,7 @@ void shareCallbackDelegate(int platform, int stCode,
 
 			JS::RootedValue args(cx, OBJECT_TO_JSVAL(jsobj));
 
-			ScriptingCore::getInstance()->executeFunctionWithOwner(OBJECT_TO_JSVAL(curLoginDelegate->_JSDelegate.ref()), "onShareResult", 1, args.address());
+			ScriptingCore::getInstance()->executeFunctionWithOwner(OBJECT_TO_JSVAL(curShareToDelegate->_JSDelegate.ref()), "onShareResult", 1, args.address());
 		});
 	}
 #endif
