@@ -15,10 +15,10 @@
 
 #define CC_ShareToWeibo        0
 #define CC_ShareToWechat       1
-#define CC_ShareToQQOrQzone    1
+#define CC_ShareToQQOrQzone    0
 #define CC_ShareToLaiWang      0
 #define CC_ShareToYiXin        0
-#define CC_ShareToFacebook     1
+#define CC_ShareToFacebook     0
 #define CC_ShareToTwitter      0
 #define CC_ShareToInstagram    0
 

@@ -9,14 +9,16 @@
 #if CC_TARGET_PLATFORM==CC_PLATFORM_IOS
 
 #include "PluginHelper.h"
-#import "AppController.h"
-#import "common/constant/PublicConstant.h"
+//#import "AppController.h"
+//#import "common/constant/PublicConstant.h"
 
+#import <UIKit/UIKit.h>
 #import <CoreTelephony/CTTelephonyNetworkInfo.h>
 #import <Foundation/Foundation.h>
 #import <UIDevice+IdentifierAddition.h>
 #import <Reachability.h>
 #import <sys/utsname.h>
+
 
 
 void PluginHelper::openURL(std::string appstoreUrl) {

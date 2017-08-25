@@ -9,7 +9,8 @@
 #include <sstream>
 
 using namespace std;
-class StringUtils
+
+class StringUtil
 {
 public:
 	static std::string format(const char* format, ...);
@@ -184,7 +185,7 @@ public:
 
 			if (c >= '0' && c <= '9')
 			{
-				result.append(StringUtils::format("%c", c));
+				result.append(StringUtil::format("%c", c));
 			}
 		}
 		return result;

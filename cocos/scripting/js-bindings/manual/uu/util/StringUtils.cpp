@@ -1,7 +1,7 @@
 #include "StringUtils.h"
 #include <stdarg.h>
 
-std::string StringUtils::format(const char* format, ...)
+std::string StringUtil::format(const char* format, ...)
 {
 #define CC_MAX_STRING_LENGTH (1024*100)
 

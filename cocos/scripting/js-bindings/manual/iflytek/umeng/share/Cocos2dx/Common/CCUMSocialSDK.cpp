@@ -11,7 +11,7 @@
 
 #if CC_TARGET_PLATFORM==CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM==CC_PLATFORM_IOS
 
-#include <Cocos2dx/Common/CCUMSocialSDK.h>
+#include <CCUMSocialSDK.h>
 #include <platform/CCCommon.h>
 //#include <platform/CCPlatformConfig.h>
 //#include <platform/CCPlatformMacros.h>

@@ -190,10 +190,121 @@
 		3E7847991F1CF55F0097BBE6 /* StringUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E7847821F1CF55F0097BBE6 /* StringUtils.cpp */; };
 		3E78479A1F1CF55F0097BBE6 /* StringUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E7847831F1CF55F0097BBE6 /* StringUtils.h */; };
 		3E78479B1F1CF55F0097BBE6 /* StringUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E7847831F1CF55F0097BBE6 /* StringUtils.h */; };
-		3E78479E1F1CF57F0097BBE6 /* jsb_asio_connection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E78479C1F1CF57F0097BBE6 /* jsb_asio_connection.cpp */; };
-		3E78479F1F1CF57F0097BBE6 /* jsb_asio_connection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E78479C1F1CF57F0097BBE6 /* jsb_asio_connection.cpp */; };
-		3E7847A01F1CF57F0097BBE6 /* jsb_asio_connection.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E78479D1F1CF57F0097BBE6 /* jsb_asio_connection.h */; };
-		3E7847A11F1CF57F0097BBE6 /* jsb_asio_connection.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E78479D1F1CF57F0097BBE6 /* jsb_asio_connection.h */; };
+		3E95017B1F4B17B300F65A3C /* jsb_asio_connection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E9501791F4B17B300F65A3C /* jsb_asio_connection.cpp */; };
+		3E95017C1F4B17B300F65A3C /* jsb_asio_connection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E9501791F4B17B300F65A3C /* jsb_asio_connection.cpp */; };
+		3E95017D1F4B17B300F65A3C /* jsb_asio_connection.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E95017A1F4B17B300F65A3C /* jsb_asio_connection.h */; };
+		3E95017E1F4B17B300F65A3C /* jsb_asio_connection.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E95017A1F4B17B300F65A3C /* jsb_asio_connection.h */; };
+		3E9501831F4B18A600F65A3C /* PlatformFunUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E95017F1F4B18A600F65A3C /* PlatformFunUtil.cpp */; };
+		3E9501841F4B18A600F65A3C /* PlatformFunUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E95017F1F4B18A600F65A3C /* PlatformFunUtil.cpp */; };
+		3E9501851F4B18A600F65A3C /* PlatformFunUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E9501801F4B18A600F65A3C /* PlatformFunUtil.h */; };
+		3E9501861F4B18A600F65A3C /* PlatformFunUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E9501801F4B18A600F65A3C /* PlatformFunUtil.h */; };
+		3E9501871F4B18A600F65A3C /* PluginHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E9501811F4B18A600F65A3C /* PluginHelper.h */; };
+		3E9501881F4B18A600F65A3C /* PluginHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E9501811F4B18A600F65A3C /* PluginHelper.h */; };
+		3E9501891F4B18A600F65A3C /* PluginHelper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3E9501821F4B18A600F65A3C /* PluginHelper.mm */; };
+		3E95018A1F4B18A600F65A3C /* PluginHelper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3E9501821F4B18A600F65A3C /* PluginHelper.mm */; };
+		3E9501931F4B1AC300F65A3C /* NSString+NSStringAddition.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E95018D1F4B1AC300F65A3C /* NSString+NSStringAddition.h */; };
+		3E9501941F4B1AC300F65A3C /* NSString+NSStringAddition.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E95018D1F4B1AC300F65A3C /* NSString+NSStringAddition.h */; };
+		3E9501951F4B1AC300F65A3C /* NSString+NSStringAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E95018E1F4B1AC300F65A3C /* NSString+NSStringAddition.m */; };
+		3E9501961F4B1AC300F65A3C /* NSString+NSStringAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E95018E1F4B1AC300F65A3C /* NSString+NSStringAddition.m */; };
+		3E9501971F4B1AC300F65A3C /* Reachability.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E95018F1F4B1AC300F65A3C /* Reachability.h */; };
+		3E9501981F4B1AC300F65A3C /* Reachability.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E95018F1F4B1AC300F65A3C /* Reachability.h */; };
+		3E9501991F4B1AC300F65A3C /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E9501901F4B1AC300F65A3C /* Reachability.m */; };
+		3E95019A1F4B1AC300F65A3C /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E9501901F4B1AC300F65A3C /* Reachability.m */; };
+		3E95019B1F4B1AC300F65A3C /* UIDevice+IdentifierAddition.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E9501911F4B1AC300F65A3C /* UIDevice+IdentifierAddition.h */; };
+		3E95019C1F4B1AC300F65A3C /* UIDevice+IdentifierAddition.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E9501911F4B1AC300F65A3C /* UIDevice+IdentifierAddition.h */; };
+		3E95019D1F4B1AC300F65A3C /* UIDevice+IdentifierAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E9501921F4B1AC300F65A3C /* UIDevice+IdentifierAddition.m */; };
+		3E95019E1F4B1AC300F65A3C /* UIDevice+IdentifierAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E9501921F4B1AC300F65A3C /* UIDevice+IdentifierAddition.m */; };
+		3E9501C81F4B27F000F65A3C /* CCUMSocialController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E9501B81F4B27F000F65A3C /* CCUMSocialController.cpp */; };
+		3E9501C91F4B27F000F65A3C /* CCUMSocialController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E9501B81F4B27F000F65A3C /* CCUMSocialController.cpp */; };
+		3E9501CA1F4B27F000F65A3C /* CCUMSocialController.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E9501B91F4B27F000F65A3C /* CCUMSocialController.h */; };
+		3E9501CB1F4B27F000F65A3C /* CCUMSocialController.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E9501B91F4B27F000F65A3C /* CCUMSocialController.h */; };
+		3E9501CC1F4B27F000F65A3C /* CCUMSocialSDK.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E9501BB1F4B27F000F65A3C /* CCUMSocialSDK.cpp */; };
+		3E9501CD1F4B27F000F65A3C /* CCUMSocialSDK.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E9501BB1F4B27F000F65A3C /* CCUMSocialSDK.cpp */; };
+		3E9501CE1F4B27F000F65A3C /* CCUMSocialSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E9501BC1F4B27F000F65A3C /* CCUMSocialSDK.h */; };
+		3E9501CF1F4B27F000F65A3C /* CCUMSocialSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E9501BC1F4B27F000F65A3C /* CCUMSocialSDK.h */; };
+		3E9501D01F4B27F000F65A3C /* CCUMTypeDef.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E9501BD1F4B27F000F65A3C /* CCUMTypeDef.h */; };
+		3E9501D11F4B27F000F65A3C /* CCUMTypeDef.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E9501BD1F4B27F000F65A3C /* CCUMTypeDef.h */; };
+		3E9501D21F4B27F000F65A3C /* UmSocialControllerIOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E9501BF1F4B27F000F65A3C /* UmSocialControllerIOS.h */; };
+		3E9501D31F4B27F000F65A3C /* UmSocialControllerIOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E9501BF1F4B27F000F65A3C /* UmSocialControllerIOS.h */; };
+		3E9501D41F4B27F000F65A3C /* UmSocialControllerIOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3E9501C01F4B27F000F65A3C /* UmSocialControllerIOS.mm */; };
+		3E9501D51F4B27F000F65A3C /* UmSocialControllerIOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3E9501C01F4B27F000F65A3C /* UmSocialControllerIOS.mm */; };
+		3E9501D61F4B27F000F65A3C /* UMSocialUIObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E9501C11F4B27F000F65A3C /* UMSocialUIObject.h */; };
+		3E9501D71F4B27F000F65A3C /* UMSocialUIObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E9501C11F4B27F000F65A3C /* UMSocialUIObject.h */; };
+		3E9501D81F4B27F000F65A3C /* UMSocialUIObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3E9501C21F4B27F000F65A3C /* UMSocialUIObject.mm */; };
+		3E9501D91F4B27F000F65A3C /* UMSocialUIObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3E9501C21F4B27F000F65A3C /* UMSocialUIObject.mm */; };
+		3E9501DA1F4B27F000F65A3C /* UMShareButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E9501C41F4B27F000F65A3C /* UMShareButton.cpp */; };
+		3E9501DB1F4B27F000F65A3C /* UMShareButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E9501C41F4B27F000F65A3C /* UMShareButton.cpp */; };
+		3E9501DC1F4B27F000F65A3C /* UMShareButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E9501C51F4B27F000F65A3C /* UMShareButton.h */; };
+		3E9501DD1F4B27F000F65A3C /* UMShareButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E9501C51F4B27F000F65A3C /* UMShareButton.h */; };
+		3E9501DE1F4B27F000F65A3C /* jsb_umeng_share.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E9501C61F4B27F000F65A3C /* jsb_umeng_share.cpp */; };
+		3E9501DF1F4B27F000F65A3C /* jsb_umeng_share.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E9501C61F4B27F000F65A3C /* jsb_umeng_share.cpp */; };
+		3E9501E01F4B27F000F65A3C /* jsb_umeng_share.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E9501C71F4B27F000F65A3C /* jsb_umeng_share.h */; };
+		3E9501E11F4B27F000F65A3C /* jsb_umeng_share.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E9501C71F4B27F000F65A3C /* jsb_umeng_share.h */; };
+		3E95086A1F4DABD900F65A3C /* UMSocial.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E9508161F4DABD900F65A3C /* UMSocial.h */; };
+		3E95086B1F4DABD900F65A3C /* UMSocialAccountManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E9508171F4DABD900F65A3C /* UMSocialAccountManager.h */; };
+		3E95086C1F4DABD900F65A3C /* UMSocialBar.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E9508181F4DABD900F65A3C /* UMSocialBar.h */; };
+		3E95086D1F4DABD900F65A3C /* UMSocialConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E9508191F4DABD900F65A3C /* UMSocialConfig.h */; };
+		3E95086E1F4DABD900F65A3C /* UMSocialControllerService.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E95081A1F4DABD900F65A3C /* UMSocialControllerService.h */; };
+		3E95086F1F4DABD900F65A3C /* UMSocialControllerServiceComment.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E95081B1F4DABD900F65A3C /* UMSocialControllerServiceComment.h */; };
+		3E9508701F4DABD900F65A3C /* UMSocialData.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E95081C1F4DABD900F65A3C /* UMSocialData.h */; };
+		3E9508711F4DABD900F65A3C /* UMSocialDataService.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E95081D1F4DABD900F65A3C /* UMSocialDataService.h */; };
+		3E9508721F4DABD900F65A3C /* UMSocialSnsData.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E95081E1F4DABD900F65A3C /* UMSocialSnsData.h */; };
+		3E9508731F4DABD900F65A3C /* UMSocialSnsPlatformManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E95081F1F4DABD900F65A3C /* UMSocialSnsPlatformManager.h */; };
+		3E9508741F4DABD900F65A3C /* UMSocialSnsService.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E9508201F4DABD900F65A3C /* UMSocialSnsService.h */; };
+		3E9508751F4DABD900F65A3C /* libUMSocial_Sdk_5.0.1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E9508211F4DABD900F65A3C /* libUMSocial_Sdk_5.0.1.a */; };
+		3E9508761F4DABD900F65A3C /* libUMSocial_Sdk_Comment_5.0.1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E9508221F4DABD900F65A3C /* libUMSocial_Sdk_Comment_5.0.1.a */; };
+		3E9508771F4DABD900F65A3C /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E9508301F4DABD900F65A3C /* FBSDKCoreKit.framework */; };
+		3E9508781F4DABD900F65A3C /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E9508311F4DABD900F65A3C /* FBSDKLoginKit.framework */; };
+		3E9508791F4DABD900F65A3C /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E9508321F4DABD900F65A3C /* FBSDKShareKit.framework */; };
+		3E95087A1F4DABD900F65A3C /* libSocialFacebook.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E9508331F4DABD900F65A3C /* libSocialFacebook.a */; };
+		3E95087B1F4DABD900F65A3C /* UMSocialFacebookHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E9508341F4DABD900F65A3C /* UMSocialFacebookHandler.h */; };
+		3E95087C1F4DABD900F65A3C /* libSocialInstagram.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E9508361F4DABD900F65A3C /* libSocialInstagram.a */; };
+		3E95087D1F4DABD900F65A3C /* UMSocialInstagramHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E9508371F4DABD900F65A3C /* UMSocialInstagramHandler.h */; };
+		3E95087E1F4DABD900F65A3C /* libLWApiSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E9508391F4DABD900F65A3C /* libLWApiSDK.a */; };
+		3E95087F1F4DABD900F65A3C /* libSocialLaiWang.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E95083A1F4DABD900F65A3C /* libSocialLaiWang.a */; };
+		3E9508801F4DABD900F65A3C /* LWApiConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E95083B1F4DABD900F65A3C /* LWApiConfig.h */; };
+		3E9508811F4DABD900F65A3C /* LWApiConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E95083C1F4DABD900F65A3C /* LWApiConnection.h */; };
+		3E9508821F4DABD900F65A3C /* LWApiImageObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E95083D1F4DABD900F65A3C /* LWApiImageObject.h */; };
+		3E9508831F4DABD900F65A3C /* LWApiMediaObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E95083E1F4DABD900F65A3C /* LWApiMediaObject.h */; };
+		3E9508841F4DABD900F65A3C /* LWApiMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E95083F1F4DABD900F65A3C /* LWApiMessage.h */; };
+		3E9508851F4DABD900F65A3C /* LWApiRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E9508401F4DABD900F65A3C /* LWApiRequest.h */; };
+		3E9508861F4DABD900F65A3C /* LWApiResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E9508411F4DABD900F65A3C /* LWApiResponse.h */; };
+		3E9508871F4DABD900F65A3C /* LWApiSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E9508421F4DABD900F65A3C /* LWApiSDK.h */; };
+		3E9508881F4DABD900F65A3C /* LWApiUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E9508431F4DABD900F65A3C /* LWApiUtils.h */; };
+		3E9508891F4DABD900F65A3C /* UMSocialLaiwangHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E9508441F4DABD900F65A3C /* UMSocialLaiwangHandler.h */; };
+		3E95088A1F4DABD900F65A3C /* libSocialLine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E9508461F4DABD900F65A3C /* libSocialLine.a */; };
+		3E95088B1F4DABD900F65A3C /* UMSocialLineHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E9508471F4DABD900F65A3C /* UMSocialLineHandler.h */; };
+		3E95088C1F4DABD900F65A3C /* libSocialSinaSSO.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E9508491F4DABD900F65A3C /* libSocialSinaSSO.a */; };
+		3E95088D1F4DABD900F65A3C /* libWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E95084A1F4DABD900F65A3C /* libWeiboSDK.a */; };
+		3E95088E1F4DABD900F65A3C /* UMSocialSinaSSOHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E95084B1F4DABD900F65A3C /* UMSocialSinaSSOHandler.h */; };
+		3E95088F1F4DABD900F65A3C /* WBHttpRequest+WeiboGame.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E95084C1F4DABD900F65A3C /* WBHttpRequest+WeiboGame.h */; };
+		3E9508901F4DABD900F65A3C /* WBHttpRequest+WeiboShare.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E95084D1F4DABD900F65A3C /* WBHttpRequest+WeiboShare.h */; };
+		3E9508911F4DABD900F65A3C /* WBHttpRequest+WeiboToken.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E95084E1F4DABD900F65A3C /* WBHttpRequest+WeiboToken.h */; };
+		3E9508921F4DABD900F65A3C /* WBHttpRequest+WeiboUser.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E95084F1F4DABD900F65A3C /* WBHttpRequest+WeiboUser.h */; };
+		3E9508931F4DABD900F65A3C /* WBHttpRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E9508501F4DABD900F65A3C /* WBHttpRequest.h */; };
+		3E9508941F4DABD900F65A3C /* WBSDKBasicButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E9508511F4DABD900F65A3C /* WBSDKBasicButton.h */; };
+		3E9508951F4DABD900F65A3C /* WBSDKCommentButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E9508521F4DABD900F65A3C /* WBSDKCommentButton.h */; };
+		3E9508961F4DABD900F65A3C /* WBSDKRelationshipButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E9508531F4DABD900F65A3C /* WBSDKRelationshipButton.h */; };
+		3E9508971F4DABD900F65A3C /* WeiboSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E9508551F4DABD900F65A3C /* WeiboSDK.h */; };
+		3E9508981F4DABD900F65A3C /* WeiboUser.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E9508561F4DABD900F65A3C /* WeiboUser.h */; };
+		3E9508991F4DABD900F65A3C /* libSocialQQ.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E9508581F4DABD900F65A3C /* libSocialQQ.a */; };
+		3E95089A1F4DABD900F65A3C /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E9508591F4DABD900F65A3C /* TencentOpenAPI.framework */; };
+		3E95089B1F4DABD900F65A3C /* UMSocialQQHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E95085B1F4DABD900F65A3C /* UMSocialQQHandler.h */; };
+		3E95089C1F4DABD900F65A3C /* libSocialWechat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E95085E1F4DABD900F65A3C /* libSocialWechat.a */; };
+		3E95089D1F4DABD900F65A3C /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E95085F1F4DABD900F65A3C /* libWeChatSDK.a */; };
+		3E95089E1F4DABD900F65A3C /* UMSocialWechatHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E9508601F4DABD900F65A3C /* UMSocialWechatHandler.h */; };
+		3E95089F1F4DABD900F65A3C /* WechatAuthSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E9508611F4DABD900F65A3C /* WechatAuthSDK.h */; };
+		3E9508A01F4DABD900F65A3C /* WXApi.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E9508621F4DABD900F65A3C /* WXApi.h */; };
+		3E9508A11F4DABD900F65A3C /* WXApiObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E9508631F4DABD900F65A3C /* WXApiObject.h */; };
+		3E9508A21F4DABD900F65A3C /* libSocialYiXin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E9508651F4DABD900F65A3C /* libSocialYiXin.a */; };
+		3E9508A31F4DABD900F65A3C /* libYixinSDK_V2.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E9508661F4DABD900F65A3C /* libYixinSDK_V2.2.a */; };
+		3E9508A41F4DABD900F65A3C /* UMSocialYiXinHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E9508671F4DABD900F65A3C /* UMSocialYiXinHandler.h */; };
+		3E9508A51F4DABD900F65A3C /* YXApi.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E9508681F4DABD900F65A3C /* YXApi.h */; };
+		3E9508A61F4DABD900F65A3C /* YXApiObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E9508691F4DABD900F65A3C /* YXApiObject.h */; };
+		3E9508AB1F4F16B000F65A3C /* My3DES.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E9508A91F4F16B000F65A3C /* My3DES.cpp */; };
+		3E9508AC1F4F16B000F65A3C /* My3DES.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E9508AA1F4F16B000F65A3C /* My3DES.h */; };
+		3E9508AF1F4F22BD00F65A3C /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E9508AD1F4F22BD00F65A3C /* libcrypto.a */; };
+		3E9508B01F4F22BD00F65A3C /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E9508AE1F4F22BD00F65A3C /* libssl.a */; };
 		3EA3D5661F1E4EFC0029BB07 /* async_result.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3EA3D36B1F1E4EFC0029BB07 /* async_result.hpp */; };
 		3EA3D5671F1E4EFC0029BB07 /* async_result.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3EA3D36B1F1E4EFC0029BB07 /* async_result.hpp */; };
 		3EA3D5681F1E4EFC0029BB07 /* basic_datagram_socket.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3EA3D36C1F1E4EFC0029BB07 /* basic_datagram_socket.hpp */; };
@@ -1144,10 +1255,6 @@
 		3EA3D9251F1E4EFE0029BB07 /* x509_vfy.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EA3D5641F1E4EFC0029BB07 /* x509_vfy.h */; };
 		3EA3D9261F1E4EFE0029BB07 /* x509v3.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EA3D5651F1E4EFC0029BB07 /* x509v3.h */; };
 		3EA3D9271F1E4EFE0029BB07 /* x509v3.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EA3D5651F1E4EFC0029BB07 /* x509v3.h */; };
-		3EA3D92C1F1E59000029BB07 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA3D92A1F1E59000029BB07 /* libcrypto.a */; };
-		3EA3D92D1F1E59000029BB07 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA3D92A1F1E59000029BB07 /* libcrypto.a */; };
-		3EA3D92E1F1E59000029BB07 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA3D92B1F1E59000029BB07 /* libssl.a */; };
-		3EA3D92F1F1E59000029BB07 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA3D92B1F1E59000029BB07 /* libssl.a */; };
 		4B22F4AA1B159A7A0044C14E /* jsb_cocos2dx_experimental_webView_manual.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4B22F4A71B159A7A0044C14E /* jsb_cocos2dx_experimental_webView_manual.cpp */; };
 		4B22F4AB1B159A7A0044C14E /* jsb_cocos2dx_experimental_webView_manual.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B22F4A81B159A7A0044C14E /* jsb_cocos2dx_experimental_webView_manual.h */; };
 		4B22F4AC1B159A7A0044C14E /* jsb_cocos2dx_experimental_webView_manual.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B22F4A81B159A7A0044C14E /* jsb_cocos2dx_experimental_webView_manual.h */; };
@@ -1318,8 +1425,120 @@
 		3E7847811F1CF55F0097BBE6 /* CommonUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonUtils.h; sourceTree = "<group>"; };
 		3E7847821F1CF55F0097BBE6 /* StringUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StringUtils.cpp; sourceTree = "<group>"; };
 		3E7847831F1CF55F0097BBE6 /* StringUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringUtils.h; sourceTree = "<group>"; };
-		3E78479C1F1CF57F0097BBE6 /* jsb_asio_connection.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = jsb_asio_connection.cpp; path = ../localstorage/jsb_asio_connection.cpp; sourceTree = "<group>"; };
-		3E78479D1F1CF57F0097BBE6 /* jsb_asio_connection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = jsb_asio_connection.h; path = ../localstorage/jsb_asio_connection.h; sourceTree = "<group>"; };
+		3E9501791F4B17B300F65A3C /* jsb_asio_connection.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = jsb_asio_connection.cpp; sourceTree = "<group>"; };
+		3E95017A1F4B17B300F65A3C /* jsb_asio_connection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jsb_asio_connection.h; sourceTree = "<group>"; };
+		3E95017F1F4B18A600F65A3C /* PlatformFunUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlatformFunUtil.cpp; sourceTree = "<group>"; };
+		3E9501801F4B18A600F65A3C /* PlatformFunUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlatformFunUtil.h; sourceTree = "<group>"; };
+		3E9501811F4B18A600F65A3C /* PluginHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PluginHelper.h; sourceTree = "<group>"; };
+		3E9501821F4B18A600F65A3C /* PluginHelper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PluginHelper.mm; sourceTree = "<group>"; };
+		3E95018D1F4B1AC300F65A3C /* NSString+NSStringAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+NSStringAddition.h"; sourceTree = "<group>"; };
+		3E95018E1F4B1AC300F65A3C /* NSString+NSStringAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+NSStringAddition.m"; sourceTree = "<group>"; };
+		3E95018F1F4B1AC300F65A3C /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		3E9501901F4B1AC300F65A3C /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		3E9501911F4B1AC300F65A3C /* UIDevice+IdentifierAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+IdentifierAddition.h"; sourceTree = "<group>"; };
+		3E9501921F4B1AC300F65A3C /* UIDevice+IdentifierAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+IdentifierAddition.m"; sourceTree = "<group>"; };
+		3E95019F1F4B1C8500F65A3C /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		3E9501A11F4B1C9800F65A3C /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		3E9501A31F4B1C9D00F65A3C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		3E9501A51F4B23C500F65A3C /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		3E9501A71F4B244900F65A3C /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		3E9501A91F4B245400F65A3C /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = System/Library/Frameworks/ApplicationServices.framework; sourceTree = SDKROOT; };
+		3E9501AB1F4B246700F65A3C /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		3E9501AD1F4B24B200F65A3C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		3E9501AF1F4B24C200F65A3C /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		3E9501B11F4B24E500F65A3C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		3E9501B81F4B27F000F65A3C /* CCUMSocialController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCUMSocialController.cpp; sourceTree = "<group>"; };
+		3E9501B91F4B27F000F65A3C /* CCUMSocialController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCUMSocialController.h; sourceTree = "<group>"; };
+		3E9501BB1F4B27F000F65A3C /* CCUMSocialSDK.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCUMSocialSDK.cpp; sourceTree = "<group>"; };
+		3E9501BC1F4B27F000F65A3C /* CCUMSocialSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCUMSocialSDK.h; sourceTree = "<group>"; };
+		3E9501BD1F4B27F000F65A3C /* CCUMTypeDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCUMTypeDef.h; sourceTree = "<group>"; };
+		3E9501BF1F4B27F000F65A3C /* UmSocialControllerIOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UmSocialControllerIOS.h; sourceTree = "<group>"; };
+		3E9501C01F4B27F000F65A3C /* UmSocialControllerIOS.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = UmSocialControllerIOS.mm; sourceTree = "<group>"; };
+		3E9501C11F4B27F000F65A3C /* UMSocialUIObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialUIObject.h; sourceTree = "<group>"; };
+		3E9501C21F4B27F000F65A3C /* UMSocialUIObject.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = UMSocialUIObject.mm; sourceTree = "<group>"; };
+		3E9501C41F4B27F000F65A3C /* UMShareButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UMShareButton.cpp; sourceTree = "<group>"; };
+		3E9501C51F4B27F000F65A3C /* UMShareButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMShareButton.h; sourceTree = "<group>"; };
+		3E9501C61F4B27F000F65A3C /* jsb_umeng_share.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = jsb_umeng_share.cpp; sourceTree = "<group>"; };
+		3E9501C71F4B27F000F65A3C /* jsb_umeng_share.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jsb_umeng_share.h; sourceTree = "<group>"; };
+		3E95064F1F4DA69D00F65A3C /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TencentOpenAPI.framework; path = UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI/TencentOpenAPI.framework; sourceTree = "<group>"; };
+		3E9508141F4DABD900F65A3C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/UMSocialLocalizable.strings; sourceTree = "<group>"; };
+		3E9508161F4DABD900F65A3C /* UMSocial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocial.h; sourceTree = "<group>"; };
+		3E9508171F4DABD900F65A3C /* UMSocialAccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialAccountManager.h; sourceTree = "<group>"; };
+		3E9508181F4DABD900F65A3C /* UMSocialBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialBar.h; sourceTree = "<group>"; };
+		3E9508191F4DABD900F65A3C /* UMSocialConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialConfig.h; sourceTree = "<group>"; };
+		3E95081A1F4DABD900F65A3C /* UMSocialControllerService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialControllerService.h; sourceTree = "<group>"; };
+		3E95081B1F4DABD900F65A3C /* UMSocialControllerServiceComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialControllerServiceComment.h; sourceTree = "<group>"; };
+		3E95081C1F4DABD900F65A3C /* UMSocialData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialData.h; sourceTree = "<group>"; };
+		3E95081D1F4DABD900F65A3C /* UMSocialDataService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialDataService.h; sourceTree = "<group>"; };
+		3E95081E1F4DABD900F65A3C /* UMSocialSnsData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialSnsData.h; sourceTree = "<group>"; };
+		3E95081F1F4DABD900F65A3C /* UMSocialSnsPlatformManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialSnsPlatformManager.h; sourceTree = "<group>"; };
+		3E9508201F4DABD900F65A3C /* UMSocialSnsService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialSnsService.h; sourceTree = "<group>"; };
+		3E9508211F4DABD900F65A3C /* libUMSocial_Sdk_5.0.1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMSocial_Sdk_5.0.1.a; sourceTree = "<group>"; };
+		3E9508221F4DABD900F65A3C /* libUMSocial_Sdk_Comment_5.0.1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMSocial_Sdk_Comment_5.0.1.a; sourceTree = "<group>"; };
+		3E9508241F4DABD900F65A3C /* UMSCommentDetailController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UMSCommentDetailController.xib; sourceTree = "<group>"; };
+		3E9508251F4DABD900F65A3C /* UMSCommentInputController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UMSCommentInputController.xib; sourceTree = "<group>"; };
+		3E9508261F4DABD900F65A3C /* UMSCommentInputControlleriPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UMSCommentInputControlleriPad.xib; sourceTree = "<group>"; };
+		3E9508271F4DABD900F65A3C /* UMShareEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UMShareEditViewController.xib; sourceTree = "<group>"; };
+		3E9508281F4DABD900F65A3C /* UMShareEditViewControlleriPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UMShareEditViewControlleriPad.xib; sourceTree = "<group>"; };
+		3E9508291F4DABD900F65A3C /* UMSLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UMSLoginViewController.xib; sourceTree = "<group>"; };
+		3E95082A1F4DABD900F65A3C /* UMSnsAccountViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UMSnsAccountViewController.xib; sourceTree = "<group>"; };
+		3E95082B1F4DABD900F65A3C /* UMSShareListController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UMSShareListController.xib; sourceTree = "<group>"; };
+		3E95082C1F4DABD900F65A3C /* UMSocialSDKResourcesNew.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = UMSocialSDKResourcesNew.bundle; sourceTree = "<group>"; };
+		3E95082D1F4DABD900F65A3C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/UMSocialLocalizable.strings"; sourceTree = "<group>"; };
+		3E9508301F4DABD900F65A3C /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		3E9508311F4DABD900F65A3C /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		3E9508321F4DABD900F65A3C /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
+		3E9508331F4DABD900F65A3C /* libSocialFacebook.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSocialFacebook.a; sourceTree = "<group>"; };
+		3E9508341F4DABD900F65A3C /* UMSocialFacebookHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialFacebookHandler.h; sourceTree = "<group>"; };
+		3E9508361F4DABD900F65A3C /* libSocialInstagram.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSocialInstagram.a; sourceTree = "<group>"; };
+		3E9508371F4DABD900F65A3C /* UMSocialInstagramHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialInstagramHandler.h; sourceTree = "<group>"; };
+		3E9508391F4DABD900F65A3C /* libLWApiSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libLWApiSDK.a; sourceTree = "<group>"; };
+		3E95083A1F4DABD900F65A3C /* libSocialLaiWang.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSocialLaiWang.a; sourceTree = "<group>"; };
+		3E95083B1F4DABD900F65A3C /* LWApiConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWApiConfig.h; sourceTree = "<group>"; };
+		3E95083C1F4DABD900F65A3C /* LWApiConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWApiConnection.h; sourceTree = "<group>"; };
+		3E95083D1F4DABD900F65A3C /* LWApiImageObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWApiImageObject.h; sourceTree = "<group>"; };
+		3E95083E1F4DABD900F65A3C /* LWApiMediaObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWApiMediaObject.h; sourceTree = "<group>"; };
+		3E95083F1F4DABD900F65A3C /* LWApiMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWApiMessage.h; sourceTree = "<group>"; };
+		3E9508401F4DABD900F65A3C /* LWApiRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWApiRequest.h; sourceTree = "<group>"; };
+		3E9508411F4DABD900F65A3C /* LWApiResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWApiResponse.h; sourceTree = "<group>"; };
+		3E9508421F4DABD900F65A3C /* LWApiSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWApiSDK.h; sourceTree = "<group>"; };
+		3E9508431F4DABD900F65A3C /* LWApiUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWApiUtils.h; sourceTree = "<group>"; };
+		3E9508441F4DABD900F65A3C /* UMSocialLaiwangHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialLaiwangHandler.h; sourceTree = "<group>"; };
+		3E9508461F4DABD900F65A3C /* libSocialLine.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSocialLine.a; sourceTree = "<group>"; };
+		3E9508471F4DABD900F65A3C /* UMSocialLineHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialLineHandler.h; sourceTree = "<group>"; };
+		3E9508491F4DABD900F65A3C /* libSocialSinaSSO.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSocialSinaSSO.a; sourceTree = "<group>"; };
+		3E95084A1F4DABD900F65A3C /* libWeiboSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeiboSDK.a; sourceTree = "<group>"; };
+		3E95084B1F4DABD900F65A3C /* UMSocialSinaSSOHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialSinaSSOHandler.h; sourceTree = "<group>"; };
+		3E95084C1F4DABD900F65A3C /* WBHttpRequest+WeiboGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WBHttpRequest+WeiboGame.h"; sourceTree = "<group>"; };
+		3E95084D1F4DABD900F65A3C /* WBHttpRequest+WeiboShare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WBHttpRequest+WeiboShare.h"; sourceTree = "<group>"; };
+		3E95084E1F4DABD900F65A3C /* WBHttpRequest+WeiboToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WBHttpRequest+WeiboToken.h"; sourceTree = "<group>"; };
+		3E95084F1F4DABD900F65A3C /* WBHttpRequest+WeiboUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WBHttpRequest+WeiboUser.h"; sourceTree = "<group>"; };
+		3E9508501F4DABD900F65A3C /* WBHttpRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBHttpRequest.h; sourceTree = "<group>"; };
+		3E9508511F4DABD900F65A3C /* WBSDKBasicButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBSDKBasicButton.h; sourceTree = "<group>"; };
+		3E9508521F4DABD900F65A3C /* WBSDKCommentButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBSDKCommentButton.h; sourceTree = "<group>"; };
+		3E9508531F4DABD900F65A3C /* WBSDKRelationshipButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBSDKRelationshipButton.h; sourceTree = "<group>"; };
+		3E9508541F4DABD900F65A3C /* WeiboSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = WeiboSDK.bundle; sourceTree = "<group>"; };
+		3E9508551F4DABD900F65A3C /* WeiboSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiboSDK.h; sourceTree = "<group>"; };
+		3E9508561F4DABD900F65A3C /* WeiboUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiboUser.h; sourceTree = "<group>"; };
+		3E9508581F4DABD900F65A3C /* libSocialQQ.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSocialQQ.a; sourceTree = "<group>"; };
+		3E9508591F4DABD900F65A3C /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
+		3E95085A1F4DABD900F65A3C /* TencentOpenApi_IOS_Bundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TencentOpenApi_IOS_Bundle.bundle; sourceTree = "<group>"; };
+		3E95085B1F4DABD900F65A3C /* UMSocialQQHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialQQHandler.h; sourceTree = "<group>"; };
+		3E95085E1F4DABD900F65A3C /* libSocialWechat.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSocialWechat.a; sourceTree = "<group>"; };
+		3E95085F1F4DABD900F65A3C /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
+		3E9508601F4DABD900F65A3C /* UMSocialWechatHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialWechatHandler.h; sourceTree = "<group>"; };
+		3E9508611F4DABD900F65A3C /* WechatAuthSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatAuthSDK.h; sourceTree = "<group>"; };
+		3E9508621F4DABD900F65A3C /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
+		3E9508631F4DABD900F65A3C /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
+		3E9508651F4DABD900F65A3C /* libSocialYiXin.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSocialYiXin.a; sourceTree = "<group>"; };
+		3E9508661F4DABD900F65A3C /* libYixinSDK_V2.2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libYixinSDK_V2.2.a; sourceTree = "<group>"; };
+		3E9508671F4DABD900F65A3C /* UMSocialYiXinHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialYiXinHandler.h; sourceTree = "<group>"; };
+		3E9508681F4DABD900F65A3C /* YXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXApi.h; sourceTree = "<group>"; };
+		3E9508691F4DABD900F65A3C /* YXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXApiObject.h; sourceTree = "<group>"; };
+		3E9508A91F4F16B000F65A3C /* My3DES.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = My3DES.cpp; sourceTree = "<group>"; };
+		3E9508AA1F4F16B000F65A3C /* My3DES.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = My3DES.h; sourceTree = "<group>"; };
+		3E9508AD1F4F22BD00F65A3C /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = ../../../../external/sources/iflyteknet/ios/lib/libcrypto.a; sourceTree = "<group>"; };
+		3E9508AE1F4F22BD00F65A3C /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = ../../../../external/sources/iflyteknet/ios/lib/libssl.a; sourceTree = "<group>"; };
 		3EA3CDA21F1E47130029BB07 /* libiflyteknet.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libiflyteknet.a; path = ../../../../external/sources/iflyteknet/ios/iflyteknet/build/Debug/libiflyteknet.a; sourceTree = "<group>"; };
 		3EA3CDA41F1E47390029BB07 /* libiflyteknet.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libiflyteknet.a; path = ../../../../external/sources/iflyteknet/ios/iflyteknet/build/Debug/libiflyteknet.a; sourceTree = "<group>"; };
 		3EA3D36B1F1E4EFC0029BB07 /* async_result.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = async_result.hpp; sourceTree = "<group>"; };
@@ -1799,8 +2018,6 @@
 		3EA3D5631F1E4EFC0029BB07 /* x509.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = x509.h; sourceTree = "<group>"; };
 		3EA3D5641F1E4EFC0029BB07 /* x509_vfy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = x509_vfy.h; sourceTree = "<group>"; };
 		3EA3D5651F1E4EFC0029BB07 /* x509v3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = x509v3.h; sourceTree = "<group>"; };
-		3EA3D92A1F1E59000029BB07 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = ../../../../external/sources/iflyteknet/ios/lib/libcrypto.a; sourceTree = "<group>"; };
-		3EA3D92B1F1E59000029BB07 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = ../../../../external/sources/iflyteknet/ios/lib/libssl.a; sourceTree = "<group>"; };
 		4B22F4A71B159A7A0044C14E /* jsb_cocos2dx_experimental_webView_manual.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = jsb_cocos2dx_experimental_webView_manual.cpp; path = experimental/jsb_cocos2dx_experimental_webView_manual.cpp; sourceTree = "<group>"; };
 		4B22F4A81B159A7A0044C14E /* jsb_cocos2dx_experimental_webView_manual.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = jsb_cocos2dx_experimental_webView_manual.h; path = experimental/jsb_cocos2dx_experimental_webView_manual.h; sourceTree = "<group>"; };
 		4BE089E01ADF965E00D65D4B /* jsb_cocos2dx_experimental_webView_auto.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = jsb_cocos2dx_experimental_webView_auto.cpp; sourceTree = "<group>"; };
@@ -1856,9 +2073,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3EA3D92C1F1E59000029BB07 /* libcrypto.a in Frameworks */,
 				ED3057C71BEC7C8C0083C3ED /* libjs_static.a in Frameworks */,
-				3EA3D92E1F1E59000029BB07 /* libssl.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1866,9 +2081,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3EA3D92D1F1E59000029BB07 /* libcrypto.a in Frameworks */,
+				3E9508991F4DABD900F65A3C /* libSocialQQ.a in Frameworks */,
+				3E9508791F4DABD900F65A3C /* FBSDKShareKit.framework in Frameworks */,
+				3E9508B01F4F22BD00F65A3C /* libssl.a in Frameworks */,
+				3E9508A21F4DABD900F65A3C /* libSocialYiXin.a in Frameworks */,
+				3E9508751F4DABD900F65A3C /* libUMSocial_Sdk_5.0.1.a in Frameworks */,
+				3E9508771F4DABD900F65A3C /* FBSDKCoreKit.framework in Frameworks */,
+				3E95087A1F4DABD900F65A3C /* libSocialFacebook.a in Frameworks */,
+				3E9508AF1F4F22BD00F65A3C /* libcrypto.a in Frameworks */,
+				3E95088C1F4DABD900F65A3C /* libSocialSinaSSO.a in Frameworks */,
+				3E95089A1F4DABD900F65A3C /* TencentOpenAPI.framework in Frameworks */,
+				3E95087C1F4DABD900F65A3C /* libSocialInstagram.a in Frameworks */,
+				3E95087F1F4DABD900F65A3C /* libSocialLaiWang.a in Frameworks */,
+				3E95088A1F4DABD900F65A3C /* libSocialLine.a in Frameworks */,
 				4D697C001CBDF37500A5AF29 /* libjs_static.a in Frameworks */,
-				3EA3D92F1F1E59000029BB07 /* libssl.a in Frameworks */,
+				3E95089D1F4DABD900F65A3C /* libWeChatSDK.a in Frameworks */,
+				3E95088D1F4DABD900F65A3C /* libWeiboSDK.a in Frameworks */,
+				3E95087E1F4DABD900F65A3C /* libLWApiSDK.a in Frameworks */,
+				3E9508781F4DABD900F65A3C /* FBSDKLoginKit.framework in Frameworks */,
+				3E95089C1F4DABD900F65A3C /* libSocialWechat.a in Frameworks */,
+				3E9508761F4DABD900F65A3C /* libUMSocial_Sdk_Comment_5.0.1.a in Frameworks */,
+				3E9508A31F4DABD900F65A3C /* libYixinSDK_V2.2.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1888,8 +2121,10 @@
 		1551A334158F2AB200E66CFE = {
 			isa = PBXGroup;
 			children = (
-				3EA3D92A1F1E59000029BB07 /* libcrypto.a */,
-				3EA3D92B1F1E59000029BB07 /* libssl.a */,
+				3E9508AD1F4F22BD00F65A3C /* libcrypto.a */,
+				3E9508AE1F4F22BD00F65A3C /* libssl.a */,
+				3E9508121F4DABD900F65A3C /* UMSocial_Sdk_5.0.1 */,
+				3E95082E1F4DABD900F65A3C /* UMSocial_Sdk_Extra_Frameworks */,
 				3EA3D3691F1E4EFC0029BB07 /* boost */,
 				3EA3D5171F1E4EFC0029BB07 /* iflytek */,
 				3EA3D5241F1E4EFC0029BB07 /* openssl */,
@@ -2038,9 +2273,9 @@
 		1A119E7618BDF19200352BAA /* network */ = {
 			isa = PBXGroup;
 			children = (
+				3E9501791F4B17B300F65A3C /* jsb_asio_connection.cpp */,
+				3E95017A1F4B17B300F65A3C /* jsb_asio_connection.h */,
 				83A5661718DA878400FC31A0 /* jsb_socketio.cpp */,
-				3E78479C1F1CF57F0097BBE6 /* jsb_asio_connection.cpp */,
-				3E78479D1F1CF57F0097BBE6 /* jsb_asio_connection.h */,
 				83A5661818DA878400FC31A0 /* jsb_socketio.h */,
 				1A119E7818BDF19200352BAA /* jsb_websocket.cpp */,
 				1A119E7918BDF19200352BAA /* jsb_websocket.h */,
@@ -2108,6 +2343,7 @@
 		3E7847381F1CF5470097BBE6 /* umeng */ = {
 			isa = PBXGroup;
 			children = (
+				3E9501B51F4B27F000F65A3C /* share */,
 				3E7847391F1CF5470097BBE6 /* jsb_umeng.cpp */,
 				3E78473A1F1CF5470097BBE6 /* jsb_umeng.h */,
 				3E78473B1F1CF5470097BBE6 /* MobClickCpp.cpp */,
@@ -2154,6 +2390,11 @@
 		3E78477F1F1CF55F0097BBE6 /* util */ = {
 			isa = PBXGroup;
 			children = (
+				3E95018C1F4B1AC300F65A3C /* ios */,
+				3E95017F1F4B18A600F65A3C /* PlatformFunUtil.cpp */,
+				3E9501801F4B18A600F65A3C /* PlatformFunUtil.h */,
+				3E9501811F4B18A600F65A3C /* PluginHelper.h */,
+				3E9501821F4B18A600F65A3C /* PluginHelper.mm */,
 				3E7847801F1CF55F0097BBE6 /* CommonUtils.cpp */,
 				3E7847811F1CF55F0097BBE6 /* CommonUtils.h */,
 				3E7847821F1CF55F0097BBE6 /* StringUtils.cpp */,
@@ -2162,9 +2403,268 @@
 			path = util;
 			sourceTree = "<group>";
 		};
+		3E95018C1F4B1AC300F65A3C /* ios */ = {
+			isa = PBXGroup;
+			children = (
+				3E95018D1F4B1AC300F65A3C /* NSString+NSStringAddition.h */,
+				3E95018E1F4B1AC300F65A3C /* NSString+NSStringAddition.m */,
+				3E95018F1F4B1AC300F65A3C /* Reachability.h */,
+				3E9501901F4B1AC300F65A3C /* Reachability.m */,
+				3E9501911F4B1AC300F65A3C /* UIDevice+IdentifierAddition.h */,
+				3E9501921F4B1AC300F65A3C /* UIDevice+IdentifierAddition.m */,
+			);
+			path = ios;
+			sourceTree = "<group>";
+		};
+		3E9501B51F4B27F000F65A3C /* share */ = {
+			isa = PBXGroup;
+			children = (
+				3E9501B61F4B27F000F65A3C /* Cocos2dx */,
+				3E9501C61F4B27F000F65A3C /* jsb_umeng_share.cpp */,
+				3E9501C71F4B27F000F65A3C /* jsb_umeng_share.h */,
+			);
+			path = share;
+			sourceTree = "<group>";
+		};
+		3E9501B61F4B27F000F65A3C /* Cocos2dx */ = {
+			isa = PBXGroup;
+			children = (
+				3E9501B71F4B27F000F65A3C /* Android */,
+				3E9501BA1F4B27F000F65A3C /* Common */,
+				3E9501BE1F4B27F000F65A3C /* iOS */,
+				3E9501C31F4B27F000F65A3C /* ShareButton */,
+			);
+			path = Cocos2dx;
+			sourceTree = "<group>";
+		};
+		3E9501B71F4B27F000F65A3C /* Android */ = {
+			isa = PBXGroup;
+			children = (
+				3E9501B81F4B27F000F65A3C /* CCUMSocialController.cpp */,
+				3E9501B91F4B27F000F65A3C /* CCUMSocialController.h */,
+			);
+			path = Android;
+			sourceTree = "<group>";
+		};
+		3E9501BA1F4B27F000F65A3C /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				3E9501BB1F4B27F000F65A3C /* CCUMSocialSDK.cpp */,
+				3E9501BC1F4B27F000F65A3C /* CCUMSocialSDK.h */,
+				3E9501BD1F4B27F000F65A3C /* CCUMTypeDef.h */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		3E9501BE1F4B27F000F65A3C /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				3E9501BF1F4B27F000F65A3C /* UmSocialControllerIOS.h */,
+				3E9501C01F4B27F000F65A3C /* UmSocialControllerIOS.mm */,
+				3E9501C11F4B27F000F65A3C /* UMSocialUIObject.h */,
+				3E9501C21F4B27F000F65A3C /* UMSocialUIObject.mm */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
+		3E9501C31F4B27F000F65A3C /* ShareButton */ = {
+			isa = PBXGroup;
+			children = (
+				3E9501C41F4B27F000F65A3C /* UMShareButton.cpp */,
+				3E9501C51F4B27F000F65A3C /* UMShareButton.h */,
+			);
+			path = ShareButton;
+			sourceTree = "<group>";
+		};
+		3E9508121F4DABD900F65A3C /* UMSocial_Sdk_5.0.1 */ = {
+			isa = PBXGroup;
+			children = (
+				3E9508131F4DABD900F65A3C /* UMSocialLocalizable.strings */,
+				3E9508151F4DABD900F65A3C /* Header */,
+				3E9508211F4DABD900F65A3C /* libUMSocial_Sdk_5.0.1.a */,
+				3E9508221F4DABD900F65A3C /* libUMSocial_Sdk_Comment_5.0.1.a */,
+				3E9508231F4DABD900F65A3C /* SocialSDKXib */,
+				3E95082C1F4DABD900F65A3C /* UMSocialSDKResourcesNew.bundle */,
+			);
+			path = UMSocial_Sdk_5.0.1;
+			sourceTree = "<group>";
+		};
+		3E9508151F4DABD900F65A3C /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				3E9508161F4DABD900F65A3C /* UMSocial.h */,
+				3E9508171F4DABD900F65A3C /* UMSocialAccountManager.h */,
+				3E9508181F4DABD900F65A3C /* UMSocialBar.h */,
+				3E9508191F4DABD900F65A3C /* UMSocialConfig.h */,
+				3E95081A1F4DABD900F65A3C /* UMSocialControllerService.h */,
+				3E95081B1F4DABD900F65A3C /* UMSocialControllerServiceComment.h */,
+				3E95081C1F4DABD900F65A3C /* UMSocialData.h */,
+				3E95081D1F4DABD900F65A3C /* UMSocialDataService.h */,
+				3E95081E1F4DABD900F65A3C /* UMSocialSnsData.h */,
+				3E95081F1F4DABD900F65A3C /* UMSocialSnsPlatformManager.h */,
+				3E9508201F4DABD900F65A3C /* UMSocialSnsService.h */,
+			);
+			path = Header;
+			sourceTree = "<group>";
+		};
+		3E9508231F4DABD900F65A3C /* SocialSDKXib */ = {
+			isa = PBXGroup;
+			children = (
+				3E9508241F4DABD900F65A3C /* UMSCommentDetailController.xib */,
+				3E9508251F4DABD900F65A3C /* UMSCommentInputController.xib */,
+				3E9508261F4DABD900F65A3C /* UMSCommentInputControlleriPad.xib */,
+				3E9508271F4DABD900F65A3C /* UMShareEditViewController.xib */,
+				3E9508281F4DABD900F65A3C /* UMShareEditViewControlleriPad.xib */,
+				3E9508291F4DABD900F65A3C /* UMSLoginViewController.xib */,
+				3E95082A1F4DABD900F65A3C /* UMSnsAccountViewController.xib */,
+				3E95082B1F4DABD900F65A3C /* UMSShareListController.xib */,
+			);
+			path = SocialSDKXib;
+			sourceTree = "<group>";
+		};
+		3E95082E1F4DABD900F65A3C /* UMSocial_Sdk_Extra_Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3E95082F1F4DABD900F65A3C /* Facebook */,
+				3E9508351F4DABD900F65A3C /* Instagram */,
+				3E9508381F4DABD900F65A3C /* LaiWang */,
+				3E9508451F4DABD900F65A3C /* Line */,
+				3E9508481F4DABD900F65A3C /* SinaSSO */,
+				3E9508571F4DABD900F65A3C /* TencentOpenAPI */,
+				3E95085C1F4DABD900F65A3C /* Twitter */,
+				3E95085D1F4DABD900F65A3C /* Wechat */,
+				3E9508641F4DABD900F65A3C /* YiXin */,
+			);
+			path = UMSocial_Sdk_Extra_Frameworks;
+			sourceTree = "<group>";
+		};
+		3E95082F1F4DABD900F65A3C /* Facebook */ = {
+			isa = PBXGroup;
+			children = (
+				3E9508301F4DABD900F65A3C /* FBSDKCoreKit.framework */,
+				3E9508311F4DABD900F65A3C /* FBSDKLoginKit.framework */,
+				3E9508321F4DABD900F65A3C /* FBSDKShareKit.framework */,
+				3E9508331F4DABD900F65A3C /* libSocialFacebook.a */,
+				3E9508341F4DABD900F65A3C /* UMSocialFacebookHandler.h */,
+			);
+			path = Facebook;
+			sourceTree = "<group>";
+		};
+		3E9508351F4DABD900F65A3C /* Instagram */ = {
+			isa = PBXGroup;
+			children = (
+				3E9508361F4DABD900F65A3C /* libSocialInstagram.a */,
+				3E9508371F4DABD900F65A3C /* UMSocialInstagramHandler.h */,
+			);
+			path = Instagram;
+			sourceTree = "<group>";
+		};
+		3E9508381F4DABD900F65A3C /* LaiWang */ = {
+			isa = PBXGroup;
+			children = (
+				3E9508391F4DABD900F65A3C /* libLWApiSDK.a */,
+				3E95083A1F4DABD900F65A3C /* libSocialLaiWang.a */,
+				3E95083B1F4DABD900F65A3C /* LWApiConfig.h */,
+				3E95083C1F4DABD900F65A3C /* LWApiConnection.h */,
+				3E95083D1F4DABD900F65A3C /* LWApiImageObject.h */,
+				3E95083E1F4DABD900F65A3C /* LWApiMediaObject.h */,
+				3E95083F1F4DABD900F65A3C /* LWApiMessage.h */,
+				3E9508401F4DABD900F65A3C /* LWApiRequest.h */,
+				3E9508411F4DABD900F65A3C /* LWApiResponse.h */,
+				3E9508421F4DABD900F65A3C /* LWApiSDK.h */,
+				3E9508431F4DABD900F65A3C /* LWApiUtils.h */,
+				3E9508441F4DABD900F65A3C /* UMSocialLaiwangHandler.h */,
+			);
+			path = LaiWang;
+			sourceTree = "<group>";
+		};
+		3E9508451F4DABD900F65A3C /* Line */ = {
+			isa = PBXGroup;
+			children = (
+				3E9508461F4DABD900F65A3C /* libSocialLine.a */,
+				3E9508471F4DABD900F65A3C /* UMSocialLineHandler.h */,
+			);
+			path = Line;
+			sourceTree = "<group>";
+		};
+		3E9508481F4DABD900F65A3C /* SinaSSO */ = {
+			isa = PBXGroup;
+			children = (
+				3E9508491F4DABD900F65A3C /* libSocialSinaSSO.a */,
+				3E95084A1F4DABD900F65A3C /* libWeiboSDK.a */,
+				3E95084B1F4DABD900F65A3C /* UMSocialSinaSSOHandler.h */,
+				3E95084C1F4DABD900F65A3C /* WBHttpRequest+WeiboGame.h */,
+				3E95084D1F4DABD900F65A3C /* WBHttpRequest+WeiboShare.h */,
+				3E95084E1F4DABD900F65A3C /* WBHttpRequest+WeiboToken.h */,
+				3E95084F1F4DABD900F65A3C /* WBHttpRequest+WeiboUser.h */,
+				3E9508501F4DABD900F65A3C /* WBHttpRequest.h */,
+				3E9508511F4DABD900F65A3C /* WBSDKBasicButton.h */,
+				3E9508521F4DABD900F65A3C /* WBSDKCommentButton.h */,
+				3E9508531F4DABD900F65A3C /* WBSDKRelationshipButton.h */,
+				3E9508541F4DABD900F65A3C /* WeiboSDK.bundle */,
+				3E9508551F4DABD900F65A3C /* WeiboSDK.h */,
+				3E9508561F4DABD900F65A3C /* WeiboUser.h */,
+			);
+			path = SinaSSO;
+			sourceTree = "<group>";
+		};
+		3E9508571F4DABD900F65A3C /* TencentOpenAPI */ = {
+			isa = PBXGroup;
+			children = (
+				3E9508581F4DABD900F65A3C /* libSocialQQ.a */,
+				3E9508591F4DABD900F65A3C /* TencentOpenAPI.framework */,
+				3E95085A1F4DABD900F65A3C /* TencentOpenApi_IOS_Bundle.bundle */,
+				3E95085B1F4DABD900F65A3C /* UMSocialQQHandler.h */,
+			);
+			path = TencentOpenAPI;
+			sourceTree = "<group>";
+		};
+		3E95085C1F4DABD900F65A3C /* Twitter */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Twitter;
+			sourceTree = "<group>";
+		};
+		3E95085D1F4DABD900F65A3C /* Wechat */ = {
+			isa = PBXGroup;
+			children = (
+				3E95085E1F4DABD900F65A3C /* libSocialWechat.a */,
+				3E95085F1F4DABD900F65A3C /* libWeChatSDK.a */,
+				3E9508601F4DABD900F65A3C /* UMSocialWechatHandler.h */,
+				3E9508611F4DABD900F65A3C /* WechatAuthSDK.h */,
+				3E9508621F4DABD900F65A3C /* WXApi.h */,
+				3E9508631F4DABD900F65A3C /* WXApiObject.h */,
+			);
+			path = Wechat;
+			sourceTree = "<group>";
+		};
+		3E9508641F4DABD900F65A3C /* YiXin */ = {
+			isa = PBXGroup;
+			children = (
+				3E9508651F4DABD900F65A3C /* libSocialYiXin.a */,
+				3E9508661F4DABD900F65A3C /* libYixinSDK_V2.2.a */,
+				3E9508671F4DABD900F65A3C /* UMSocialYiXinHandler.h */,
+				3E9508681F4DABD900F65A3C /* YXApi.h */,
+				3E9508691F4DABD900F65A3C /* YXApiObject.h */,
+			);
+			path = YiXin;
+			sourceTree = "<group>";
+		};
 		3EA3CDA11F1E47130029BB07 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3E95064F1F4DA69D00F65A3C /* TencentOpenAPI.framework */,
+				3E9501B11F4B24E500F65A3C /* QuartzCore.framework */,
+				3E9501AF1F4B24C200F65A3C /* Security.framework */,
+				3E9501AD1F4B24B200F65A3C /* SystemConfiguration.framework */,
+				3E9501AB1F4B246700F65A3C /* IOKit.framework */,
+				3E9501A91F4B245400F65A3C /* ApplicationServices.framework */,
+				3E9501A71F4B244900F65A3C /* Cocoa.framework */,
+				3E9501A51F4B23C500F65A3C /* CoreTelephony.framework */,
+				3E9501A31F4B1C9D00F65A3C /* Foundation.framework */,
+				3E9501A11F4B1C9800F65A3C /* AVFoundation.framework */,
+				3E95019F1F4B1C8500F65A3C /* CoreFoundation.framework */,
 				3EA3CDA41F1E47390029BB07 /* libiflyteknet.a */,
 				3EA3CDA21F1E47130029BB07 /* libiflyteknet.a */,
 			);
@@ -2774,6 +3274,8 @@
 		3EA3D5181F1E4EFC0029BB07 /* net */ = {
 			isa = PBXGroup;
 			children = (
+				3E9508A91F4F16B000F65A3C /* My3DES.cpp */,
+				3E9508AA1F4F16B000F65A3C /* My3DES.h */,
 				3EA3D5191F1E4EFC0029BB07 /* Compression.cpp */,
 				3EA3D51A1F1E4EFC0029BB07 /* Compression.h */,
 				3EA3D51B1F1E4EFC0029BB07 /* DesUtil.h */,
@@ -2909,9 +3411,11 @@
 				3EA3D6961F1E4EFD0029BB07 /* reactive_socket_connect_op.hpp in Headers */,
 				4DFA4C121CBCC49000E3B736 /* jsb_creator_auto.hpp in Headers */,
 				3EA3D8381F1E4EFD0029BB07 /* rfc2818_verification.ipp in Headers */,
+				3E9501DC1F4B27F000F65A3C /* UMShareButton.h in Headers */,
 				3EA3D5A21F1E4EFC0029BB07 /* addressof.hpp in Headers */,
 				3EA3D7CA1F1E4EFD0029BB07 /* resolver_query_base.hpp in Headers */,
 				3EA3D63E1F1E4EFC0029BB07 /* win_mutex.ipp in Headers */,
+				3E9501971F4B1AC300F65A3C /* Reachability.h in Headers */,
 				3EA3D6121F1E4EFC0029BB07 /* reactive_socket_service_base.ipp in Headers */,
 				3E78474C1F1CF5470097BBE6 /* GameLogic.h in Headers */,
 				3EA3D5A81F1E4EFC0029BB07 /* assert.hpp in Headers */,
@@ -2979,7 +3483,6 @@
 				3EA3D8921F1E4EFD0029BB07 /* Compression.h in Headers */,
 				3EA3D8DC1F1E4EFD0029BB07 /* krb5_asn.h in Headers */,
 				3EA3D7821F1E4EFD0029BB07 /* handler_alloc_hook.ipp in Headers */,
-				3E7847A01F1CF57F0097BBE6 /* jsb_asio_connection.h in Headers */,
 				3EA3D6B81F1E4EFD0029BB07 /* scoped_lock.hpp in Headers */,
 				3EA3D6AC1F1E4EFD0029BB07 /* reactor_op_queue.hpp in Headers */,
 				3EA3D6181F1E4EFC0029BB07 /* select_reactor.ipp in Headers */,
@@ -3054,6 +3557,7 @@
 				3EA3D63A1F1E4EFC0029BB07 /* win_iocp_serial_port_service.ipp in Headers */,
 				3EA3D85A1F1E4EFD0029BB07 /* strand.hpp in Headers */,
 				3EA3D7C41F1E4EFD0029BB07 /* basic_endpoint.hpp in Headers */,
+				3E9501871F4B18A600F65A3C /* PluginHelper.h in Headers */,
 				3EA3D7D41F1E4EFD0029BB07 /* v6_only.hpp in Headers */,
 				1A119ED118BDF19200352BAA /* js_bindings_config.h in Headers */,
 				3EA3D6141F1E4EFC0029BB07 /* resolver_service_base.ipp in Headers */,
@@ -3081,6 +3585,7 @@
 				3EA3D82C1F1E4EFD0029BB07 /* verify_callback.hpp in Headers */,
 				3EA3D85C1F1E4EFD0029BB07 /* stream_socket_service.hpp in Headers */,
 				3EA3D7E41F1E4EFD0029BB07 /* stream_protocol.hpp in Headers */,
+				3E9501851F4B18A600F65A3C /* PlatformFunUtil.h in Headers */,
 				3E7847961F1CF55F0097BBE6 /* CommonUtils.h in Headers */,
 				3EA3D7841F1E4EFD0029BB07 /* io_service.hpp in Headers */,
 				3EA3D74E1F1E4EFD0029BB07 /* winrt_socket_send_op.hpp in Headers */,
@@ -3118,6 +3623,7 @@
 				3EA3D68A1F1E4EFD0029BB07 /* posix_tss_ptr.hpp in Headers */,
 				3EA3D5AC1F1E4EFC0029BB07 /* base_from_completion_cond.hpp in Headers */,
 				3EA3D6E81F1E4EFD0029BB07 /* task_io_service_operation.hpp in Headers */,
+				3E9501931F4B1AC300F65A3C /* NSString+NSStringAddition.h in Headers */,
 				3EA3D6541F1E4EFC0029BB07 /* kqueue_reactor.hpp in Headers */,
 				3EA3D86C1F1E4EFD0029BB07 /* version.hpp in Headers */,
 				3EA3D7F01F1E4EFD0029BB07 /* stream_descriptor_service.hpp in Headers */,
@@ -3174,6 +3680,7 @@
 				3EA3D8881F1E4EFD0029BB07 /* write.hpp in Headers */,
 				3EA3D69E1F1E4EFD0029BB07 /* reactive_socket_send_op.hpp in Headers */,
 				3EA3D6581F1E4EFC0029BB07 /* local_free_on_block_exit.hpp in Headers */,
+				3E9501CE1F4B27F000F65A3C /* CCUMSocialSDK.h in Headers */,
 				3EA3D5E41F1E4EFC0029BB07 /* handler_alloc_helpers.hpp in Headers */,
 				3EA3D7881F1E4EFD0029BB07 /* read.hpp in Headers */,
 				3EA3D8621F1E4EFD0029BB07 /* system_timer.hpp in Headers */,
@@ -3261,10 +3768,12 @@
 				3EA3D6741F1E4EFD0029BB07 /* old_win_sdk_compat.hpp in Headers */,
 				3EA3D6B01F1E4EFD0029BB07 /* resolve_endpoint_op.hpp in Headers */,
 				3EA3D7361F1E4EFD0029BB07 /* win_mutex.hpp in Headers */,
+				3E9501E01F4B27F000F65A3C /* jsb_umeng_share.h in Headers */,
 				3EA3D9041F1E4EFE0029BB07 /* ripemd.h in Headers */,
 				3EA3D6441F1E4EFC0029BB07 /* win_thread.ipp in Headers */,
 				3EA3D75E1F1E4EFD0029BB07 /* error_code.hpp in Headers */,
 				3EA3D62C1F1E4EFC0029BB07 /* throw_error.ipp in Headers */,
+				3E9501D61F4B27F000F65A3C /* UMSocialUIObject.h in Headers */,
 				3EA3D5801F1E4EFC0029BB07 /* basic_streambuf.hpp in Headers */,
 				3EA3D5741F1E4EFC0029BB07 /* basic_signal_set.hpp in Headers */,
 				3EA3D7201F1E4EFD0029BB07 /* win_iocp_overlapped_ptr.hpp in Headers */,
@@ -3281,6 +3790,7 @@
 				3EA3D7921F1E4EFD0029BB07 /* spawn.hpp in Headers */,
 				3EA3D6701F1E4EFD0029BB07 /* null_tss_ptr.hpp in Headers */,
 				3EA3D8E81F1E4EFD0029BB07 /* obj_mac.h in Headers */,
+				3E95017D1F4B17B300F65A3C /* jsb_asio_connection.h in Headers */,
 				3EA3D9241F1E4EFE0029BB07 /* x509_vfy.h in Headers */,
 				3EA3D8F81F1E4EFE0029BB07 /* pkcs12.h in Headers */,
 				3EA3D7DA1F1E4EFD0029BB07 /* basic_endpoint.hpp in Headers */,
@@ -3302,6 +3812,7 @@
 				4DFA4C031CBCBC4E00E3B736 /* js_module_register.h in Headers */,
 				3EA3D8EE1F1E4EFD0029BB07 /* opensslconf.h in Headers */,
 				3EA3D7261F1E4EFD0029BB07 /* win_iocp_socket_connect_op.hpp in Headers */,
+				3E9501D01F4B27F000F65A3C /* CCUMTypeDef.h in Headers */,
 				3EA3D73A1F1E4EFD0029BB07 /* win_static_mutex.hpp in Headers */,
 				3EA3D69C1F1E4EFD0029BB07 /* reactive_socket_recvmsg_op.hpp in Headers */,
 				3EA3D7A41F1E4EFD0029BB07 /* basic_endpoint.hpp in Headers */,
@@ -3390,6 +3901,7 @@
 				3EA3D72E1F1E4EFD0029BB07 /* win_iocp_socket_send_op.hpp in Headers */,
 				3EA3D7641F1E4EFD0029BB07 /* endpoint.hpp in Headers */,
 				3EA3D6C61F1E4EFD0029BB07 /* signal_handler.hpp in Headers */,
+				3E95019B1F4B1AC300F65A3C /* UIDevice+IdentifierAddition.h in Headers */,
 				3EA3D7AA1F1E4EFD0029BB07 /* basic_resolver_iterator.hpp in Headers */,
 				3EA3D5FC1F1E4EFC0029BB07 /* eventfd_select_interrupter.ipp in Headers */,
 				3EA3D5F01F1E4EFC0029BB07 /* buffer_sequence_adapter.ipp in Headers */,
@@ -3397,6 +3909,7 @@
 				3EA3D6341F1E4EFC0029BB07 /* win_iocp_handle_service.ipp in Headers */,
 				3EA3D76A1F1E4EFD0029BB07 /* seq_packet_protocol.hpp in Headers */,
 				3EA3D6AA1F1E4EFD0029BB07 /* reactor_op.hpp in Headers */,
+				3E9501D21F4B27F000F65A3C /* UmSocialControllerIOS.h in Headers */,
 				3EA3D8B01F1E4EFD0029BB07 /* blowfish.h in Headers */,
 				3EA3D81C1F1E4EFD0029BB07 /* openssl_init.ipp in Headers */,
 				3EA3D6A21F1E4EFD0029BB07 /* reactive_socket_service.hpp in Headers */,
@@ -3418,6 +3931,7 @@
 				3EA3D5B41F1E4EFC0029BB07 /* buffered_stream_storage.hpp in Headers */,
 				3EA3D6EC1F1E4EFD0029BB07 /* thread.hpp in Headers */,
 				3EA3D6A81F1E4EFD0029BB07 /* reactor_fwd.hpp in Headers */,
+				3E9501CA1F4B27F000F65A3C /* CCUMSocialController.h in Headers */,
 				3EA3D83C1F1E4EFD0029BB07 /* basic_context.hpp in Headers */,
 				3EA3D8121F1E4EFD0029BB07 /* context_service.hpp in Headers */,
 				1A119F0718BDF19200352BAA /* jsb_cocos2dx_spine_manual.h in Headers */,
@@ -3455,10 +3969,12 @@
 				3E78475D1F1CF5470097BBE6 /* ProxyDownloader.h in Headers */,
 				3EA3D8191F1E4EFD0029BB07 /* handshake_op.hpp in Headers */,
 				3EA3D8AF1F1E4EFD0029BB07 /* bio.h in Headers */,
+				3E9508A61F4DABD900F65A3C /* YXApiObject.h in Headers */,
 				3EA3D6F51F1E4EFD0029BB07 /* timer_queue.hpp in Headers */,
 				1A119EA418BDF19200352BAA /* jsb_cocos2dx_studio_auto.hpp in Headers */,
 				3EA3D6331F1E4EFC0029BB07 /* win_event.ipp in Headers */,
 				3EA3D6491F1E4EFC0029BB07 /* winrt_ssocket_service_base.ipp in Headers */,
+				3E9501D31F4B27F000F65A3C /* UmSocialControllerIOS.h in Headers */,
 				3EA3D7D51F1E4EFD0029BB07 /* v6_only.hpp in Headers */,
 				3EA3D5CF1F1E4EFC0029BB07 /* dev_poll_reactor.hpp in Headers */,
 				3EA3D8A71F1E4EFD0029BB07 /* aes.h in Headers */,
@@ -3466,18 +3982,22 @@
 				3E7847611F1CF5470097BBE6 /* ProxyHttpGet.h in Headers */,
 				3EA3D71D1F1E4EFD0029BB07 /* win_iocp_operation.hpp in Headers */,
 				3EA3D5BB1F1E4EFC0029BB07 /* completion_handler.hpp in Headers */,
+				3E9508911F4DABD900F65A3C /* WBHttpRequest+WeiboToken.h in Headers */,
 				3EA3D7791F1E4EFD0029BB07 /* buffered_read_stream.hpp in Headers */,
 				3EA3D5951F1E4EFC0029BB07 /* buffers_iterator.hpp in Headers */,
 				3EA3D7551F1E4EFD0029BB07 /* winrt_timer_scheduler.hpp in Headers */,
 				3EA3D5E71F1E4EFC0029BB07 /* handler_cont_helpers.hpp in Headers */,
 				3EA3D7511F1E4EFD0029BB07 /* winrt_ssocket_service.hpp in Headers */,
+				3E9508821F4DABD900F65A3C /* LWApiImageObject.h in Headers */,
 				3EA3D86D1F1E4EFD0029BB07 /* version.hpp in Headers */,
 				3EA3D91B1F1E4EFE0029BB07 /* ts.h in Headers */,
 				FA6F1BB61D815C2C007DD223 /* jsb_cocos2dx_dragonbones_auto.hpp in Headers */,
 				3EA3D7B31F1E4EFD0029BB07 /* socket_option.hpp in Headers */,
+				3E9508941F4DABD900F65A3C /* WBSDKBasicButton.h in Headers */,
 				3E7847731F1CF5470097BBE6 /* ZipHelper.h in Headers */,
 				B38AD56B1B1D384A0057DD7F /* jsb_cocos2dx_experimental_video_manual.h in Headers */,
 				3EA3D7CD1F1E4EFD0029BB07 /* resolver_service.hpp in Headers */,
+				3E9501981F4B1AC300F65A3C /* Reachability.h in Headers */,
 				3EA3D6C51F1E4EFD0029BB07 /* signal_blocker.hpp in Headers */,
 				3E7847451F1CF5470097BBE6 /* CallbackManager.h in Headers */,
 				3EA3D82B1F1E4EFD0029BB07 /* stream_core.hpp in Headers */,
@@ -3509,8 +4029,10 @@
 				3EA3D7C71F1E4EFD0029BB07 /* host_name.ipp in Headers */,
 				3EA3D6031F1E4EFC0029BB07 /* kqueue_reactor.ipp in Headers */,
 				3EA3D91D1F1E4EFE0029BB07 /* txt_db.h in Headers */,
+				3E9508851F4DABD900F65A3C /* LWApiRequest.h in Headers */,
 				1A119F0218BDF19200352BAA /* ScriptingCore.h in Headers */,
 				3EA3D7831F1E4EFD0029BB07 /* handler_alloc_hook.ipp in Headers */,
+				3E9508A01F4DABD900F65A3C /* WXApi.h in Headers */,
 				4DFA4C061CBCBC4E00E3B736 /* js-BindingsExport.h in Headers */,
 				3EA3D7D71F1E4EFD0029BB07 /* is_read_buffered.hpp in Headers */,
 				3EA3D63B1F1E4EFC0029BB07 /* win_iocp_serial_port_service.ipp in Headers */,
@@ -3528,6 +4050,7 @@
 				3EA3D8D71F1E4EFD0029BB07 /* err.h in Headers */,
 				3E7847691F1CF5470097BBE6 /* MobClickCpp.h in Headers */,
 				3EA3D6591F1E4EFC0029BB07 /* local_free_on_block_exit.hpp in Headers */,
+				3E9508871F4DABD900F65A3C /* LWApiSDK.h in Headers */,
 				3EA3D61D1F1E4EFC0029BB07 /* service_registry.ipp in Headers */,
 				3EA3D83F1F1E4EFD0029BB07 /* context_service.hpp in Headers */,
 				3EA3D5B51F1E4EFC0029BB07 /* buffered_stream_storage.hpp in Headers */,
@@ -3540,6 +4063,7 @@
 				3EA3D8551F1E4EFD0029BB07 /* verify_mode.hpp in Headers */,
 				3EA3D6BF1F1E4EFD0029BB07 /* select_reactor.hpp in Headers */,
 				3EA3D73B1F1E4EFD0029BB07 /* win_static_mutex.hpp in Headers */,
+				3E95086A1F4DABD900F65A3C /* UMSocial.h in Headers */,
 				3EA3D84B1F1E4EFD0029BB07 /* rfc2818_verification.hpp in Headers */,
 				3EA3D7C91F1E4EFD0029BB07 /* multicast.hpp in Headers */,
 				3EA3D8431F1E4EFD0029BB07 /* openssl_operation.hpp in Headers */,
@@ -3551,12 +4075,15 @@
 				3EA3D8631F1E4EFD0029BB07 /* system_timer.hpp in Headers */,
 				3EA3D74F1F1E4EFD0029BB07 /* winrt_socket_send_op.hpp in Headers */,
 				3EA3D5AB1F1E4EFC0029BB07 /* atomic_count.hpp in Headers */,
+				3E9508731F4DABD900F65A3C /* UMSocialSnsPlatformManager.h in Headers */,
 				3EA3D60F1F1E4EFC0029BB07 /* reactive_descriptor_service.ipp in Headers */,
 				83A5661C18DA878400FC31A0 /* jsb_socketio.h in Headers */,
 				3EA3D7431F1E4EFD0029BB07 /* winrt_async_manager.hpp in Headers */,
+				3E9508971F4DABD900F65A3C /* WeiboSDK.h in Headers */,
 				3EA3D7211F1E4EFD0029BB07 /* win_iocp_overlapped_ptr.hpp in Headers */,
 				3EA3D6E31F1E4EFD0029BB07 /* std_thread.hpp in Headers */,
 				3EA3D7DD1F1E4EFD0029BB07 /* connect_pair.hpp in Headers */,
+				3E9501CB1F4B27F000F65A3C /* CCUMSocialController.h in Headers */,
 				3EA3D8471F1E4EFD0029BB07 /* stream.hpp in Headers */,
 				3EA3D5F91F1E4EFC0029BB07 /* epoll_reactor.hpp in Headers */,
 				3EA3D74B1F1E4EFD0029BB07 /* winrt_socket_connect_op.hpp in Headers */,
@@ -3569,6 +4096,7 @@
 				3EA3D5E51F1E4EFC0029BB07 /* handler_alloc_helpers.hpp in Headers */,
 				3EA3D67D1F1E4EFD0029BB07 /* pop_options.hpp in Headers */,
 				3EA3D8591F1E4EFD0029BB07 /* steady_timer.hpp in Headers */,
+				3E9508931F4DABD900F65A3C /* WBHttpRequest.h in Headers */,
 				3EA3D8FB1F1E4EFE0029BB07 /* pkcs7.h in Headers */,
 				3EA3D7631F1E4EFD0029BB07 /* datagram_protocol.hpp in Headers */,
 				3EA3D6CD1F1E4EFD0029BB07 /* signal_set_service.hpp in Headers */,
@@ -3578,6 +4106,7 @@
 				3EA3D60B1F1E4EFC0029BB07 /* posix_thread.ipp in Headers */,
 				4DFA4C041CBCBC4E00E3B736 /* js_module_register.h in Headers */,
 				3EA3D6351F1E4EFC0029BB07 /* win_iocp_handle_service.ipp in Headers */,
+				3E9508951F4DABD900F65A3C /* WBSDKCommentButton.h in Headers */,
 				3EA3D5891F1E4EFC0029BB07 /* buffered_read_stream.hpp in Headers */,
 				3EA3D8C91F1E4EFD0029BB07 /* dtls1.h in Headers */,
 				3EA3D88D1F1E4EFD0029BB07 /* yield.hpp in Headers */,
@@ -3589,6 +4118,7 @@
 				3EA3D7C51F1E4EFD0029BB07 /* basic_endpoint.hpp in Headers */,
 				3EA3D6211F1E4EFC0029BB07 /* socket_ops.ipp in Headers */,
 				3EA3D78D1F1E4EFD0029BB07 /* read_until.hpp in Headers */,
+				3E9501CF1F4B27F000F65A3C /* CCUMSocialSDK.h in Headers */,
 				3EA3D7E31F1E4EFD0029BB07 /* endpoint.ipp in Headers */,
 				3EA3D6251F1E4EFC0029BB07 /* strand_service.hpp in Headers */,
 				3EA3D5B11F1E4EFC0029BB07 /* buffer_resize_guard.hpp in Headers */,
@@ -3598,10 +4128,12 @@
 				3E78476F1F1CF5470097BBE6 /* umenglog.h in Headers */,
 				3EA3D7291F1E4EFD0029BB07 /* win_iocp_socket_recv_op.hpp in Headers */,
 				3EA3D7E91F1E4EFD0029BB07 /* basic_descriptor.hpp in Headers */,
+				3E9501881F4B18A600F65A3C /* PluginHelper.h in Headers */,
 				BA4095C51A6F730A005E53F6 /* jsb_cocos2dx_studio_conversions.h in Headers */,
 				3EA3D8871F1E4EFD0029BB07 /* stream_handle_service.hpp in Headers */,
 				3EA3D5811F1E4EFC0029BB07 /* basic_streambuf.hpp in Headers */,
 				1A119EC018BDF19200352BAA /* cocosbuilder_specifics.hpp in Headers */,
+				3E9508961F4DABD900F65A3C /* WBSDKRelationshipButton.h in Headers */,
 				3EA3D8571F1E4EFD0029BB07 /* ssl.hpp in Headers */,
 				3EA3D7CF1F1E4EFD0029BB07 /* tcp.hpp in Headers */,
 				3EA3D5C31F1E4EFC0029BB07 /* date_time_fwd.hpp in Headers */,
@@ -3613,11 +4145,13 @@
 				3EA3D6FF1F1E4EFD0029BB07 /* timer_scheduler_fwd.hpp in Headers */,
 				3EA3D6B31F1E4EFD0029BB07 /* resolve_op.hpp in Headers */,
 				3EA3D6B71F1E4EFD0029BB07 /* resolver_service_base.hpp in Headers */,
+				3E9501D11F4B27F000F65A3C /* CCUMTypeDef.h in Headers */,
 				3EA3D6D11F1E4EFD0029BB07 /* socket_ops.hpp in Headers */,
 				3EA3D5F71F1E4EFC0029BB07 /* dev_poll_reactor.ipp in Headers */,
 				3EA3D6051F1E4EFC0029BB07 /* pipe_select_interrupter.ipp in Headers */,
 				3EA3D5911F1E4EFC0029BB07 /* buffered_write_stream.hpp in Headers */,
 				3EA3D6471F1E4EFC0029BB07 /* win_tss_ptr.ipp in Headers */,
+				3E9508901F4DABD900F65A3C /* WBHttpRequest+WeiboShare.h in Headers */,
 				3EA3D8071F1E4EFD0029BB07 /* socket_acceptor_service.hpp in Headers */,
 				1A119ED218BDF19200352BAA /* js_bindings_config.h in Headers */,
 				3EA3D86F1F1E4EFD0029BB07 /* wait_traits.hpp in Headers */,
@@ -3660,6 +4194,9 @@
 				3EA3D8091F1E4EFD0029BB07 /* socket_base.hpp in Headers */,
 				3EA3D7ED1F1E4EFD0029BB07 /* descriptor_base.hpp in Headers */,
 				3EA3D8F11F1E4EFD0029BB07 /* opensslv.h in Headers */,
+				3E95089E1F4DABD900F65A3C /* UMSocialWechatHandler.h in Headers */,
+				3E95088B1F4DABD900F65A3C /* UMSocialLineHandler.h in Headers */,
+				3E95089B1F4DABD900F65A3C /* UMSocialQQHandler.h in Headers */,
 				3EA3D9111F1E4EFE0029BB07 /* ssl23.h in Headers */,
 				3EA3D6A51F1E4EFD0029BB07 /* reactive_socket_service_base.hpp in Headers */,
 				3EA3D75B1F1E4EFD0029BB07 /* wrapped_handler.hpp in Headers */,
@@ -3669,7 +4206,6 @@
 				3EA3D8E31F1E4EFD0029BB07 /* md4.h in Headers */,
 				3EA3D5B31F1E4EFC0029BB07 /* buffer_sequence_adapter.hpp in Headers */,
 				3EA3D87B1F1E4EFD0029BB07 /* object_handle.hpp in Headers */,
-				3E7847A11F1CF57F0097BBE6 /* jsb_asio_connection.h in Headers */,
 				3EA3D64B1F1E4EFC0029BB07 /* winrt_timer_scheduler.hpp in Headers */,
 				3EA3D8391F1E4EFD0029BB07 /* rfc2818_verification.ipp in Headers */,
 				3EA3D79F1F1E4EFD0029BB07 /* address.hpp in Headers */,
@@ -3686,16 +4222,19 @@
 				3EA3D6891F1E4EFD0029BB07 /* posix_thread.hpp in Headers */,
 				3EA3D5D31F1E4EFC0029BB07 /* event.hpp in Headers */,
 				BA127E681D791E21002C5B50 /* js_bindings_chipmunk_auto_classes_registration.h in Headers */,
+				3E95086F1F4DABD900F65A3C /* UMSocialControllerServiceComment.h in Headers */,
 				3EA3D6611F1E4EFD0029BB07 /* null_event.hpp in Headers */,
 				3EA3D7EF1F1E4EFD0029BB07 /* stream_descriptor.hpp in Headers */,
 				3EA3D6AD1F1E4EFD0029BB07 /* reactor_op_queue.hpp in Headers */,
 				3EA3D5C11F1E4EFC0029BB07 /* cstdint.hpp in Headers */,
+				3E9508A41F4DABD900F65A3C /* UMSocialYiXinHandler.h in Headers */,
 				3EA3D7651F1E4EFD0029BB07 /* endpoint.hpp in Headers */,
 				3EA3D7971F1E4EFD0029BB07 /* use_future.hpp in Headers */,
 				3EA3D6571F1E4EFC0029BB07 /* limits.hpp in Headers */,
 				3EA3D57D1F1E4EFC0029BB07 /* basic_socket_streambuf.hpp in Headers */,
 				3EA3D8891F1E4EFD0029BB07 /* write.hpp in Headers */,
 				3EA3D8CB1F1E4EFD0029BB07 /* e_os2.h in Headers */,
+				3E9501861F4B18A600F65A3C /* PlatformFunUtil.h in Headers */,
 				3EA3D5C91F1E4EFC0029BB07 /* descriptor_ops.hpp in Headers */,
 				1A119E9218BDF19200352BAA /* jsb_cocos2dx_extension_auto.hpp in Headers */,
 				3EA3D6311F1E4EFC0029BB07 /* timer_queue_set.ipp in Headers */,
@@ -3715,12 +4254,14 @@
 				3EA3D7131F1E4EFD0029BB07 /* win_iocp_handle_read_op.hpp in Headers */,
 				3EA3D7AD1F1E4EFD0029BB07 /* basic_resolver_query.hpp in Headers */,
 				3EA3D72F1F1E4EFD0029BB07 /* win_iocp_socket_send_op.hpp in Headers */,
+				3E9508701F4DABD900F65A3C /* UMSocialData.h in Headers */,
 				3E7847651F1CF5470097BBE6 /* jsb_umeng.h in Headers */,
 				3EA3D6171F1E4EFC0029BB07 /* select_reactor.hpp in Headers */,
 				3EA3D78F1F1E4EFD0029BB07 /* serial_port_base.hpp in Headers */,
 				3EA3D8DB1F1E4EFD0029BB07 /* hmac.h in Headers */,
 				3EA3D6371F1E4EFC0029BB07 /* win_iocp_io_service.hpp in Headers */,
 				3EA3D6551F1E4EFC0029BB07 /* kqueue_reactor.hpp in Headers */,
+				3E9508981F4DABD900F65A3C /* WeiboUser.h in Headers */,
 				3EA3D8CF1F1E4EFD0029BB07 /* ec.h in Headers */,
 				3EA3D56D1F1E4EFC0029BB07 /* basic_io_object.hpp in Headers */,
 				3EA3D7E71F1E4EFD0029BB07 /* placeholders.hpp in Headers */,
@@ -3738,11 +4279,16 @@
 				3EA3D65D1F1E4EFD0029BB07 /* mutex.hpp in Headers */,
 				3EA3D6F91F1E4EFD0029BB07 /* timer_queue_ptime.hpp in Headers */,
 				3EA3D5691F1E4EFC0029BB07 /* basic_datagram_socket.hpp in Headers */,
+				3E9501E11F4B27F000F65A3C /* jsb_umeng_share.h in Headers */,
+				3E9508A11F4DABD900F65A3C /* WXApiObject.h in Headers */,
 				4BE089E51ADF965E00D65D4B /* jsb_cocos2dx_experimental_webView_auto.hpp in Headers */,
 				3EA3D6BB1F1E4EFD0029BB07 /* scoped_ptr.hpp in Headers */,
+				3E95086D1F4DABD900F65A3C /* UMSocialConfig.h in Headers */,
 				3EA3D6F31F1E4EFD0029BB07 /* throw_exception.hpp in Headers */,
 				3EA3D6A11F1E4EFD0029BB07 /* reactive_socket_sendto_op.hpp in Headers */,
+				3E95086B1F4DABD900F65A3C /* UMSocialAccountManager.h in Headers */,
 				3EA3D7DB1F1E4EFD0029BB07 /* basic_endpoint.hpp in Headers */,
+				3E9508841F4DABD900F65A3C /* LWApiMessage.h in Headers */,
 				3EA3D7A51F1E4EFD0029BB07 /* basic_endpoint.hpp in Headers */,
 				3EA3D8151F1E4EFD0029BB07 /* buffered_handshake_op.hpp in Headers */,
 				3EA3D57F1F1E4EFC0029BB07 /* basic_stream_socket.hpp in Headers */,
@@ -3761,8 +4307,11 @@
 				3EA3D7231F1E4EFD0029BB07 /* win_iocp_serial_port_service.hpp in Headers */,
 				3EA3D6FD1F1E4EFD0029BB07 /* timer_scheduler.hpp in Headers */,
 				1A119EEC18BDF19200352BAA /* jsb_opengl_registration.h in Headers */,
+				3E95087D1F4DABD900F65A3C /* UMSocialInstagramHandler.h in Headers */,
 				3EA3D7AF1F1E4EFD0029BB07 /* endpoint.hpp in Headers */,
+				3E95087B1F4DABD900F65A3C /* UMSocialFacebookHandler.h in Headers */,
 				3EA3D8251F1E4EFD0029BB07 /* password_callback.hpp in Headers */,
+				3E9508721F4DABD900F65A3C /* UMSocialSnsData.h in Headers */,
 				3EA3D6CB1F1E4EFD0029BB07 /* signal_op.hpp in Headers */,
 				1A119F0418BDF19200352BAA /* spidermonkey_specifics.h in Headers */,
 				3EA3D6391F1E4EFC0029BB07 /* win_iocp_io_service.ipp in Headers */,
@@ -3777,6 +4326,7 @@
 				3EA3D8D11F1E4EFD0029BB07 /* ecdh.h in Headers */,
 				3EA3D8271F1E4EFD0029BB07 /* read_op.hpp in Headers */,
 				3EA3D5DD1F1E4EFC0029BB07 /* gcc_arm_fenced_block.hpp in Headers */,
+				3E9501DD1F4B27F000F65A3C /* UMShareButton.h in Headers */,
 				3EA3D8411F1E4EFD0029BB07 /* openssl_context_service.hpp in Headers */,
 				1A119EE818BDF19200352BAA /* jsb_opengl_manual.h in Headers */,
 				3EA3D7BB1F1E4EFD0029BB07 /* address.ipp in Headers */,
@@ -3799,6 +4349,7 @@
 				3EA3D7671F1E4EFD0029BB07 /* endpoint.ipp in Headers */,
 				3EA3D86B1F1E4EFD0029BB07 /* use_future.hpp in Headers */,
 				3EA3D68D1F1E4EFD0029BB07 /* push_options.hpp in Headers */,
+				3E95017E1F4B17B300F65A3C /* jsb_asio_connection.h in Headers */,
 				3EA3D75D1F1E4EFD0029BB07 /* error.hpp in Headers */,
 				3EA3D6671F1E4EFD0029BB07 /* null_reactor.hpp in Headers */,
 				3EA3D5971F1E4EFC0029BB07 /* completion_condition.hpp in Headers */,
@@ -3807,6 +4358,7 @@
 				3EA3D7B91F1E4EFD0029BB07 /* address.hpp in Headers */,
 				3EA3D6DB1F1E4EFD0029BB07 /* static_mutex.hpp in Headers */,
 				3EA3D5BD1F1E4EFC0029BB07 /* config.hpp in Headers */,
+				3E9508AC1F4F16B000F65A3C /* My3DES.h in Headers */,
 				1A119EE018BDF19200352BAA /* jsb_helper.h in Headers */,
 				3EA3D7B11F1E4EFD0029BB07 /* endpoint.ipp in Headers */,
 				3EA3D59B1F1E4EFC0029BB07 /* coroutine.hpp in Headers */,
@@ -3824,12 +4376,14 @@
 				3EA3D6B51F1E4EFD0029BB07 /* resolver_service.hpp in Headers */,
 				3EA3D65F1F1E4EFD0029BB07 /* noncopyable.hpp in Headers */,
 				3EA3D7151F1E4EFD0029BB07 /* win_iocp_handle_service.hpp in Headers */,
+				3E95088F1F4DABD900F65A3C /* WBHttpRequest+WeiboGame.h in Headers */,
 				3EA3D7D31F1E4EFD0029BB07 /* unicast.hpp in Headers */,
 				3EA3D5D11F1E4EFC0029BB07 /* epoll_reactor.hpp in Headers */,
 				3EA3D59F1F1E4EFC0029BB07 /* deadline_timer.hpp in Headers */,
 				3EA3D74D1F1E4EFD0029BB07 /* winrt_socket_recv_op.hpp in Headers */,
 				3EA3D58F1F1E4EFC0029BB07 /* buffered_stream_fwd.hpp in Headers */,
 				FA6F1BBD1D816265007DD223 /* jsb_cocos2dx_dragonbones_manual.h in Headers */,
+				3E95088E1F4DABD900F65A3C /* UMSocialSinaSSOHandler.h in Headers */,
 				3EA3D8D91F1E4EFD0029BB07 /* evp.h in Headers */,
 				3EA3D7A71F1E4EFD0029BB07 /* basic_resolver.hpp in Headers */,
 				3EA3D78B1F1E4EFD0029BB07 /* read_at.hpp in Headers */,
@@ -3837,11 +4391,14 @@
 				3EA3D5A31F1E4EFC0029BB07 /* addressof.hpp in Headers */,
 				1A119EF018BDF19200352BAA /* js_bindings_system_functions.h in Headers */,
 				3EA3D5851F1E4EFC0029BB07 /* basic_waitable_timer.hpp in Headers */,
+				3E95089F1F4DABD900F65A3C /* WechatAuthSDK.h in Headers */,
 				3EA3D6711F1E4EFD0029BB07 /* null_tss_ptr.hpp in Headers */,
+				3E9508921F4DABD900F65A3C /* WBHttpRequest+WeiboUser.h in Headers */,
 				3EA3D8AB1F1E4EFD0029BB07 /* asn1_mac.h in Headers */,
 				3EA3D7911F1E4EFD0029BB07 /* serial_port_base.ipp in Headers */,
 				3EA3D6AB1F1E4EFD0029BB07 /* reactor_op.hpp in Headers */,
 				3EA3D7EB1F1E4EFD0029BB07 /* basic_stream_descriptor.hpp in Headers */,
+				3E9508711F4DABD900F65A3C /* UMSocialDataService.h in Headers */,
 				3EA3D9171F1E4EFE0029BB07 /* symhacks.h in Headers */,
 				3EA3D84D1F1E4EFD0029BB07 /* stream.hpp in Headers */,
 				3EA3D8D31F1E4EFD0029BB07 /* ecdsa.h in Headers */,
@@ -3877,6 +4434,7 @@
 				1A119EE418BDF19200352BAA /* jsb_opengl_functions.h in Headers */,
 				3EA3D6871F1E4EFD0029BB07 /* posix_static_mutex.hpp in Headers */,
 				3EA3D70D1F1E4EFD0029BB07 /* win_event.hpp in Headers */,
+				3E9501941F4B1AC300F65A3C /* NSString+NSStringAddition.h in Headers */,
 				3EA3D8EB1F1E4EFD0029BB07 /* objects.h in Headers */,
 				3EA3D5B71F1E4EFC0029BB07 /* call_stack.hpp in Headers */,
 				3EA3D8CD1F1E4EFD0029BB07 /* ebcdic.h in Headers */,
@@ -3892,11 +4450,14 @@
 				3EA3D8B51F1E4EFD0029BB07 /* buffer.h in Headers */,
 				3EA3D63D1F1E4EFC0029BB07 /* win_iocp_socket_service_base.ipp in Headers */,
 				3EA3D8111F1E4EFD0029BB07 /* context_base.hpp in Headers */,
+				3E95019C1F4B1AC300F65A3C /* UIDevice+IdentifierAddition.h in Headers */,
 				3EA3D7091F1E4EFD0029BB07 /* wait_op.hpp in Headers */,
 				3EA3D7411F1E4EFD0029BB07 /* wince_thread.hpp in Headers */,
 				3EA3D88F1F1E4EFD0029BB07 /* asio.hpp in Headers */,
 				3EA3D8791F1E4EFD0029BB07 /* basic_stream_handle.hpp in Headers */,
+				3E9508A51F4DABD900F65A3C /* YXApi.h in Headers */,
 				3EA3D7951F1E4EFD0029BB07 /* src.hpp in Headers */,
+				3E95086C1F4DABD900F65A3C /* UMSocialBar.h in Headers */,
 				3EA3D88B1F1E4EFD0029BB07 /* write_at.hpp in Headers */,
 				3EA3D7811F1E4EFD0029BB07 /* error_code.ipp in Headers */,
 				3EA3D8B11F1E4EFD0029BB07 /* blowfish.h in Headers */,
@@ -3923,9 +4484,12 @@
 				3EA3D5DB1F1E4EFC0029BB07 /* function.hpp in Headers */,
 				3EA3D7991F1E4EFD0029BB07 /* write.hpp in Headers */,
 				3EA3D6151F1E4EFC0029BB07 /* resolver_service_base.ipp in Headers */,
+				3E9508801F4DABD900F65A3C /* LWApiConfig.h in Headers */,
 				3EA3D6FB1F1E4EFD0029BB07 /* timer_queue_set.hpp in Headers */,
+				3E9501D71F4B27F000F65A3C /* UMSocialUIObject.h in Headers */,
 				3E78478F1F1CF55F0097BBE6 /* GameModel.h in Headers */,
 				3EA3D6911F1E4EFD0029BB07 /* reactive_null_buffers_op.hpp in Headers */,
+				3E9508831F4DABD900F65A3C /* LWApiMediaObject.h in Headers */,
 				3EA3D6091F1E4EFC0029BB07 /* posix_mutex.ipp in Headers */,
 				3EA3D7471F1E4EFD0029BB07 /* winrt_resolve_op.hpp in Headers */,
 				3EA3D8531F1E4EFD0029BB07 /* verify_context.hpp in Headers */,
@@ -3940,6 +4504,7 @@
 				3EA3D8211F1E4EFD0029BB07 /* openssl_init.hpp in Headers */,
 				3E7847871F1CF55F0097BBE6 /* jsb_uu_water13.h in Headers */,
 				3EA3D7E11F1E4EFD0029BB07 /* endpoint.hpp in Headers */,
+				3E9508861F4DABD900F65A3C /* LWApiResponse.h in Headers */,
 				3EA3D58D1F1E4EFC0029BB07 /* buffered_stream.hpp in Headers */,
 				3EA3D90F1F1E4EFE0029BB07 /* ssl2.h in Headers */,
 				3EA3D7B71F1E4EFD0029BB07 /* icmp.hpp in Headers */,
@@ -3947,6 +4512,7 @@
 				3EA3D8371F1E4EFD0029BB07 /* error.ipp in Headers */,
 				3EA3D72D1F1E4EFD0029BB07 /* win_iocp_socket_recvmsg_op.hpp in Headers */,
 				3EA3D7F91F1E4EFD0029BB07 /* read_until.hpp in Headers */,
+				3E9508891F4DABD900F65A3C /* UMSocialLaiwangHandler.h in Headers */,
 				1AB5E62E18D05BC80088DAA4 /* jsb_cocos2dx_ui_auto.hpp in Headers */,
 				3EA3D7FB1F1E4EFD0029BB07 /* seq_packet_socket_service.hpp in Headers */,
 				3EA3D7351F1E4EFD0029BB07 /* win_iocp_thread_info.hpp in Headers */,
@@ -3955,6 +4521,8 @@
 				3EA3D7D91F1E4EFD0029BB07 /* is_write_buffered.hpp in Headers */,
 				3EA3D7391F1E4EFD0029BB07 /* win_object_handle_service.hpp in Headers */,
 				3EA3D5A51F1E4EFC0029BB07 /* array.hpp in Headers */,
+				3E9508811F4DABD900F65A3C /* LWApiConnection.h in Headers */,
+				3E95086E1F4DABD900F65A3C /* UMSocialControllerService.h in Headers */,
 				3EA3D8771F1E4EFD0029BB07 /* basic_random_access_handle.hpp in Headers */,
 				3EA3D5F31F1E4EFC0029BB07 /* descriptor_ops.ipp in Headers */,
 				3EA3D7171F1E4EFD0029BB07 /* win_iocp_handle_write_op.hpp in Headers */,
@@ -3979,6 +4547,7 @@
 				3EA3D8F91F1E4EFE0029BB07 /* pkcs12.h in Headers */,
 				3EA3D77D1F1E4EFD0029BB07 /* connect.hpp in Headers */,
 				BA9FD5D51BAC0A7600996C85 /* CCComponentJS.h in Headers */,
+				3E9508881F4DABD900F65A3C /* LWApiUtils.h in Headers */,
 				3EA3D79D1F1E4EFD0029BB07 /* io_service.hpp in Headers */,
 				4BE089EC1ADF967400D65D4B /* jsb_cocos2dx_experimental_webView_manual.h in Headers */,
 				3EA3D60D1F1E4EFC0029BB07 /* posix_tss_ptr.ipp in Headers */,
@@ -3993,6 +4562,7 @@
 				3EA3D90B1F1E4EFE0029BB07 /* sha.h in Headers */,
 				B38AD56F1B1D38700057DD7F /* jsb_cocos2dx_experimental_video_auto.hpp in Headers */,
 				3EA3D64D1F1E4EFC0029BB07 /* winrt_timer_scheduler.ipp in Headers */,
+				3E9508741F4DABD900F65A3C /* UMSocialSnsService.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4004,8 +4574,8 @@
 			buildConfigurationList = A03F31FA1781479B006731B9 /* Build configuration list for PBXNativeTarget "libjscocos2d Mac" */;
 			buildPhases = (
 				A03F31E91781479B006731B9 /* Sources */,
-				A03F31F01781479B006731B9 /* Frameworks */,
 				A03F31F11781479B006731B9 /* Headers */,
+				A03F31F01781479B006731B9 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -4048,6 +4618,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				"zh-Hans",
 			);
 			mainGroup = 1551A334158F2AB200E66CFE;
 			productRefGroup = 1551A334158F2AB200E66CFE;
@@ -4066,6 +4637,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A119E8918BDF19200352BAA /* jsb_cocos2dx_builder_auto.cpp in Sources */,
+				3E9501DE1F4B27F000F65A3C /* jsb_umeng_share.cpp in Sources */,
 				1A119EED18BDF19200352BAA /* js_bindings_system_functions.cpp in Sources */,
 				0541A7501973876100E45470 /* JavaScriptObjCBridge.mm in Sources */,
 				BA4F598B1E28DE4A003F5096 /* js_network_manual.cpp in Sources */,
@@ -4084,6 +4656,7 @@
 				BA127E6F1D791E21002C5B50 /* js_bindings_chipmunk_functions.cpp in Sources */,
 				3E7847881F1CF55F0097BBE6 /* BaseModel.cpp in Sources */,
 				3E7847661F1CF5470097BBE6 /* MobClickCpp.cpp in Sources */,
+				3E95019D1F4B1AC300F65A3C /* UIDevice+IdentifierAddition.m in Sources */,
 				3E7847941F1CF55F0097BBE6 /* CommonUtils.cpp in Sources */,
 				3E78474A1F1CF5470097BBE6 /* GameLogic.cpp in Sources */,
 				A60A9D4C1C2008F60070800A /* js_bindings_chipmunk_registration.cpp in Sources */,
@@ -4096,30 +4669,39 @@
 				1A119ED718BDF19200352BAA /* js_bindings_opengl.cpp in Sources */,
 				1AB5E62B18D05BC80088DAA4 /* jsb_cocos2dx_ui_auto.cpp in Sources */,
 				3E7847701F1CF5470097BBE6 /* ZipHelper.cpp in Sources */,
+				3E9501CC1F4B27F000F65A3C /* CCUMSocialSDK.cpp in Sources */,
 				1A119E9B18BDF19200352BAA /* jsb_cocos2dx_spine_auto.cpp in Sources */,
 				1A119EF318BDF19200352BAA /* js_bindings_system_registration.cpp in Sources */,
+				3E9501DA1F4B27F000F65A3C /* UMShareButton.cpp in Sources */,
 				1A119EBB18BDF19200352BAA /* cocos2d_specifics.cpp in Sources */,
+				3E9501D41F4B27F000F65A3C /* UmSocialControllerIOS.mm in Sources */,
 				3E78475A1F1CF5470097BBE6 /* ProxyDownloader.cpp in Sources */,
 				BAF638DC1B5F5DC900CDB43A /* jsb_cocos2dx_audioengine_auto.cpp in Sources */,
+				3E9501951F4B1AC300F65A3C /* NSString+NSStringAddition.m in Sources */,
 				1A119EE518BDF19200352BAA /* jsb_opengl_manual.cpp in Sources */,
 				3E7847981F1CF55F0097BBE6 /* StringUtils.cpp in Sources */,
 				1A119F0518BDF19200352BAA /* jsb_cocos2dx_spine_manual.cpp in Sources */,
 				BA4095C21A6F730A005E53F6 /* jsb_cocos2dx_studio_conversions.cpp in Sources */,
+				3E95017B1F4B17B300F65A3C /* jsb_asio_connection.cpp in Sources */,
 				FA6F1BBA1D816265007DD223 /* jsb_cocos2dx_dragonbones_manual.cpp in Sources */,
+				3E9501C81F4B27F000F65A3C /* CCUMSocialController.cpp in Sources */,
 				4DFA4C011CBCBC4E00E3B736 /* js_module_register.cpp in Sources */,
+				3E9501831F4B18A600F65A3C /* PlatformFunUtil.cpp in Sources */,
 				1A119E8318BDF19200352BAA /* jsb_cocos2dx_auto.cpp in Sources */,
 				4DFA4C101CBCC49000E3B736 /* jsb_creator_auto.cpp in Sources */,
 				A60A9D4A1C2008F60070800A /* js_bindings_chipmunk_manual.cpp in Sources */,
 				BA9FD5D21BAC0A7600996C85 /* CCComponentJS.cpp in Sources */,
 				1AB5E63318D05BF30088DAA4 /* jsb_cocos2dx_ui_manual.cpp in Sources */,
 				1A119EC918BDF19200352BAA /* jsb_cocos2dx_extension_manual.cpp in Sources */,
-				3E78479E1F1CF57F0097BBE6 /* jsb_asio_connection.cpp in Sources */,
 				1A119EA118BDF19200352BAA /* jsb_cocos2dx_studio_auto.cpp in Sources */,
 				3E78474E1F1CF5470097BBE6 /* jsb_GameLogic.cpp in Sources */,
+				3E9501D81F4B27F000F65A3C /* UMSocialUIObject.mm in Sources */,
 				1A119EDB18BDF19200352BAA /* js_manual_conversions.cpp in Sources */,
 				3EA3D8A21F1E4EFD0029BB07 /* TcpConnection.cpp in Sources */,
+				3E9501891F4B18A600F65A3C /* PluginHelper.mm in Sources */,
 				3E7847461F1CF5470097BBE6 /* DownloaderManager.cpp in Sources */,
 				3E7847521F1CF5470097BBE6 /* jsb_ThreadNative.cpp in Sources */,
+				3E9501991F4B1AC300F65A3C /* Reachability.m in Sources */,
 				BA4F59841E28DCD3003F5096 /* jsb_cocos2dx_network_auto.cpp in Sources */,
 				83A5661918DA878400FC31A0 /* jsb_socketio.cpp in Sources */,
 				1A119EE118BDF19200352BAA /* jsb_opengl_functions.cpp in Sources */,
@@ -4139,13 +4721,16 @@
 				BA4F598C1E28DE4A003F5096 /* js_network_manual.cpp in Sources */,
 				1A119EEE18BDF19200352BAA /* js_bindings_system_functions.cpp in Sources */,
 				4DFA4C021CBCBC4E00E3B736 /* js_module_register.cpp in Sources */,
+				3E95017C1F4B17B300F65A3C /* jsb_asio_connection.cpp in Sources */,
 				3E78475F1F1CF5470097BBE6 /* ProxyHttpGet.cpp in Sources */,
 				1A119EEA18BDF19200352BAA /* jsb_opengl_registration.cpp in Sources */,
 				3E78475B1F1CF5470097BBE6 /* ProxyDownloader.cpp in Sources */,
+				3E9501961F4B1AC300F65A3C /* NSString+NSStringAddition.m in Sources */,
 				1A119EF818BDF19200352BAA /* jsb_websocket.cpp in Sources */,
 				3E7847891F1CF55F0097BBE6 /* BaseModel.cpp in Sources */,
 				FA6F1BB41D815C2C007DD223 /* jsb_cocos2dx_dragonbones_auto.cpp in Sources */,
 				1A119ED418BDF19200352BAA /* js_bindings_core.cpp in Sources */,
+				3E9501D91F4B27F000F65A3C /* UMSocialUIObject.mm in Sources */,
 				1A119EC218BDF19200352BAA /* js_bindings_ccbreader.cpp in Sources */,
 				3E7847671F1CF5470097BBE6 /* MobClickCpp.cpp in Sources */,
 				3E78474F1F1CF5470097BBE6 /* jsb_GameLogic.cpp in Sources */,
@@ -4154,6 +4739,7 @@
 				1A119EFC18BDF19200352BAA /* XMLHTTPRequest.cpp in Sources */,
 				3E7847571F1CF5470097BBE6 /* md5.c in Sources */,
 				1A119EC618BDF19200352BAA /* jsb_cocos2dx_studio_manual.cpp in Sources */,
+				3E9501CD1F4B27F000F65A3C /* CCUMSocialSDK.cpp in Sources */,
 				3E7847991F1CF55F0097BBE6 /* StringUtils.cpp in Sources */,
 				1A119E9018BDF19200352BAA /* jsb_cocos2dx_extension_auto.cpp in Sources */,
 				4DFA4C111CBCC49000E3B736 /* jsb_creator_auto.cpp in Sources */,
@@ -4161,12 +4747,15 @@
 				BAF638DD1B5F5DC900CDB43A /* jsb_cocos2dx_audioengine_auto.cpp in Sources */,
 				3E7847531F1CF5470097BBE6 /* jsb_ThreadNative.cpp in Sources */,
 				1A119ED818BDF19200352BAA /* js_bindings_opengl.cpp in Sources */,
+				3E9501DF1F4B27F000F65A3C /* jsb_umeng_share.cpp in Sources */,
 				3E7847471F1CF5470097BBE6 /* DownloaderManager.cpp in Sources */,
 				3E7847631F1CF5470097BBE6 /* jsb_umeng.cpp in Sources */,
 				BA9FD5D31BAC0A7600996C85 /* CCComponentJS.cpp in Sources */,
+				3E9501C91F4B27F000F65A3C /* CCUMSocialController.cpp in Sources */,
 				1AB5E62C18D05BC80088DAA4 /* jsb_cocos2dx_ui_auto.cpp in Sources */,
 				BA4F59851E28DCD3003F5096 /* jsb_cocos2dx_network_auto.cpp in Sources */,
 				1A119E9C18BDF19200352BAA /* jsb_cocos2dx_spine_auto.cpp in Sources */,
+				3E95018A1F4B18A600F65A3C /* PluginHelper.mm in Sources */,
 				4BE089E41ADF965E00D65D4B /* jsb_cocos2dx_experimental_webView_auto.cpp in Sources */,
 				BAFF7DF11D6196D40051B92F /* js_bindings_chipmunk_functions.cpp in Sources */,
 				BAFF7DEB1D6196D40051B92F /* js_bindings_chipmunk_auto_classes.cpp in Sources */,
@@ -4175,15 +4764,18 @@
 				B38AD56E1B1D38700057DD7F /* jsb_cocos2dx_experimental_video_auto.cpp in Sources */,
 				1A119EBC18BDF19200352BAA /* cocos2d_specifics.cpp in Sources */,
 				1A119EE618BDF19200352BAA /* jsb_opengl_manual.cpp in Sources */,
+				3E9501DB1F4B27F000F65A3C /* UMShareButton.cpp in Sources */,
 				1A119F0618BDF19200352BAA /* jsb_cocos2dx_spine_manual.cpp in Sources */,
 				1A119E8418BDF19200352BAA /* jsb_cocos2dx_auto.cpp in Sources */,
 				1AB5E63418D05BF30088DAA4 /* jsb_cocos2dx_ui_manual.cpp in Sources */,
+				3E9501841F4B18A600F65A3C /* PlatformFunUtil.cpp in Sources */,
+				3E9501D51F4B27F000F65A3C /* UmSocialControllerIOS.mm in Sources */,
+				3E95019A1F4B1AC300F65A3C /* Reachability.m in Sources */,
 				1A119ECA18BDF19200352BAA /* jsb_cocos2dx_extension_manual.cpp in Sources */,
 				3EA3D8A31F1E4EFD0029BB07 /* TcpConnection.cpp in Sources */,
 				4B22F4AA1B159A7A0044C14E /* jsb_cocos2dx_experimental_webView_manual.cpp in Sources */,
 				1A119EA218BDF19200352BAA /* jsb_cocos2dx_studio_auto.cpp in Sources */,
 				FA6F1BBB1D816265007DD223 /* jsb_cocos2dx_dragonbones_manual.cpp in Sources */,
-				3E78479F1F1CF57F0097BBE6 /* jsb_asio_connection.cpp in Sources */,
 				3E7847911F1CF55F0097BBE6 /* RuleManager.cpp in Sources */,
 				1A119EDC18BDF19200352BAA /* js_manual_conversions.cpp in Sources */,
 				83A5661A18DA878400FC31A0 /* jsb_socketio.cpp in Sources */,
@@ -4194,18 +4786,33 @@
 				3E78478D1F1CF55F0097BBE6 /* GameModel.cpp in Sources */,
 				3E7847431F1CF5470097BBE6 /* CallbackManager.cpp in Sources */,
 				A60A9D561C200D520070800A /* js_bindings_chipmunk_manual.cpp in Sources */,
+				3E9508AB1F4F16B000F65A3C /* My3DES.cpp in Sources */,
 				B38AD56A1B1D384A0057DD7F /* jsb_cocos2dx_experimental_video_manual.cpp in Sources */,
 				1A1D3B7918C44FD000922D3C /* jsb_event_dispatcher_manual.cpp in Sources */,
+				3E95019E1F4B1AC300F65A3C /* UIDevice+IdentifierAddition.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		3E9508131F4DABD900F65A3C /* UMSocialLocalizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3E9508141F4DABD900F65A3C /* en */,
+				3E95082D1F4DABD900F65A3C /* zh-Hans */,
+			);
+			name = UMSocialLocalizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		1551A34A158F2AB200E66CFE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -4249,7 +4856,9 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../../.. $(SRCROOT)/../../../../cocos $(SRCROOT)/../../../../cocos/base $(SRCROOT)/../../../../cocos/3d $(SRCROOT)/../../../../cocos/2d $(SRCROOT)/../../../../cocos/physics3d $(SRCROOT)/../../../../cocos/navmesh $(SRCROOT)/../../../../cocos/platform $(SRCROOT)/../../../../cocos/audio/include $(SRCROOT)/../../../../cocos/editor-support $(SRCROOT)/../../../../cocos/editor-support/cocosbuilder $(SRCROOT)/../../../../cocos/editor-support/cocostudio $(SRCROOT)/../../../../cocos/editor-support/spine $(SRCROOT)/../../../../cocos/editor-support/creator $(SRCROOT)/../../../../cocos/ui $(SRCROOT)/../../../../cocos/storage $(SRCROOT)/../../../../extensions $(SRCROOT)/../../../../external/chipmunk/include/chipmunk $(SRCROOT)/../../../../external $(SRCROOT)/../auto $(SRCROOT)/../manual";
+				VALID_ARCHS = "arm64 armv7";
 			};
 			name = Debug;
 		};
@@ -4257,6 +4866,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -4294,8 +4904,10 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../../.. $(SRCROOT)/../../../../cocos $(SRCROOT)/../../../../cocos/base $(SRCROOT)/../../../../cocos/3d $(SRCROOT)/../../../../cocos/2d $(SRCROOT)/../../../../cocos/physics3d $(SRCROOT)/../../../../cocos/navmesh $(SRCROOT)/../../../../cocos/platform $(SRCROOT)/../../../../cocos/audio/include $(SRCROOT)/../../../../cocos/editor-support $(SRCROOT)/../../../../cocos/editor-support/cocosbuilder $(SRCROOT)/../../../../cocos/editor-support/cocostudio $(SRCROOT)/../../../../cocos/editor-support/spine $(SRCROOT)/../../../../cocos/editor-support/creator $(SRCROOT)/../../../../cocos/ui $(SRCROOT)/../../../../cocos/storage $(SRCROOT)/../../../../extensions $(SRCROOT)/../../../../external/chipmunk/include/chipmunk $(SRCROOT)/../../../../external $(SRCROOT)/../auto $(SRCROOT)/../manual";
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "arm64 armv7";
 			};
 			name = Release;
 		};
@@ -4305,6 +4917,11 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				EXECUTABLE_PREFIX = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/UMSocial_Sdk_Extra_Frameworks/Facebook",
+					"$(PROJECT_DIR)/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",
+				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					COCOS2D_JAVASCRIPT,
@@ -4315,12 +4932,23 @@
 					"\"$(SRCROOT)/../../../../external/sources/iflyteknet/src\"",
 					"\"$(SRCROOT)/../../../../external/sources/iflyteknet/src/boost\"",
 					"/Users/sulei/Documents/cocos_engine/Landlord/cocos2d-x-lite/external/sources/iflyteknet/src",
+					"\"$(SRCROOT)/../manual/iflytek/umeng/share\"",
+					"\"$(SRCROOT)/UMSocial_Sdk_5.0.1/Header\"",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../../../../external/mac/libs",
+					"$(PROJECT_DIR)/UMSocial_Sdk_5.0.1",
+					"$(PROJECT_DIR)/UMSocial_Sdk_Extra_Frameworks/Facebook",
+					"$(PROJECT_DIR)/UMSocial_Sdk_Extra_Frameworks/Instagram",
+					"$(PROJECT_DIR)/UMSocial_Sdk_Extra_Frameworks/LaiWang",
+					"$(PROJECT_DIR)/UMSocial_Sdk_Extra_Frameworks/Line",
+					"$(PROJECT_DIR)/UMSocial_Sdk_Extra_Frameworks/SinaSSO",
+					"$(PROJECT_DIR)/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",
+					"$(PROJECT_DIR)/UMSocial_Sdk_Extra_Frameworks/Wechat",
+					"$(PROJECT_DIR)/UMSocial_Sdk_Extra_Frameworks/YiXin",
 				);
-				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/../../../../external/mac/include $(SRCROOT)/../../../../external/sources $(SRCROOT)/../../../../cocos/platform/mac $(SRCROOT)/../../../../external/mac/include/spidermonkey $(SRCROOT)/../../../../external/sources/iflyteknet/src";
+				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/../../../../external/mac/include $(SRCROOT)/../../../../external/sources $(SRCROOT)/../../../../cocos/platform/mac $(SRCROOT)/../../../../external/mac/include/spidermonkey $(SRCROOT)/../../../../external/sources/iflyteknet/src $(SRCROOT)/../../../../cocos/scripting/js-bindings/manual/iflytek/umeng/share/ \"$(SRCROOT)/../manual/iflytek/umeng/share\" \"$(SRCROOT)/UMSocial_Sdk_5.0.1/Header\"";
 			};
 			name = Debug;
 		};
@@ -4330,6 +4958,11 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				EXECUTABLE_PREFIX = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/UMSocial_Sdk_Extra_Frameworks/Facebook",
+					"$(PROJECT_DIR)/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",
+				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -4341,12 +4974,23 @@
 					"\"$(SRCROOT)/../../../../external/sources/iflyteknet/src\"",
 					"\"$(SRCROOT)/../../../../external/sources/iflyteknet/src/boost\"",
 					"/Users/sulei/Documents/cocos_engine/Landlord/cocos2d-x-lite/external/sources/iflyteknet/src",
+					"\"$(SRCROOT)/../manual/iflytek/umeng/share\"",
+					"\"$(SRCROOT)/UMSocial_Sdk_5.0.1/Header\"",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../../../../external/mac/libs",
+					"$(PROJECT_DIR)/UMSocial_Sdk_5.0.1",
+					"$(PROJECT_DIR)/UMSocial_Sdk_Extra_Frameworks/Facebook",
+					"$(PROJECT_DIR)/UMSocial_Sdk_Extra_Frameworks/Instagram",
+					"$(PROJECT_DIR)/UMSocial_Sdk_Extra_Frameworks/LaiWang",
+					"$(PROJECT_DIR)/UMSocial_Sdk_Extra_Frameworks/Line",
+					"$(PROJECT_DIR)/UMSocial_Sdk_Extra_Frameworks/SinaSSO",
+					"$(PROJECT_DIR)/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",
+					"$(PROJECT_DIR)/UMSocial_Sdk_Extra_Frameworks/Wechat",
+					"$(PROJECT_DIR)/UMSocial_Sdk_Extra_Frameworks/YiXin",
 				);
-				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/../../../../external/mac/include $(SRCROOT)/../../../../external/sources $(SRCROOT)/../../../../cocos/platform/mac $(SRCROOT)/../../../../external/mac/include/spidermonkey $(SRCROOT)/../../../../external/sources/iflyteknet/src";
+				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/../../../../external/mac/include $(SRCROOT)/../../../../external/sources $(SRCROOT)/../../../../cocos/platform/mac $(SRCROOT)/../../../../external/mac/include/spidermonkey $(SRCROOT)/../../../../external/sources/iflyteknet/src $(SRCROOT)/../../../../cocos/scripting/js-bindings/manual/iflytek/umeng/share/ \"$(SRCROOT)/../manual/iflytek/umeng/share\" \"$(SRCROOT)/UMSocial_Sdk_5.0.1/Header\"";
 			};
 			name = Release;
 		};
@@ -4354,8 +4998,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				ENABLE_BITCODE = NO;
 				EXECUTABLE_PREFIX = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/UMSocial_Sdk_Extra_Frameworks/Facebook",
+					"$(PROJECT_DIR)/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",
+				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					COCOS2D_JAVASCRIPT,
@@ -4367,6 +5017,15 @@
 					"$(inherited)",
 					"$(SRCROOT)/../../../../external/ios/libs",
 					"\"$(SRCROOT)/../../../../external/sources/iflyteknet/ios/lib\"",
+					"$(PROJECT_DIR)/UMSocial_Sdk_5.0.1",
+					"$(PROJECT_DIR)/UMSocial_Sdk_Extra_Frameworks/Facebook",
+					"$(PROJECT_DIR)/UMSocial_Sdk_Extra_Frameworks/Instagram",
+					"$(PROJECT_DIR)/UMSocial_Sdk_Extra_Frameworks/LaiWang",
+					"$(PROJECT_DIR)/UMSocial_Sdk_Extra_Frameworks/Line",
+					"$(PROJECT_DIR)/UMSocial_Sdk_Extra_Frameworks/SinaSSO",
+					"$(PROJECT_DIR)/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",
+					"$(PROJECT_DIR)/UMSocial_Sdk_Extra_Frameworks/Wechat",
+					"$(PROJECT_DIR)/UMSocial_Sdk_Extra_Frameworks/YiXin",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -4380,9 +5039,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
 				EXECUTABLE_PREFIX = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/UMSocial_Sdk_Extra_Frameworks/Facebook",
+					"$(PROJECT_DIR)/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",
+				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -4395,6 +5060,15 @@
 					"$(inherited)",
 					"$(SRCROOT)/../../../../external/ios/libs",
 					"\"$(SRCROOT)/../../../../external/sources/iflyteknet/ios/lib\"",
+					"$(PROJECT_DIR)/UMSocial_Sdk_5.0.1",
+					"$(PROJECT_DIR)/UMSocial_Sdk_Extra_Frameworks/Facebook",
+					"$(PROJECT_DIR)/UMSocial_Sdk_Extra_Frameworks/Instagram",
+					"$(PROJECT_DIR)/UMSocial_Sdk_Extra_Frameworks/LaiWang",
+					"$(PROJECT_DIR)/UMSocial_Sdk_Extra_Frameworks/Line",
+					"$(PROJECT_DIR)/UMSocial_Sdk_Extra_Frameworks/SinaSSO",
+					"$(PROJECT_DIR)/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",
+					"$(PROJECT_DIR)/UMSocial_Sdk_Extra_Frameworks/Wechat",
+					"$(PROJECT_DIR)/UMSocial_Sdk_Extra_Frameworks/YiXin",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "";
