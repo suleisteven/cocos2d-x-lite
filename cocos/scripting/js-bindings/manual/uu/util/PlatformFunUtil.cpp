@@ -307,6 +307,19 @@ string PlatformFunUtil::getExternalParam(const string& key)
 }
 
 
+bool PlatformFunUtil::payForIAP(const string& productId)
+{
+	bool result = false;
+#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+	
+#elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
+	
+#else
+	
+#endif
+	return result;
+}
+
 int PlatformFunUtil::getBatteryPercent()
 {
 	int result = 0;

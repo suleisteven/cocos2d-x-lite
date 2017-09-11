@@ -537,6 +537,31 @@ bool js_cocos2dx_uu_water13_getExternalParam(JSContext *cx, uint32_t argc, jsval
 	return true;
 }
 
+
+bool js_cocos2dx_uu_water13_payForIAP(JSContext *cx, uint32_t argc, jsval *vp)
+{
+
+	JS::CallArgs argv = JS::CallArgsFromVp(argc, vp);
+	JS::RootedObject obj(cx, argv.thisv().toObjectOrNull());
+
+	if (argc == 1)
+	{
+		string productId;
+		
+		if (argv[0].isString())
+		{
+			jsval_to_std_string(cx, argv[0], &productId);
+		}
+		
+	}
+	else
+	{
+		JS_ReportError(cx, "wrong number of arguments: %d, was expecting %d", argc, 1);
+		return false;
+	}
+	return true;
+}
+
 void js_cocos2dx_uu_water13_finalize(JSFreeOp *fop, JSObject *obj) {
 	CCLOG("jsbindings: finalizing JS object %p (UUWater13Native)", obj);
 

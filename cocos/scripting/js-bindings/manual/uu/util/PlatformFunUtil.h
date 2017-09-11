@@ -133,6 +133,10 @@ public:
 	 */
 	static string getExternalParam(const string& key);
 
+	/**
+	 * iap支付
+	 */
+	static bool payForIAP(const string& productId);
 
 #if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
 	static bool getJNIStaticMethodInfo(cocos2d::JniMethodInfo &methodinfo,
