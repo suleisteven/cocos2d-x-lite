@@ -14,7 +14,7 @@
 
 #include <iostream>
 #include "cocos2d.h"
-#include "Cocos2dx/Common/CCUMSocialSDK.h"
+#include "../Common/CCUMSocialSDK.h"
 #include <vector>
 
 USING_NS_CC;

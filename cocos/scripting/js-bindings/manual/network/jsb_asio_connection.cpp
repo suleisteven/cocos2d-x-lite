@@ -623,9 +623,15 @@ bool js_cocos2dx_extension_AsioConnection_asynSend(JSContext *cx, uint32_t argc,
     return true;
 }
 
-
+#include "My3DES.h"
 bool js_cocos2dx_extension_AsioConnection_constructor(JSContext *cx, uint32_t argc, jsval *vp)
 {
+    
+//    int r = 0;
+//    string result = My3DES::encryptDES("hello", "f334acc30370c1e4e7ddae78", &r);
+//    
+//    int xxx = 1;
+    
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
 
   //  if (argc == 1 || argc == 2)

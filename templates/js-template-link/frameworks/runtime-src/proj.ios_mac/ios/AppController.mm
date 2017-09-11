@@ -31,6 +31,9 @@
 #import "RootViewController.h"
 #import "platform/ios/CCEAGLView-ios.h"
 
+#import "UMSocial.h"
+#include "uu/util/PlatformFunUtil.h"
+
 @implementation AppController
 
 #pragma mark -
@@ -38,6 +41,60 @@
 
 // cocos2d application instance
 static AppDelegate s_sharedApplication;
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+    NSString* urlStr = [[url absoluteString] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString* schemeStr = [[url scheme] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
+    
+    if([schemeStr isEqualToString:@"uuwater13"])
+    {
+        string urlString = string([urlStr UTF8String]);
+        PlatformFunUtil::handleExternalUrl(urlString);
+        return true;
+    }
+    else
+    {
+        return [UMSocialSnsService handleOpenURL:url];
+    }
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    NSString* urlStr = [[url absoluteString] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString* schemeStr = [[url scheme] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
+    
+    if([schemeStr isEqualToString:@"uuwater13"])
+    {
+        string urlString = string([urlStr UTF8String]);
+        PlatformFunUtil::handleExternalUrl(urlString);
+        return true;
+    }
+    else
+    {
+        return [UMSocialSnsService handleOpenURL:url];
+    }
+}
+
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString*, id> *)options
+{
+    NSString* urlStr = [[url absoluteString] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString* schemeStr = [[url scheme] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
+    
+    if([schemeStr isEqualToString:@"uuwater13"])
+    {
+        string urlString = string([urlStr UTF8String]);
+        PlatformFunUtil::handleExternalUrl(urlString);
+        return true;
+    }
+    else
+    {
+        return [UMSocialSnsService handleOpenURL:url];
+    }
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {

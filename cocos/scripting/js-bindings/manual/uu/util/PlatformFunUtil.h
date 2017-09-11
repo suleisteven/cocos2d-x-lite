@@ -8,7 +8,9 @@
  */
 #ifndef __PLATFORM_FUN_UTIL_H__
 #define __PLATFORM_FUN_UTIL_H__
+
 #include "cocos2d.h"
+
 
 #if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
 #include "platform/android/jni/JniHelper.h"

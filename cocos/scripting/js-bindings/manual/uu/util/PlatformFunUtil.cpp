@@ -8,6 +8,7 @@
  */
 #include "PlatformFunUtil.h"
 #include "StringUtils.h"
+#include <stdlib.h>
 
 
 //===================== android ======================  
@@ -77,7 +78,7 @@ void PlatformFunUtil::rateUs()
 	methodInfo.env->DeleteLocalRef(methodInfo.classID);
 
 #elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
-	PluginHelper::getInstance()->openURL(OnlineConfigParams::getAppDetailAppstoreUrl());
+	//PluginHelper::getInstance()->openURL(OnlineConfigParams::getAppDetailAppstoreUrl());
 #endif
 
 
@@ -110,15 +111,15 @@ int PlatformFunUtil::getAppVersionCode()
     vector<string> versionVec = StringUtil::split(version, '.');
     
     
-    int v0 = __String(versionVec.at(0)).intValue();
-    int v1 = __String(versionVec.at(1)).intValue();
-    int v2 = __String(versionVec.at(2)).intValue();
-    string s = StringUtils::format("%02d%02d%02d", v0,v1,v2);
+    int v0 = atoi(versionVec.at(0).c_str());
+    int v1 = atoi(versionVec.at(1).c_str());
+    int v2 = atoi(versionVec.at(2).c_str());
+    string s = StringUtil::format("%02d%02d%02d", v0,v1,v2);
     
 	int ret = 0;
 	if (StringUtil::isInt(s))
 	{
-		int code = __String(s).intValue();
+		int code =atoi(s.c_str());
         ret = code;
         iosVersionCode = ret;
 	}

@@ -282,7 +282,7 @@ public:
 			string result;
 			for (shared_ptr<PokerModel> poker : pokerVector)
 			{
-				result.append(StringUtils::format("%d-%d,", poker->getPokerValueType(), poker->getPokerMarkType()));
+				result.append(StringUtil::format("%d-%d,", poker->getPokerValueType(), poker->getPokerMarkType()));
 			}
 			return result;
 		}
