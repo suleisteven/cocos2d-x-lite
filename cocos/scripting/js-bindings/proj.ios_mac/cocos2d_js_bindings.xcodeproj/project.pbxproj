@@ -116,6 +116,14 @@
 		1AB5E63418D05BF30088DAA4 /* jsb_cocos2dx_ui_manual.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1AB5E63118D05BF30088DAA4 /* jsb_cocos2dx_ui_manual.cpp */; };
 		1AB5E63518D05BF30088DAA4 /* jsb_cocos2dx_ui_manual.h in Headers */ = {isa = PBXBuildFile; fileRef = 1AB5E63218D05BF30088DAA4 /* jsb_cocos2dx_ui_manual.h */; };
 		1AB5E63618D05BF30088DAA4 /* jsb_cocos2dx_ui_manual.h in Headers */ = {isa = PBXBuildFile; fileRef = 1AB5E63218D05BF30088DAA4 /* jsb_cocos2dx_ui_manual.h */; };
+		3E40315A1F68199800109636 /* IAPHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E4031521F68199800109636 /* IAPHelper.h */; };
+		3E40315B1F68199800109636 /* IAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4031531F68199800109636 /* IAPHelper.m */; };
+		3E40315C1F68199800109636 /* IAPShare.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E4031541F68199800109636 /* IAPShare.h */; };
+		3E40315D1F68199800109636 /* IAPShare.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4031551F68199800109636 /* IAPShare.m */; };
+		3E40315E1F68199800109636 /* NSString+Base64.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E4031561F68199800109636 /* NSString+Base64.h */; };
+		3E40315F1F68199800109636 /* NSString+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4031571F68199800109636 /* NSString+Base64.m */; };
+		3E4031601F68199800109636 /* SFHFKeychainUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E4031581F68199800109636 /* SFHFKeychainUtils.h */; };
+		3E4031611F68199800109636 /* SFHFKeychainUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4031591F68199800109636 /* SFHFKeychainUtils.m */; };
 		3E7847421F1CF5470097BBE6 /* CallbackManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E7847271F1CF5470097BBE6 /* CallbackManager.cpp */; };
 		3E7847431F1CF5470097BBE6 /* CallbackManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E7847271F1CF5470097BBE6 /* CallbackManager.cpp */; };
 		3E7847441F1CF5470097BBE6 /* CallbackManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E7847281F1CF5470097BBE6 /* CallbackManager.h */; };
@@ -1388,6 +1396,14 @@
 		1AB5E62A18D05BC80088DAA4 /* jsb_cocos2dx_ui_auto.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = jsb_cocos2dx_ui_auto.hpp; sourceTree = "<group>"; };
 		1AB5E63118D05BF30088DAA4 /* jsb_cocos2dx_ui_manual.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = jsb_cocos2dx_ui_manual.cpp; sourceTree = "<group>"; };
 		1AB5E63218D05BF30088DAA4 /* jsb_cocos2dx_ui_manual.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jsb_cocos2dx_ui_manual.h; sourceTree = "<group>"; };
+		3E4031521F68199800109636 /* IAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAPHelper.h; sourceTree = "<group>"; };
+		3E4031531F68199800109636 /* IAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAPHelper.m; sourceTree = "<group>"; };
+		3E4031541F68199800109636 /* IAPShare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAPShare.h; sourceTree = "<group>"; };
+		3E4031551F68199800109636 /* IAPShare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAPShare.m; sourceTree = "<group>"; };
+		3E4031561F68199800109636 /* NSString+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Base64.h"; sourceTree = "<group>"; };
+		3E4031571F68199800109636 /* NSString+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Base64.m"; sourceTree = "<group>"; };
+		3E4031581F68199800109636 /* SFHFKeychainUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFHFKeychainUtils.h; sourceTree = "<group>"; };
+		3E4031591F68199800109636 /* SFHFKeychainUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFHFKeychainUtils.m; sourceTree = "<group>"; };
 		3E7847271F1CF5470097BBE6 /* CallbackManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CallbackManager.cpp; sourceTree = "<group>"; };
 		3E7847281F1CF5470097BBE6 /* CallbackManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallbackManager.h; sourceTree = "<group>"; };
 		3E7847291F1CF5470097BBE6 /* DownloaderManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DownloaderManager.cpp; sourceTree = "<group>"; };
@@ -2121,6 +2137,7 @@
 		1551A334158F2AB200E66CFE = {
 			isa = PBXGroup;
 			children = (
+				3E4031511F68199800109636 /* IAPHelper */,
 				3E9508AD1F4F22BD00F65A3C /* libcrypto.a */,
 				3E9508AE1F4F22BD00F65A3C /* libssl.a */,
 				3E9508121F4DABD900F65A3C /* UMSocial_Sdk_5.0.1 */,
@@ -2304,6 +2321,21 @@
 				1AB5E63218D05BF30088DAA4 /* jsb_cocos2dx_ui_manual.h */,
 			);
 			path = ui;
+			sourceTree = "<group>";
+		};
+		3E4031511F68199800109636 /* IAPHelper */ = {
+			isa = PBXGroup;
+			children = (
+				3E4031521F68199800109636 /* IAPHelper.h */,
+				3E4031531F68199800109636 /* IAPHelper.m */,
+				3E4031541F68199800109636 /* IAPShare.h */,
+				3E4031551F68199800109636 /* IAPShare.m */,
+				3E4031561F68199800109636 /* NSString+Base64.h */,
+				3E4031571F68199800109636 /* NSString+Base64.m */,
+				3E4031581F68199800109636 /* SFHFKeychainUtils.h */,
+				3E4031591F68199800109636 /* SFHFKeychainUtils.m */,
+			);
+			path = IAPHelper;
 			sourceTree = "<group>";
 		};
 		3E7847261F1CF5470097BBE6 /* iflytek */ = {
@@ -4146,6 +4178,7 @@
 				3EA3D6B31F1E4EFD0029BB07 /* resolve_op.hpp in Headers */,
 				3EA3D6B71F1E4EFD0029BB07 /* resolver_service_base.hpp in Headers */,
 				3E9501D11F4B27F000F65A3C /* CCUMTypeDef.h in Headers */,
+				3E40315C1F68199800109636 /* IAPShare.h in Headers */,
 				3EA3D6D11F1E4EFD0029BB07 /* socket_ops.hpp in Headers */,
 				3EA3D5F71F1E4EFC0029BB07 /* dev_poll_reactor.ipp in Headers */,
 				3EA3D6051F1E4EFC0029BB07 /* pipe_select_interrupter.ipp in Headers */,
@@ -4225,6 +4258,7 @@
 				3E95086F1F4DABD900F65A3C /* UMSocialControllerServiceComment.h in Headers */,
 				3EA3D6611F1E4EFD0029BB07 /* null_event.hpp in Headers */,
 				3EA3D7EF1F1E4EFD0029BB07 /* stream_descriptor.hpp in Headers */,
+				3E4031601F68199800109636 /* SFHFKeychainUtils.h in Headers */,
 				3EA3D6AD1F1E4EFD0029BB07 /* reactor_op_queue.hpp in Headers */,
 				3EA3D5C11F1E4EFC0029BB07 /* cstdint.hpp in Headers */,
 				3E9508A41F4DABD900F65A3C /* UMSocialYiXinHandler.h in Headers */,
@@ -4250,6 +4284,7 @@
 				3EA3D8A91F1E4EFD0029BB07 /* asn1.h in Headers */,
 				3EA3D8B71F1E4EFD0029BB07 /* comp.h in Headers */,
 				3EA3D6F11F1E4EFD0029BB07 /* throw_error.hpp in Headers */,
+				3E40315A1F68199800109636 /* IAPHelper.h in Headers */,
 				3EA3D6D51F1E4EFD0029BB07 /* socket_select_interrupter.hpp in Headers */,
 				3EA3D7131F1E4EFD0029BB07 /* win_iocp_handle_read_op.hpp in Headers */,
 				3EA3D7AD1F1E4EFD0029BB07 /* basic_resolver_query.hpp in Headers */,
@@ -4514,6 +4549,7 @@
 				3EA3D7F91F1E4EFD0029BB07 /* read_until.hpp in Headers */,
 				3E9508891F4DABD900F65A3C /* UMSocialLaiwangHandler.h in Headers */,
 				1AB5E62E18D05BC80088DAA4 /* jsb_cocos2dx_ui_auto.hpp in Headers */,
+				3E40315E1F68199800109636 /* NSString+Base64.h in Headers */,
 				3EA3D7FB1F1E4EFD0029BB07 /* seq_packet_socket_service.hpp in Headers */,
 				3EA3D7351F1E4EFD0029BB07 /* win_iocp_thread_info.hpp in Headers */,
 				3EA3D76F1F1E4EFD0029BB07 /* handler_alloc_hook.hpp in Headers */,
@@ -4720,6 +4756,7 @@
 				1A119E8A18BDF19200352BAA /* jsb_cocos2dx_builder_auto.cpp in Sources */,
 				BA4F598C1E28DE4A003F5096 /* js_network_manual.cpp in Sources */,
 				1A119EEE18BDF19200352BAA /* js_bindings_system_functions.cpp in Sources */,
+				3E40315B1F68199800109636 /* IAPHelper.m in Sources */,
 				4DFA4C021CBCBC4E00E3B736 /* js_module_register.cpp in Sources */,
 				3E95017C1F4B17B300F65A3C /* jsb_asio_connection.cpp in Sources */,
 				3E78475F1F1CF5470097BBE6 /* ProxyHttpGet.cpp in Sources */,
@@ -4731,6 +4768,7 @@
 				FA6F1BB41D815C2C007DD223 /* jsb_cocos2dx_dragonbones_auto.cpp in Sources */,
 				1A119ED418BDF19200352BAA /* js_bindings_core.cpp in Sources */,
 				3E9501D91F4B27F000F65A3C /* UMSocialUIObject.mm in Sources */,
+				3E4031611F68199800109636 /* SFHFKeychainUtils.m in Sources */,
 				1A119EC218BDF19200352BAA /* js_bindings_ccbreader.cpp in Sources */,
 				3E7847671F1CF5470097BBE6 /* MobClickCpp.cpp in Sources */,
 				3E78474F1F1CF5470097BBE6 /* jsb_GameLogic.cpp in Sources */,
@@ -4767,6 +4805,7 @@
 				3E9501DB1F4B27F000F65A3C /* UMShareButton.cpp in Sources */,
 				1A119F0618BDF19200352BAA /* jsb_cocos2dx_spine_manual.cpp in Sources */,
 				1A119E8418BDF19200352BAA /* jsb_cocos2dx_auto.cpp in Sources */,
+				3E40315F1F68199800109636 /* NSString+Base64.m in Sources */,
 				1AB5E63418D05BF30088DAA4 /* jsb_cocos2dx_ui_manual.cpp in Sources */,
 				3E9501841F4B18A600F65A3C /* PlatformFunUtil.cpp in Sources */,
 				3E9501D51F4B27F000F65A3C /* UmSocialControllerIOS.mm in Sources */,
@@ -4781,6 +4820,7 @@
 				83A5661A18DA878400FC31A0 /* jsb_socketio.cpp in Sources */,
 				1A119EE218BDF19200352BAA /* jsb_opengl_functions.cpp in Sources */,
 				BA4095C31A6F730A005E53F6 /* jsb_cocos2dx_studio_conversions.cpp in Sources */,
+				3E40315D1F68199800109636 /* IAPShare.m in Sources */,
 				1A119F0018BDF19200352BAA /* ScriptingCore.cpp in Sources */,
 				3E7847951F1CF55F0097BBE6 /* CommonUtils.cpp in Sources */,
 				3E78478D1F1CF55F0097BBE6 /* GameModel.cpp in Sources */,
