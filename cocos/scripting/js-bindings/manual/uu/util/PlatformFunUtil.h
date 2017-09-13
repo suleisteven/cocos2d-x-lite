@@ -135,10 +135,11 @@ public:
 	 */
 	static string getExternalParam(const string& key);
 
+    typedef std::function<void(int,string, bool)> PayCallback;
 	/**
 	 * iap支付
 	 */
-	static bool payForIAP(const string& productId);
+    static bool payForIAP(const string& productId, PlatformFunUtil::PayCallback callback);
 
 #if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
 	static bool getJNIStaticMethodInfo(cocos2d::JniMethodInfo &methodinfo,

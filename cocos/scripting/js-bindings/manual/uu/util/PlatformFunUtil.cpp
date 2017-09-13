@@ -253,6 +253,8 @@ bool PlatformFunUtil::isOpenWithOther()
 	
 
 #elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
+    
+ 
 	result = PlatformFunUtil::_isOpenWithOther;	
 #endif
 
@@ -308,13 +310,20 @@ string PlatformFunUtil::getExternalParam(const string& key)
 }
 
 
-bool PlatformFunUtil::payForIAP(const string& productId)
+bool PlatformFunUtil::payForIAP(const string& productId, PayCallback callback)
 {
 	bool result = false;
 #if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
 	
 #elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
-	
+    
+    PluginHelper::getInstance()->payForIAP(productId, [=](int status, string receipt, bool isSanbox){
+        if(callback)
+        {
+            callback(status, receipt,isSanbox);
+        }
+    });
+    result = true;
 #else
 	
 #endif

@@ -117,9 +117,9 @@
 		1AB5E63518D05BF30088DAA4 /* jsb_cocos2dx_ui_manual.h in Headers */ = {isa = PBXBuildFile; fileRef = 1AB5E63218D05BF30088DAA4 /* jsb_cocos2dx_ui_manual.h */; };
 		1AB5E63618D05BF30088DAA4 /* jsb_cocos2dx_ui_manual.h in Headers */ = {isa = PBXBuildFile; fileRef = 1AB5E63218D05BF30088DAA4 /* jsb_cocos2dx_ui_manual.h */; };
 		3E40315A1F68199800109636 /* IAPHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E4031521F68199800109636 /* IAPHelper.h */; };
-		3E40315B1F68199800109636 /* IAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4031531F68199800109636 /* IAPHelper.m */; };
+		3E40315B1F68199800109636 /* IAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4031531F68199800109636 /* IAPHelper.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		3E40315C1F68199800109636 /* IAPShare.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E4031541F68199800109636 /* IAPShare.h */; };
-		3E40315D1F68199800109636 /* IAPShare.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4031551F68199800109636 /* IAPShare.m */; };
+		3E40315D1F68199800109636 /* IAPShare.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4031551F68199800109636 /* IAPShare.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		3E40315E1F68199800109636 /* NSString+Base64.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E4031561F68199800109636 /* NSString+Base64.h */; };
 		3E40315F1F68199800109636 /* NSString+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4031571F68199800109636 /* NSString+Base64.m */; };
 		3E4031601F68199800109636 /* SFHFKeychainUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E4031581F68199800109636 /* SFHFKeychainUtils.h */; };

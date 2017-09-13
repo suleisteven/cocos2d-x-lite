@@ -74,6 +74,10 @@ public:
 	 * @param key qq群key
 	 */
 	bool joinQQGroup(const string& qqGroupNum, const string& key);
+    
+    typedef std::function<void(int, string, bool)> PayCallback;
+    
+    bool payForIAP(const string& productId, PayCallback callback);
 #endif
     
 };

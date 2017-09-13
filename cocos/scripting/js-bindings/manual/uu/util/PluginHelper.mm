@@ -18,7 +18,94 @@
 #import <UIDevice+IdentifierAddition.h>
 #import <Reachability.h>
 #import <sys/utsname.h>
+#import "IAPShare.h"
+#import "IAPHelper.h"
 
+
+bool PluginHelper::payForIAP(const string& productId, PluginHelper::PayCallback callback)
+{
+//    if(![IAPShare sharedHelper].iap) {
+    
+        NSString *str=[NSString stringWithUTF8String:productId.c_str()];
+        
+        NSSet* dataSet = [[NSSet alloc] initWithObjects:str, nil];
+        
+        [IAPShare sharedHelper].iap = [[IAPHelper alloc] initWithProductIdentifiers:dataSet];
+        
+//    }
+    
+    
+    [IAPShare sharedHelper].iap.production = NO;
+    
+    [[IAPShare sharedHelper].iap requestProductsWithCompletion:^(SKProductsRequest* request,SKProductsResponse* response)
+     {
+         if(response > 0 ) {
+             SKProduct* product =[[IAPShare sharedHelper].iap.products objectAtIndex:0];
+             
+             NSLog(@"Price: %@",[[IAPShare sharedHelper].iap getLocalePrice:product]);
+             NSLog(@"Title: %@",product.localizedTitle);
+             
+             [[IAPShare sharedHelper].iap buyProduct:product
+                                        onCompletion:^(SKPaymentTransaction* trans){
+                                            
+                                            if(trans.error)
+                                            {
+                                                NSLog(@"Fail %@",[trans.error localizedDescription]);
+                                                
+                                                if(callback)
+                                                {
+                                                    callback(-1, "", true);
+                                                }
+                                            }
+                                            else if(trans.transactionState == SKPaymentTransactionStatePurchased) {
+                                                
+                                                
+                                                NSData *receiptData = [NSData dataWithContentsOfURL:[[NSBundle mainBundle] appStoreReceiptURL]];
+                                                
+                                                //NSString *receiptBase64 = [NSString base64StringFromData:receiptData length:[receiptData length]];
+                                                
+                                                
+                                                NSString *receiptBase64 = [receiptData base64EncodedStringWithOptions:0];
+                                                
+                                                bool isSanbox = ![[IAPShare sharedHelper].iap production];
+                                                if(callback)
+                                                {
+                                                    
+                                                    std::string outputString = std::string([receiptBase64 UTF8String]);
+                                                    
+                                                    callback(0, outputString, isSanbox);
+                                                }
+//                                                [[IAPShare sharedHelper].iap checkReceipt:[NSData dataWithContentsOfURL:[[NSBundle mainBundle] appStoreReceiptURL]] AndSharedSecret:@"your sharesecret" onCompletion:^(NSString *response, NSError *error) {
+//                                                    
+//                                                    //Convert JSON String to NSDictionary
+//                                                    NSDictionary* rec = [IAPShare toJSON:response];
+//                                                    
+//                                                    if([rec[@"status"] integerValue]==0)
+//                                                    {
+//                                                        
+//                                                        [[IAPShare sharedHelper].iap provideContentWithTransaction:trans];
+//                                                        NSLog(@"SUCCESS %@",response);
+//                                                        NSLog(@"Pruchases %@",[IAPShare sharedHelper].iap.purchasedProducts);
+//                                                    }
+//                                                    else {
+//                                                        NSLog(@"Fail");
+//                                                    }
+//                                                }];
+                                            }
+                                            else if(trans.transactionState == SKPaymentTransactionStateFailed) {
+                                                NSLog(@"Fail");
+                                                
+                                                if(callback)
+                                                {
+                                                    callback(-2, "", true);
+                                                }
+                                            }
+                                        }];//end of buy product
+         }
+     }];
+    
+    return true;
+}
 
 
 void PluginHelper::openURL(std::string appstoreUrl) {
