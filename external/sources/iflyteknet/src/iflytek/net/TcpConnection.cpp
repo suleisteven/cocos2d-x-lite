@@ -44,7 +44,6 @@ int32_t TcpConnection::getVersion()
 //	"D7HqWVo2mDSc4lbE\n"\
 //	"-----END RSA PRIVATE KEY-----\n"
 
-#include "My3DES.h"
 TcpConnection::TcpConnection() :_socket(_ioService), _compress(true, false, true), _uncompress(false, false, true)
 {
     _isConnected = false;
@@ -56,10 +55,7 @@ TcpConnection::TcpConnection() :_socket(_ioService), _compress(true, false, true
 	_isEnableZlib = true;
 	_proxyPort = 0;
 
-	int r = 0;
-	string result = My3DES::encryptDES("hello", "f334acc30370c1e4e7ddae78", &r);
-
-	int xxx = 1;
+	
 }
 
 TcpConnection::~TcpConnection()
@@ -149,12 +145,7 @@ void TcpConnection::asynSend(void* data, std::size_t len, SendCallback sendCallb
 
 			int32_t encrypted_length = 0;
 			int8_t* encrypted;
-
-			char* test = "hello";
-			_desDecryption.encode(encrypted, encrypted_length, test, strlen(test));
-
-			//_desDecryption.encode(encrypted, encrypted_length, data, len);
-			
+			_desDecryption.encode(encrypted, encrypted_length, data, len);
 
 			if (encrypted_length > 0) // 加密成功
 			{
