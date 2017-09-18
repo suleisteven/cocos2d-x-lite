@@ -77,7 +77,7 @@ public:
     
     typedef std::function<void(int, string, bool)> PayCallback;
     
-    bool payForIAP(const string& productId, PayCallback callback);
+    bool payForIAP(const string& productId, const bool& isSanboxValue, PayCallback callback);
 #endif
     
 };
