@@ -551,6 +551,22 @@ bool js_cocos2dx_uu_water13_payForIAP(JSContext *cx, uint32_t argc, jsval *vp)
     JS::CallArgs argv = JS::CallArgsFromVp(argc, vp);
 	JS::RootedObject obj(cx, argv.thisv().toObjectOrNull());
     js_proxy_t *proxy = jsb_get_js_proxy(obj);
+
+	Director::getInstance()->getScheduler()->performFunctionInCocosThread([=]()
+	{
+		if (cocos2d::Director::getInstance() == nullptr || cocos2d::ScriptEngineManager::getInstance() == nullptr)
+			return;
+
+		JSB_AUTOCOMPARTMENT_WITH_GLOBAL_OBJCET
+
+			JSContext* cx = ScriptingCore::getInstance()->getGlobalContext();
+		JS::RootedObject jsobj(cx, JS_NewObject(cx, NULL, JS::NullPtr(), JS::NullPtr()));
+		jsval args = OBJECT_TO_JSVAL(jsobj);
+
+
+		ScriptingCore::getInstance()->executeFunctionWithOwner(OBJECT_TO_JSVAL(proxy->obj), "iapCallback", 1, &args);
+	});
+	return true;
     
 	if (argc == 1)
 	{

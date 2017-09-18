@@ -623,7 +623,7 @@ bool js_cocos2dx_extension_AsioConnection_asynSend(JSContext *cx, uint32_t argc,
     return true;
 }
 
-#include "My3DES.h"
+
 bool js_cocos2dx_extension_AsioConnection_constructor(JSContext *cx, uint32_t argc, jsval *vp)
 {
     
