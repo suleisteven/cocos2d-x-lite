@@ -22,7 +22,7 @@
 #import "IAPHelper.h"
 
 
-bool PluginHelper::payForIAP(const string& productId, PluginHelper::PayCallback callback)
+bool PluginHelper::payForIAP(const string& productId, const bool& isSanboxValue, PluginHelper::PayCallback callback)
 {
 //    if(![IAPShare sharedHelper].iap) {
     
@@ -35,7 +35,7 @@ bool PluginHelper::payForIAP(const string& productId, PluginHelper::PayCallback 
 //    }
     
     
-    [IAPShare sharedHelper].iap.production = NO;
+    [IAPShare sharedHelper].iap.production = isSanboxValue ? NO : YES;
     
     [[IAPShare sharedHelper].iap requestProductsWithCompletion:^(SKProductsRequest* request,SKProductsResponse* response)
      {
@@ -44,7 +44,7 @@ bool PluginHelper::payForIAP(const string& productId, PluginHelper::PayCallback 
              
              NSLog(@"Price: %@",[[IAPShare sharedHelper].iap getLocalePrice:product]);
              NSLog(@"Title: %@",product.localizedTitle);
-             
+             			
              [[IAPShare sharedHelper].iap buyProduct:product
                                         onCompletion:^(SKPaymentTransaction* trans){
                                             
@@ -79,8 +79,7 @@ bool PluginHelper::payForIAP(const string& productId, PluginHelper::PayCallback 
 //                                                    
 //                                                    //Convert JSON String to NSDictionary
 //                                                    NSDictionary* rec = [IAPShare toJSON:response];
-//                                                    
-//                                                    if([rec[@"status"] integerValue]==0)
+//                                                    ,;,,,//                                                    if([rec[@"status"] integerValue]==0)
 //                                                    {
 //                                                        
 //                                                        [[IAPShare sharedHelper].iap provideContentWithTransaction:trans];

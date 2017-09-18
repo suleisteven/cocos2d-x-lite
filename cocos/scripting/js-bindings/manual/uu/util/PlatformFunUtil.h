@@ -139,7 +139,7 @@ public:
 	/**
 	 * iap支付
 	 */
-    static bool payForIAP(const string& productId, PlatformFunUtil::PayCallback callback);
+    static bool payForIAP(const string& productId, const bool& isSanboxValue, PlatformFunUtil::PayCallback callback);
 
 #if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
 	static bool getJNIStaticMethodInfo(cocos2d::JniMethodInfo &methodinfo,

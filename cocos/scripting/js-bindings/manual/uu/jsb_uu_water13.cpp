@@ -46,6 +46,23 @@ public:
 	mozilla::Maybe<JS::PersistentRootedObject> _JSDelegate;
 };
 
+class UUWater13
+{
+public:
+    
+    void setRefPtr(void* refPtr)
+    {
+        this->_refPtr = refPtr;
+    }
+    
+    void* getRefPtr()
+    {
+        return this->_refPtr;
+    }
+    
+    void* _refPtr;
+};
+
 
 ///**
 //* 获取游戏规则类型
@@ -299,10 +316,11 @@ bool js_cocos2dx_uu_water13_constructor(JSContext *cx, uint32_t argc, jsval *vp)
 	JS::RootedObject proto(cx, js_cocos2dx_uu_water13_prototype);
 	JS::RootedObject obj(cx, JS_NewObject(cx, js_cocos2dx_uu_water13_class, proto, JS::NullPtr()));
     
+    UUWater13* cobj = new UUWater13();
     JSB_UUWater13Native* delegate = new JSB_UUWater13Native();
 	delegate->setJSDelegate(obj);
-	js_proxy_t *p = jsb_new_proxy(delegate, obj);
-    
+    cobj->setRefPtr(delegate);
+	js_proxy_t *p = jsb_new_proxy(cobj, obj);
 	JS::AddNamedObjectRoot(cx, &p->obj, "UUWater13Native");
     
 	args.rval().set(OBJECT_TO_JSVAL(obj));
@@ -368,6 +386,28 @@ bool js_cocos2dx_uu_water13_getAppChannel(JSContext *cx, uint32_t argc, jsval *v
 
 	return true;
 }
+
+bool js_cocos2dx_uu_water13_getAppVersionName(JSContext *cx, uint32_t argc, jsval *vp)
+{
+    JS::CallArgs argv = JS::CallArgsFromVp(argc, vp);
+    JS::RootedObject obj(cx, argv.thisv().toObjectOrNull());
+    string value = PlatformFunUtil::getAppVersionName();
+    
+    argv.rval().set(c_string_to_jsval(cx, value.c_str()));
+    
+    return true;
+}
+
+bool js_cocos2dx_uu_water13_getAppVersionCode(JSContext *cx, uint32_t argc, jsval *vp)
+{
+    JS::CallArgs argv = JS::CallArgsFromVp(argc, vp);
+    JS::RootedObject obj(cx, argv.thisv().toObjectOrNull());
+    int32_t value = PlatformFunUtil::getAppVersionCode();
+    argv.rval().set(INT_TO_JSVAL(value));
+    
+    return true;
+}
+
 
 bool js_cocos2dx_uu_water13_getNetType(JSContext *cx, uint32_t argc, jsval *vp)
 {
@@ -551,32 +591,19 @@ bool js_cocos2dx_uu_water13_payForIAP(JSContext *cx, uint32_t argc, jsval *vp)
     JS::CallArgs argv = JS::CallArgsFromVp(argc, vp);
 	JS::RootedObject obj(cx, argv.thisv().toObjectOrNull());
     js_proxy_t *proxy = jsb_get_js_proxy(obj);
-
-	Director::getInstance()->getScheduler()->performFunctionInCocosThread([=]()
-	{
-		if (cocos2d::Director::getInstance() == nullptr || cocos2d::ScriptEngineManager::getInstance() == nullptr)
-			return;
-
-		JSB_AUTOCOMPARTMENT_WITH_GLOBAL_OBJCET
-
-			JSContext* cx = ScriptingCore::getInstance()->getGlobalContext();
-		JS::RootedObject jsobj(cx, JS_NewObject(cx, NULL, JS::NullPtr(), JS::NullPtr()));
-		jsval args = OBJECT_TO_JSVAL(jsobj);
-
-
-		ScriptingCore::getInstance()->executeFunctionWithOwner(OBJECT_TO_JSVAL(proxy->obj), "iapCallback", 1, &args);
-	});
-	return true;
+    UUWater13* cobj = (UUWater13*) (proxy ? proxy->ptr : NULL);
     
-	if (argc == 1)
+	if (argc == 2)
 	{
 		string productId;
 		
-		if (argv[0].isString())
+		if (argv[0].isString() && argv[1].isBoolean())
 		{
 			jsval_to_std_string(cx, argv[0], &productId);
             
-            PlatformFunUtil::payForIAP(productId, [=](int status, string receipt, bool isSanbox){
+            bool isSanboxValue = argv[0].toBoolean();
+            
+            PlatformFunUtil::payForIAP(productId, isSanboxValue, [=](int status, string receipt, bool isSanbox){
                 CCLOG("pay satus:%d", status);
                 
                 Director::getInstance()->getScheduler()->performFunctionInCocosThread([=]()
@@ -588,7 +615,7 @@ bool js_cocos2dx_uu_water13_payForIAP(JSContext *cx, uint32_t argc, jsval *vp)
                                      
                                      JSContext* cx = ScriptingCore::getInstance()->getGlobalContext();
                                      JS::RootedObject jsobj(cx, JS_NewObject(cx, NULL, JS::NullPtr(), JS::NullPtr()));
-                                     jsval args = OBJECT_TO_JSVAL(jsobj);
+                                     
                                      
                                      JS::RootedValue statusJS(cx);
                                      statusJS = INT_TO_JSVAL(status);
@@ -603,7 +630,9 @@ bool js_cocos2dx_uu_water13_payForIAP(JSContext *cx, uint32_t argc, jsval *vp)
                                      JS_SetProperty(cx, jsobj, "isSanbox", isSanboxJS);
                                      
                                      
-                                     ScriptingCore::getInstance()->executeFunctionWithOwner(OBJECT_TO_JSVAL(proxy->obj), "iapCallback", 1, &args);
+                                     JS::RootedValue args(cx, OBJECT_TO_JSVAL(jsobj));
+                                     
+                                     ScriptingCore::getInstance()->executeFunctionWithOwner(OBJECT_TO_JSVAL(((JSB_UUWater13Native*)cobj->getRefPtr())->_JSDelegate.ref()), "iapCallback", 1, args.address());
                                  });
             });
         }else{
@@ -667,6 +696,9 @@ void register_jsb_uu_water13(JSContext* cx, JS::HandleObject global)
 		JS_FN("getExternalParam", js_cocos2dx_uu_water13_getExternalParam, 1, JSPROP_PERMANENT | JSPROP_ENUMERATE),
         JS_FN("payForIAP", js_cocos2dx_uu_water13_payForIAP, 1, JSPROP_PERMANENT | JSPROP_ENUMERATE),
 		
+        JS_FN("getAppVersionCode", js_cocos2dx_uu_water13_getAppVersionCode, 1, JSPROP_PERMANENT | JSPROP_ENUMERATE),
+        JS_FN("getAppVersionName", js_cocos2dx_uu_water13_getAppVersionName, 1, JSPROP_PERMANENT | JSPROP_ENUMERATE),
+        
 		JS_FS_END
 	};
 
